@@ -19,7 +19,7 @@
 import React from "react";
 // react plugin used to create charts
 import { Line, Pie } from "react-chartjs-2";
-// reactstrap components
+// reactstrap componeLinents
 import {
   Card,
   CardHeader,
