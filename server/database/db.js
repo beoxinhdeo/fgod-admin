@@ -4,7 +4,7 @@ const db = {}
 const sequelize = new Sequelize("fgod_hotel","root","",{
     host : 'localhost',
     dialect : 'mysql',
-    operatorsAliases : false,
+    //operatorsAliases : false,
 
     pool : {
         max : 5,
