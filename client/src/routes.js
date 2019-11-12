@@ -23,65 +23,72 @@ import Typography from "views/Typography.jsx";
 import TableList from "views/Tables.jsx";
 import Maps from "views/Map.jsx";
 import UserPage from "views/User.jsx";
-import UpgradeToPro from "views/Upgrade.jsx";
+// import UpgradeToPro from "views/Upgrade.jsx";
 
 var routes = [
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: "nc-icon nc-bank",
+    path: "/room-map",
+    name: "Sơ đồ phòng",
+    icon: "	fas fa-building",
     component: Dashboard,
     layout: "/admin"
   },
   {
     path: "/icons",
-    name: "Icons",
-    icon: "nc-icon nc-diamond",
+    name: "Đặt phòng",
+    icon: "fa fa-address-card",
     component: Icons,
     layout: "/admin"
   },
   {
     path: "/maps",
-    name: "Maps",
-    icon: "nc-icon nc-pin-3",
+    name: "Loại phòng",
+    icon: "	fas fa-bed",
     component: Maps,
     layout: "/admin"
   },
   {
     path: "/notifications",
-    name: "Notifications",
-    icon: "nc-icon nc-bell-55",
+    name: "Khách hàng",
+    icon: "	far fa-user-circle",
     component: Notifications,
     layout: "/admin"
   },
   {
-    path: "/user-page",
-    name: "User Profile",
+    path: "/employees",
+    name: "Nhân viên",
     icon: "nc-icon nc-single-02",
     component: UserPage,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/tables",
-    name: "Table List",
-    icon: "nc-icon nc-tile-56",
+    name: "Bộ phận",
+    icon: "fas fa-users",
     component: TableList,
     layout: "/admin"
   },
   {
     path: "/typography",
-    name: "Typography",
-    icon: "nc-icon nc-caps-small",
+    name: "Hóa đơn",
+    icon: "fas fa-clipboard-list",
     component: Typography,
     layout: "/admin"
   },
   {
-    pro: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "nc-icon nc-spaceship",
-    component: UpgradeToPro,
+    path: "/typography",
+    name: "Thống kê",
+    icon: "fas fa-chart-bar",
+    component: Typography,
     layout: "/admin"
   }
+  // {
+  //   pro: true,
+  //   path: "/upgrade",
+  //   name: "Upgrade to PRO",
+  //   icon: "nc-icon nc-spaceship",
+  //   component: UpgradeToPro,
+  //   layout: "/admin"
+  // }
 ];
 export default routes;

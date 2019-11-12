@@ -86,7 +86,7 @@ class Notifications extends React.Component {
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h5">Notifications</CardTitle>
+                  <CardTitle tag="h5">Sơ đồ phòng</CardTitle>
                   <p className="card-category">
                     Handcrafted by our colleague{" "}
                     <a
