@@ -26,7 +26,7 @@ users.post('/register', (req,res) => {
         .then( nhanvien => { 
         if(!nhanvien)
         {
-          bcrypt.hash(req.body.PASS, 10,(err,hash) => {
+          bcrypt.hash(req.body.PASS,10,(err,hash) => {
             userData.PASS = hash
             User.create(userData)
             .then(nhanvien => {
@@ -54,15 +54,18 @@ users.post('/login',(req,res) => {
     .then(nhanvien => {
         if(nhanvien)
         {
-            if(bcrypt.compareSync(req.body.PASS, nhanvien.PASS))
+            //if(req.body.PASS=nhanvien.PASS)
+            if(bcrypt.compareSync(req.body.PASS,nhanvien.PASS))
             {
-                let token = jwt.sign(nhanvien, process.env.SECRET_KEY,{expiresIn: 1440})
-                res.send('token')
+               var token = jwt.sign(nhanvien.dataValues , process.env.SECRET_KEY,{ expiresIn: '1h'})
+               res.send(token)
             }
+            else
+            res.send(bcrypt.compareSync('123456789',nhanvien.PASS))
         }
         else
         {
-            res.status(4000).json({ error : "User does not exist"})
+            res.status(404).json({ error : "User does not exist"})
         }
     })
     .catch(err => {
