@@ -23,72 +23,72 @@ import Typography from "views/Typography.jsx";
 import TableList from "views/Tables.jsx";
 import Maps from "views/Map.jsx";
 import UserPage from "views/User.jsx";
-// import UpgradeToPro from "views/Upgrade.jsx";
+
+import RoomMap from "views/RoomMap.jsx";
+import Booking from "views/Booking.jsx";
+import TypeRoom from "views/TypeRoom.jsx";
+import Customer from "views/Customer.jsx";
+import Employee from "views/Employee.jsx";
+import Role from "views/Role.jsx";
+import Bill from "views/Bill.jsx";
+import Statistic from "views/Statistic.jsx";
 
 var routes = [
   {
-    path: "/room-map",
+    path: "/roommap",
     name: "Sơ đồ phòng",
     icon: "	fas fa-building",
-    component: Dashboard,
+    component: RoomMap,
     layout: "/admin"
   },
   {
-    path: "/icons",
+    path: "/booking",
     name: "Đặt phòng",
     icon: "fa fa-address-card",
-    component: Icons,
+    component: Booking,
     layout: "/admin"
   },
   {
-    path: "/maps",
+    path: "/typeroom",
     name: "Loại phòng",
     icon: "	fas fa-bed",
-    component: Maps,
+    component: TypeRoom,
     layout: "/admin"
   },
   {
-    path: "/notifications",
+    path: "/customer",
     name: "Khách hàng",
     icon: "	far fa-user-circle",
-    component: Notifications,
+    component: Customer,
     layout: "/admin"
   },
   {
-    path: "/employees",
+    path: "/employee",
     name: "Nhân viên",
     icon: "nc-icon nc-single-02",
-    component: UserPage,
+    component: Employee,
     layout: "/admin",
   },
   {
-    path: "/tables",
+    path: "/role",
     name: "Bộ phận",
     icon: "fas fa-users",
-    component: TableList,
+    component: Role,
     layout: "/admin"
   },
   {
-    path: "/typography",
+    path: "/bill",
     name: "Hóa đơn",
     icon: "fas fa-clipboard-list",
-    component: Typography,
+    component: Bill,
     layout: "/admin"
   },
   {
-    path: "/typography",
+    path: "/statistic",
     name: "Thống kê",
     icon: "fas fa-chart-bar",
-    component: Typography,
+    component: Statistic,
     layout: "/admin"
   }
-  // {
-  //   pro: true,
-  //   path: "/upgrade",
-  //   name: "Upgrade to PRO",
-  //   icon: "nc-icon nc-spaceship",
-  //   component: UpgradeToPro,
-  //   layout: "/admin"
-  // }
 ];
 export default routes;
