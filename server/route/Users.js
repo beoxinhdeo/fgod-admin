@@ -54,7 +54,8 @@ users.post('/login',(req,res) => {
     .then(nhanvien => {
         if(nhanvien)
         {
-            //if(req.body.PASS=nhanvien.PASS)
+        freezeTableName: true
+        //if(req.body.PASS=nhanvien.PASS)
             if(bcrypt.compareSync(req.body.PASS,nhanvien.PASS))
             {
                var token = jwt.sign(nhanvien.dataValues , process.env.SECRET_KEY,{ expiresIn: '1h'})
