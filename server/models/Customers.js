@@ -1,48 +1,43 @@
-import { promises } from 'dns';
-
 const Sequelize = require('sequelize')
 const db = require('../database/db')
 
 
-module.exports = db.Sequelize.define([
-    'Customer',
+module.exports = db.sequelize.define(
+    'customer',
     {
-        Customer_ID:
+        code_cus:
         {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        Customer_Surname:
+        fullname:
         {
             type: Sequelize.STRING
         },
-        Customer_Name:
-        {
-            type: Sequelize.STRING
-        },
-        Customer_IdentityCard:
+        idcard_passport:
         {
             type: Sequelize.INTEGER
         },
-        Customer_PhoneNumber:
+        phone:
         {
             type: Sequelize.INTEGER
         },
-        Customer_Email:
+        email:
         {
             type: Sequelize.STRING
         },
-        Customer_Address:
+        address:
         {
             type: Sequelize.STRING
         },
     },
     {
+        timestamps : false,
         freezeTableName: true
     }
     
-], );
+ );
 
 
 // export const getpagecus = async (input) => {
