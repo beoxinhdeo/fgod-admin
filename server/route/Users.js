@@ -26,7 +26,7 @@ users.post('/register', (req,res) => {
         .then( nhanvien => { 
         if(!nhanvien)
         {
-          bcrypt.hash(req.body.PASS,10,(err,hash) => {
+          bcrypt.hash(req.body  .PASS,10,(err,hash) => {
             userData.PASS = hash
             User.create(userData)
             .then(nhanvien => {

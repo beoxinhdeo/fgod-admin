@@ -1,6 +1,6 @@
 const express = require('express')
 
-//import {addcus, updatecus, deletecus} from "../models/Customers";
+import {addcus, updatecus, deletecus} from "../models/Customers";
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const conn = require('../database/db')
@@ -8,6 +8,55 @@ const conn = require('../database/db')
 const Customers = express.Router()
 
 const Customer =require('../models/Customers')
+Customers.Customer(cors())
+//thêm 
+//cd server
+//npm run dev
+Customers.post('/update', (req,res) =>{
+    const cusdata={
+        code_cus=req.body.code_cus,
+        fullname:req.body.fullname,
+        idcard_passport:req.body.idcard_passport,
+        email:req.body.email,
+        phone:req.body.phone,
+        address:req.body.address
+    }
+    Customer.findOne({where:{code_cus:req.body.code_cus}}).then(customer =>{
+        if(customer){
+            Customers.update(cusdata).then(customer =>{
+                res.send({status:true, message:"thành công"});
+            }).catch(ex =>{res.send("err : ",ex)});
+        } else{
+            res.send({status:false,message:"Nhập lại mã khách hàng"});
+        }
+    }).catch(ex =>{
+        res.send("err : ",ex);
+    })
+})
+
+Customers.post('/create', (req,res) =>{
+    const cusdata={
+        code_cus: req.body.code_cus,
+        fullname: req.body.fullname,
+        idcard_passport: req.body.idcard_passport,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address
+    }
+    Customer.findOne({where:{idcard_passport: req.body.idcard_passport}}).then(customer =>{
+        if(!customer){
+            Customers.create(cusdata).then(customer =>{
+                res.send({status:customer.fullname,message:"thành công"});
+            }).catch(ex =>{
+                res.send("err : ",ex);
+            })
+        } else {
+            res.send({status:false,message:"Đã tồn tại"});
+        }
+    }).catch(ex =>{
+        res.send("err :", ex);
+    })
+})
 
 
 
