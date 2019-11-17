@@ -18,8 +18,22 @@
 */
 import React from "react";
 // reactstrap components
-import { Button, Card, CardBody, CardFooter, CardHeader, CardTitle, Col, Input, InputGroup, InputGroupAddon, InputGroupText, Pagination, PaginationItem, PaginationLink, Row, Table } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Col,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+  Row,
+  Table,
+} from "reactstrap";
 
+import "./Style.css"
 
 class Tables extends React.Component {
   render() {
@@ -30,216 +44,45 @@ class Tables extends React.Component {
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h3">
-                    <Row>
-                      <Col md="6">
-                        Danh sách khách hàng
-                      </Col>
-                      <Col md="6">
-                        <form>
-                          <InputGroup>
-                            <Input placeholder="Tìm kiếm..." />
-                            <InputGroupAddon addonType="append">
-                              <InputGroupText>
-                                <i className="nc-icon nc-zoom-split" />
-                              </InputGroupText>
-                            </InputGroupAddon>
-                          </InputGroup>
-                        </form>
-                      </Col>
-                    </Row>
-                      
-                  </CardTitle>
-
+                  <CardTitle tag="h3">Danh sách khách hàng</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <Button color="info" className="justify-content">Thêm</Button>
+                  <div className="space-between">
+                    <Button className="add-btn">Thêm</Button>
+                    <form className="form-inline search-bar">
+                      <input className="form-control" type="text" placeholder="Tìm kiếm..."/>
+                    </form>
+                  </div>
                   <Table responsive>
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Họ</th>
-                        <th>Tên</th>
+                        <th>Mã khách hàng</th>
+                        <th>Họ và tên</th>
                         <th>CMND</th>
                         <th>Email</th>
                         <th>SĐT</th>
                         <th>Địa chỉ</th>
-                        <th>Sửa</th>
-                        <th>Xóa</th>
+                        <th>Thao tác</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
+                        <td>Nguyễn Thị Phương Nhi</td>
                         <td>272695452</td>
                         <td>phuongnhi301299@gmail.com</td>
                         <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
+                        <td>Hồ Chí Minh</td>
+                        <td className="space-between">
+                          <Button className="edit-btn" type="button">Sửa</Button>
+                          <Button className="delete-btn">Xóa</Button>
                         </td>
                       </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>0001</td>
-                        <td>Nguyễn</td>
-                        <td>Nhi</td>
-                        <td>272695452</td>
-                        <td>phuongnhi301299@gmail.com</td>
-                        <td>0961619712</td>
-                        <td>TP.HCM</td>
-                        <td>
-                          <i className="far fa-edit"></i>
-                        </td>
-                        <td>
-                          <i className="far fa-trash-alt"></i>
-                        </td>
-                      </tr>
-
                     </tbody>
                   </Table>
                 </CardBody>
                 <CardFooter>
-                  <Pagination aria-label="Page navigation example">
+                  <Pagination aria-label="Page navigation example" className="flex-end">
                     <PaginationItem>
                       <PaginationLink first href="#" />
                     </PaginationItem>

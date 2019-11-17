@@ -1,0 +1,23 @@
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+.add-btn {
+    font-size: smaller;
+    background-color: mediumseagreen;
+}
+.edit-btn {
+    font-size: smaller;
+    background-color: dodgerblue;
+}
+.delete-btn {
+    font-size: smaller;
+    background-color: crimson;
+}
+.search-bar :hover{
+    border-color: mediumseagreen;
+}
