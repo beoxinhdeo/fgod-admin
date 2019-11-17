@@ -13,31 +13,31 @@ module.exports = db.sequelize.define(
         code_emp:
         {
             type: Sequelize.INTEGER,
-            foreignKey: true,
-            autoIncrement: true
+            referencesKey: 'code_emp',
+            
         },
         code_cus:
         {
             type: Sequelize.INTEGER,
-            foreignKey: true,
-            autoIncrement: true
+            referencesKey: 'code_cus',
+            
         },
         bill_date:
         {
-            type: Sequelize.DATE
+            type: Sequelize.DATE,
         },
         total:
         {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
         },
         message:
         {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
         },
     },
     {
-        // timestamps : false,
-        // freezeTableName: true
+        timestamps : false,
+        freezeTableName: true,
     }
     
  );

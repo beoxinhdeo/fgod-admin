@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
+const express = require('express')
+const cors = require('cors')
 const bills = express.Router();
-const Bill =require("../models/Bill")
+const Bill =require("../models/Bills")
 
 bills.use(cors())
 //thêm 
@@ -9,29 +9,10 @@ bills.use(cors())
 //npm run dev
 
 //xóa
-// customers.post('/delete',(req,res) =>{
-//     const cusdata={
-//         code_cus:req.body.code_cus,
-//         fullname:req.body.fullname,
-//         idcard_passport:req.body.idcard_passport,
-//         email:req.body.email,
-//         phone:req.body.phone,
-//         address:req.body.address
-//     }
-//     Customer.findOne({where:{code_cus:req.body.code_cus}}).then(customer =>{
-//         if(customer){
-//             Customer.delete(cusdata).then(customer =>{
-//                 res.send({status:customer.fullname,message:"delete thành công"});
-//             }).catch(ex =>{res.send("err : "+ ex)});
-//         } else{
-//             res.send({status:false,message:"chưa nhập mã khách hàng"});
-//         }
-//     }).catch(ex =>{res.send("err : " + ex)});
-// })
 
 
 // //update
-bills.post('/update', (req,res) =>{
+bills.post('/create', (req,res) =>{
     const billdata={
         code_bill:req.body.code_bill,
         code_emp:req.body.code_emp,
@@ -41,12 +22,12 @@ bills.post('/update', (req,res) =>{
         message:req.body.message
     }
     Bill.findOne({where:{code_bill:req.body.code_bill}}).then(bill =>{
-        if(bill){
-            Bill.update(billdata,{where: {code_cus:req.body.code_cus}}).then(customer =>{
-                res.send({status:customer.fullname, message:"thành công"});
+        if(!bill){
+            Bill.create(billdata).then(bill =>{
+                res.send({status:bill.code_bill, message:"thành công"});
             }).catch(ex =>{res.send("err : "+ex)});
         } else{
-            res.send({status:false,message:"Nhập lại mã khách hàng"});
+            res.send({status:false,message:"Bill ton tai"});
         }
     }).catch(ex =>{
         res.send("err : "+ ex);
@@ -55,28 +36,6 @@ bills.post('/update', (req,res) =>{
 
 
 
-customers.post('/create', (req,res) =>{
-    const cusdata={
-        code_cus: req.body.code_cus,
-        fullname: req.body.fullname,
-        idcard_passport: req.body.idcard_passport,
-        email: req.body.email,
-        phone: req.body.phone,
-        address: req.body.address
-    }
-    Customer.findOne({where:{idcard_passport: req.body.idcard_passport}}).then(customer =>{
-        if(!customer){
-            Customer.create(cusdata).then(customer =>{
-                res.send({status:customer.fullname,message:"thành công"});
-            }).catch(ex =>{
-                res.send("err : "+ex);
-            })
-        } else {
-            res.send({status:false,message:"Đã tồn tại"});
-        }
-    }).catch(ex =>{
-        res.send("err :"+ ex);
-    })
-})
+
 
 module.exports = bills
