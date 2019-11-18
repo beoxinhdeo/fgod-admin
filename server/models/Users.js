@@ -3,33 +3,39 @@ const db = require('../database/db')
 
 
 module.exports = db.sequelize.define(
-    'nhanvien',
+    'employee',
     {
-        MANV:{
-            type: Sequelize.INTEGER,
+        code_emp:{
+            type: Sequelize.STRING,
             primaryKey: true,
             autoIncrement: true             
         },
-        TENNV:{
+        fullname:{
             type: Sequelize.STRING
         },
-        EMAIL:{
+        identity_card:{
             type: Sequelize.STRING
         },
-        PASS:{
+        email:{
             type: Sequelize.STRING
         },
-        SDT:{
+        password:{
             type: Sequelize.STRING
         },
-        MAQUYEN:{
-            type: Sequelize.INTEGER,
+        phone:{
+            type: Sequelize.STRING
+        },
+        address:{
+            type: Sequelize.STRING
+        },
+        role:{
+            type: Sequelize.STRING,
             references: 'quyen', // <<< Note, its table's name, not object name
             referencesKey: 'MAQUYEN' // <<< Note, its a column name
             
         },
-        TRANGTHAI:{
-            type: Sequelize.INTEGER,
+        status:{
+            type: Sequelize.STRING,
             references:
              {
                 model: 'quyens', // 'persons' refers to table name
