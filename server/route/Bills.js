@@ -1,7 +1,9 @@
 const express = require('express')
 const cors = require('cors')
+
+
 const bills = express.Router();
-const Bill =require("../models/Bills")
+const Bill = require("../models/Bills")
 
 bills.use(cors())
 //thêm 
