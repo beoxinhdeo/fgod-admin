@@ -26,8 +26,13 @@ users.post('/register', (req,res) => {
         .then( employee => { 
         if(!employee)
         {
+<<<<<<< HEAD
           bcrypt.hash(req.body.password,10,(err,hash) => {
             userData.password = hash
+=======
+          bcrypt.hash(req.body  .PASS,10,(err,hash) => {
+            userData.PASS = hash
+>>>>>>> eb859e54085172358d37c9833da8e892dbe446b4
             User.create(userData)
             .then(employee => {
                 res.json({ status: employee.email + ' registered'})
