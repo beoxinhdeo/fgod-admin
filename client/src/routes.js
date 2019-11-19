@@ -23,6 +23,10 @@
 // import TableList from "views/Tables.jsx";
 // import Maps from "views/Map.jsx";
 // import UserPage from "views/User.jsx";
+<<<<<<< HEAD
+=======
+
+>>>>>>> e41089fb25a97076fcd9a0558bf00ea95eec6f88
 import RoomMap from "views/RoomMap.jsx";
 import Booking from "views/Booking.jsx";
 import TypeRoom from "views/TypeRoom.jsx";
@@ -31,21 +35,23 @@ import Customer from "views/Customer.jsx";
 import Role from "views/Role.jsx";
 import Bill from "views/Bill.jsx";
 import Statistic from "views/Statistic.jsx";
-import Employee from "views/Employee";
+import Icons from "views/Icons";
+import User from "views/User";
+import Employee from "views/Employee.jsx";
 
 var routes = [
   {
     path: "/roommap",
     name: "Sơ đồ phòng",
     icon: "	fas fa-building",
-    component: RoomMap,
+    component: Icons,
     layout: "/admin"
   },
   {
     path: "/booking",
     name: "Đặt phòng",
     icon: "fa fa-address-card",
-    component: Booking,
+    component: User,
     layout: "/admin"
   },
   {
@@ -89,6 +95,6 @@ var routes = [
     icon: "fas fa-chart-bar",
     component: Statistic,
     layout: "/admin"
-  }
+  },
 ];
 export default routes;

@@ -7,17 +7,15 @@
     justify-content: space-between;
 }
 .add-btn {
-    font-size: smaller;
-    background-color: mediumseagreen;
+    font-weight: bold;
+    font-size: 0.7rem;
+    border-radius: 5px;
 }
 .edit-btn {
-    font-size: smaller;
-    background-color: dodgerblue;
+    background-color: #0277bd  !important;
+    border-radius: 5px;
 }
 .delete-btn {
-    font-size: smaller;
-    background-color: crimson;
-}
-.search-bar :hover{
-    border-color: mediumseagreen;
+    background-color: #dd2c00 !important;
+    border-radius: 5px;
 }

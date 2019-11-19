@@ -26,7 +26,15 @@ import "assets/scss/paper-dashboard.scss?v=1.1.0";
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+
 import AdminLayout from "layouts/Admin.jsx";
+//MDB Datatable
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 const hist = createBrowserHistory();
 
