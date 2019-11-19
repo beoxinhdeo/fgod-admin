@@ -24,21 +24,27 @@ import Customer from "views/Customer.jsx";
 import Role from "views/Role.jsx";
 import Bill from "views/Bill.jsx";
 import Statistic from "views/Statistic.jsx";
+<<<<<<< HEAD
+import Icons from "views/Icons";
+import User from "views/User";
+import Example from "views/Example";
+=======
 import Employee from "views/Employee";
+>>>>>>> 2c800b21af4e5cc86d98617aabc4cb7663b87347
 
 var routes = [
   {
     path: "/roommap",
     name: "Sơ đồ phòng",
     icon: "	fas fa-building",
-    component: RoomMap,
+    component: Icons,
     layout: "/admin"
   },
   {
     path: "/booking",
     name: "Đặt phòng",
     icon: "fa fa-address-card",
-    component: Booking,
+    component: User,
     layout: "/admin"
   },
   {
@@ -52,7 +58,7 @@ var routes = [
     path: "/customer",
     name: "Khách hàng",
     icon: "	far fa-user-circle",
-    component: Customer,
+    component: Example,
     layout: "/admin"
   },
   {
@@ -82,6 +88,6 @@ var routes = [
     icon: "fas fa-chart-bar",
     component: Statistic,
     layout: "/admin"
-  }
+  },
 ];
 export default routes;

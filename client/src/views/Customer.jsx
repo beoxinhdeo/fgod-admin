@@ -16,7 +16,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
+
 import React from "react";
+
 // reactstrap components
 import {
   Button,
@@ -33,7 +36,7 @@ import {
   Table,
 } from "reactstrap";
 
-import "./Style.css"
+import "./Style.css";
 
 class Tables extends React.Component {
   render() {
@@ -53,7 +56,7 @@ class Tables extends React.Component {
                       <input className="form-control" type="text" placeholder="Tìm kiếm..."/>
                     </form>
                   </div>
-                  <Table responsive>
+                  <Table responsive id="customer_table">
                     <thead>
                       <tr>
                         <th>Mã khách hàng</th>
