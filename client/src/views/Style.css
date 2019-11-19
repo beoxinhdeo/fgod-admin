@@ -7,6 +7,7 @@
     justify-content: space-between;
 }
 .add-btn {
+    background-color: #0277bd;
     font-weight: bold;
     font-size: 0.7rem;
     border-radius: 5px;
