@@ -84,30 +84,30 @@ class Header extends React.Component {
     this.sidebarToggle.current.classList.toggle("toggled");
   }
   // function that adds color dark/transparent to the navbar on resize (this is for the collapse)
-  updateColor() {
-    if (window.innerWidth < 993 && this.state.isOpen) {
-      this.setState({
-        color: "dark"
-      });
-    } else {
-      this.setState({
-        color: "transparent"
-      });
-    }
-  }
-  componentDidMount() {
-    window.addEventListener("resize", this.updateColor.bind(this));
-  }
-  componentDidUpdate(e) {
-    if (
-      window.innerWidth < 993 &&
-      e.history.location.pathname !== e.location.pathname &&
-      document.documentElement.className.indexOf("nav-open") !== -1
-    ) {
-      document.documentElement.classList.toggle("nav-open");
-      this.sidebarToggle.current.classList.toggle("toggled");
-    }
-  }
+  // updateColor() {
+  //   if (window.innerWidth < 993 && this.state.isOpen) {
+  //     this.setState({
+  //       color: "dark"
+  //     });
+  //   } else {
+  //     this.setState({
+  //       color: "transparent"
+  //     });
+  //   }
+  // }
+  // componentDidMount() {
+  //   window.addEventListener("resize", this.updateColor.bind(this));
+  // }
+  // componentDidUpdate(e) {
+  //   if (
+  //     window.innerWidth < 993 &&
+  //     e.history.location.pathname !== e.location.pathname &&
+  //     document.documentElement.className.indexOf("nav-open") !== -1
+  //   ) {
+  //     document.documentElement.classList.toggle("nav-open");
+  //     this.sidebarToggle.current.classList.toggle("toggled");
+  //   }
+  // }
   render() {
     return (
       // add or remove classes depending if we are on full-screen-maps page or not
@@ -126,7 +126,7 @@ class Header extends React.Component {
         }
       >
         <Container fluid>
-          <div className="navbar-wrapper">
+          {/* <div className="navbar-wrapper">
             <div className="navbar-toggle">
               <button
                 type="button"
@@ -145,13 +145,13 @@ class Header extends React.Component {
             <span className="navbar-toggler-bar navbar-kebab" />
             <span className="navbar-toggler-bar navbar-kebab" />
             <span className="navbar-toggler-bar navbar-kebab" />
-          </NavbarToggler>
+          </NavbarToggler> */}
           <Collapse
             isOpen={this.state.isOpen}
             navbar
             className="justify-content-end"
           >
-            <form>
+            {/* <form>
               <InputGroup className="no-border">
                 <Input placeholder="Search..." />
                 <InputGroupAddon addonType="append">
@@ -160,41 +160,36 @@ class Header extends React.Component {
                   </InputGroupText>
                 </InputGroupAddon>
               </InputGroup>
-            </form>
+            </form> */}
             <Nav navbar>
-              <NavItem>
+              {/* <NavItem>
                 <Link to="#pablo" className="nav-link btn-magnify">
                   <i className="nc-icon nc-layout-11" />
                   <p>
                     <span className="d-lg-none d-md-block">Stats</span>
                   </p>
                 </Link>
-              </NavItem>
+              </NavItem> */}
               <Dropdown
                 nav
                 isOpen={this.state.dropdownOpen}
                 toggle={e => this.dropdownToggle(e)}
               >
                 <DropdownToggle caret nav>
-                  <i className="nc-icon nc-bell-55" />
-                  <p>
-                    <span className="d-lg-none d-md-block">Some Actions</span>
-                  </p>
+                  <i className="nc-icon nc-circle-10" />
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem tag="a">Action</DropdownItem>
-                  <DropdownItem tag="a">Another Action</DropdownItem>
-                  <DropdownItem tag="a">Something else here</DropdownItem>
+                  <DropdownItem tag="a">Đăng xuất</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <NavItem>
+              {/* <NavItem>
                 <Link to="#pablo" className="nav-link btn-rotate">
                   <i className="nc-icon nc-settings-gear-65" />
                   <p>
                     <span className="d-lg-none d-md-block">Account</span>
                   </p>
                 </Link>
-              </NavItem>
+              </NavItem> */}
             </Nav>
           </Collapse>
         </Container>

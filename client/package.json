@@ -6,6 +6,8 @@
   "dependencies": {
     "bootstrap": "4.3.1",
     "chart.js": "2.8.0",
+    "datatables.net": "^1.10.20",
+    "datatables.net-dt": "^1.10.20",
     "history": "4.9.0",
     "node-sass": "4.12.0",
     "perfect-scrollbar": "1.4.0",
@@ -48,5 +50,5 @@
     "jquery": "3.4.1",
     "typescript": "3.4.5"
   },
-   "proxy" : "http://localhost:5000"
+  "proxy": "http://localhost:5000"
 }
