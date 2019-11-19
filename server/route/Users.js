@@ -26,13 +26,8 @@ users.post('/register', (req,res) => {
         .then( employee => { 
         if(!employee)
         {
-<<<<<<< HEAD
           bcrypt.hash(req.body.password,10,(err,hash) => {
             userData.password = hash
-=======
-          bcrypt.hash(req.body  .PASS,10,(err,hash) => {
-            userData.PASS = hash
->>>>>>> eb859e54085172358d37c9833da8e892dbe446b4
             User.create(userData)
             .then(employee => {
                 res.json({ status: employee.email + ' registered'})
@@ -55,7 +50,7 @@ users.post('/register', (req,res) => {
 
 
 users.post('/login',(req,res) => {
-    User.findAll({ where: { role : req.body.role} })
+    User.findOne({ where: { email : req.body.email} })
     .then(employee => {
         if(employee)
         {     
@@ -64,7 +59,7 @@ users.post('/login',(req,res) => {
             
         freezeTableName: true
         //if(req.body.PASS=nhanvien.PASS)
-            if(bcrypt.compareSync(req.body.password,employee[1].password))
+            if(bcrypt.compareSync(req.body.password,employee.password))
             {
                 var sessions = req.session
                 sessions.cart =[{
@@ -81,7 +76,7 @@ users.post('/login',(req,res) => {
                //res.send(token)
                }
             else
-            res.send(bcrypt.compareSync('123456789',employee[1].password))
+            res.send(bcrypt.compareSync('123456789',employee.password))
         }
         else
         {
@@ -92,6 +87,37 @@ users.post('/login',(req,res) => {
         res.status(400).json({ error : err })
     })
 }) 
+
+users.post('/update', (req,res) =>{
+    const userData = {
+        code_emp : req.body.code_emp,
+        fullname :      req.body.fullname,
+        identity_card : req.body.identity_card,
+        email :         req.body.email,
+        password :      req.body.password,//bcrypt.hash(req.body.password,10,(err,hash) => {userData.password = err}),
+        phone :         req.body.phone,
+        address :       req.body.address,
+        role :          req.body.role,
+        status :        req.body.status
+    }
+
+    User.findOne({where:{code_emp:req.body.code_emp}}).then(user =>{
+        if(user){
+            bcrypt.hash(req.body.password,10,(err,hash) => {
+                userData.password = hash
+                User.update( userData,{where: {code_emp:req.body.code_emp}}).then(user =>{
+                    res.send({status:user.fullname, message:"thành công"})
+                }).catch(err =>{res.send("err : " + err)});
+            })
+        } 
+        else{
+            res.send({status:false,message:"Nhập lại mã khách hàng"});
+        }
+    }).catch(err =>{
+        res.send("err : "+ err);
+    })
+})
+
 
 
 module.exports = users

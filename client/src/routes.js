@@ -16,6 +16,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+<<<<<<< HEAD
 // import Dashboard from "views/Dashboard.jsx";
 // import Notifications from "views/Notifications.jsx";
 // import Icons from "views/Icons.jsx";
@@ -24,6 +25,8 @@
 // import Maps from "views/Map.jsx";
 // import UserPage from "views/User.jsx";
 
+=======
+>>>>>>> 1b900464683be93918ea78c5cbacae27bf9ea888
 import RoomMap from "views/RoomMap.jsx";
 import Booking from "views/Booking.jsx";
 import TypeRoom from "views/TypeRoom.jsx";
@@ -36,6 +39,10 @@ import Icons from "views/Icons";
 import User from "views/User";
 import Example from "views/Example";
 import Employee from "views/Employee";
+<<<<<<< HEAD
+=======
+import DatatablePage from "views/AddEmp";
+>>>>>>> 1b900464683be93918ea78c5cbacae27bf9ea888
 
 var routes = [
   {
@@ -84,7 +91,7 @@ var routes = [
     path: "/bill",
     name: "Hóa đơn",
     icon: "fas fa-clipboard-list",
-    component: Bill,
+    component: DatatablePage,
     layout: "/admin"
   },
   {
