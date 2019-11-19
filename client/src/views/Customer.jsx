@@ -1,6 +1,6 @@
 import React from 'react';
-import { MDBDataTable, MDBTableHead, MDBTable, MDBTableBody, MDBCard, MDBCardHeader, MDBCardBody, MDBCardFooter, MDBCardTitle, MDBBtn } from 'mdbreact';
-import { Table, Card, CardHeader, CardTitle, CardBody, Row, Col, Button } from "reactstrap";
+import { MDBDataTable, MDBTable, MDBCard, MDBCardHeader, MDBCardBody, MDBCardTitle, MDBBtn } from 'mdbreact';
+import {  Row, Col} from "reactstrap";
 
 const Customer = (props) => {
   const data = {

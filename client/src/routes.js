@@ -24,8 +24,8 @@
 // import Maps from "views/Map.jsx";
 // import UserPage from "views/User.jsx";
 
-import RoomMap from "views/RoomMap.jsx";
-import Booking from "views/Booking.jsx";
+//import RoomMap from "views/RoomMap.jsx";
+//import Booking from "views/Booking.jsx";
 import TypeRoom from "views/TypeRoom.jsx";
 import Customer from "views/Customer.jsx";
 // import Add_Emp from "views/Add_Emp.jsx";
