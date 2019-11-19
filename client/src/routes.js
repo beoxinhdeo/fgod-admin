@@ -16,18 +16,32 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+<<<<<<< HEAD
+// import Dashboard from "views/Dashboard.jsx";
+// import Notifications from "views/Notifications.jsx";
+// import Icons from "views/Icons.jsx";
+// import Typography from "views/Typography.jsx";
+// import TableList from "views/Tables.jsx";
+// import Maps from "views/Map.jsx";
+// import UserPage from "views/User.jsx";
+=======
+>>>>>>> 2b772ac361d651b1b82d987c62a5e8e07452a903
 
 import RoomMap from "views/RoomMap.jsx";
 import Booking from "views/Booking.jsx";
 import TypeRoom from "views/TypeRoom.jsx";
 import Customer from "views/Customer.jsx";
-import Employee from "views/Employee.jsx";
+// import Add_Emp from "views/Add_Emp.jsx";
 import Role from "views/Role.jsx";
 import Bill from "views/Bill.jsx";
 import Statistic from "views/Statistic.jsx";
+<<<<<<< HEAD
 import Icons from "views/Icons";
 import User from "views/User";
 import Example from "views/Example";
+=======
+import Employee from "views/Employee";
+>>>>>>> 2c800b21af4e5cc86d98617aabc4cb7663b87347
 
 var routes = [
   {
@@ -63,7 +77,7 @@ var routes = [
     name: "Nhân viên",
     icon: "nc-icon nc-single-02",
     component: Employee,
-    layout: "/admin",
+    layout: "/admin"
   },
   {
     path: "/role",
