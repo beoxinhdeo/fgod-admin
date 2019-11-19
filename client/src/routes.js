@@ -23,10 +23,7 @@
 // import TableList from "views/Tables.jsx";
 // import Maps from "views/Map.jsx";
 // import UserPage from "views/User.jsx";
-<<<<<<< HEAD
-=======
 
->>>>>>> e41089fb25a97076fcd9a0558bf00ea95eec6f88
 import RoomMap from "views/RoomMap.jsx";
 import Booking from "views/Booking.jsx";
 import TypeRoom from "views/TypeRoom.jsx";
