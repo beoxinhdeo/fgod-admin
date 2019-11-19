@@ -23,8 +23,14 @@
 // import TableList from "views/Tables.jsx";
 // import Maps from "views/Map.jsx";
 // import UserPage from "views/User.jsx";
+<<<<<<< HEAD
 // import RoomMap from "views/RoomMap.jsx";
 // import Booking from "views/Booking.jsx";
+=======
+
+//import RoomMap from "views/RoomMap.jsx";
+//import Booking from "views/Booking.jsx";
+>>>>>>> cbb4eb0196d97a7fa428a0c6fd7c5d48e2412199
 import TypeRoom from "views/TypeRoom.jsx";
 import Customer from "views/Customer.jsx";
 // import Add_Emp from "views/Add_Emp.jsx";

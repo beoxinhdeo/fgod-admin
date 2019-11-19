@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Popup from 'reactjs-popup';
+import { MDBDataTable, MDBTable, MDBCard, MDBCardHeader, MDBCardBody, MDBCardTitle, MDBBtn } from 'mdbreact';
 
 import{
     Card,
@@ -63,7 +64,6 @@ class Employee extends React.Component{
         if(!this.state.email){
             emailError = "Email không được để trống";
         }
-
 
         if(fullnameError || emailError) {
             this.setState({fullnameError});
