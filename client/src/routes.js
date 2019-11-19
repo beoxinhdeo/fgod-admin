@@ -16,7 +16,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-<<<<<<< HEAD
 // import Dashboard from "views/Dashboard.jsx";
 // import Notifications from "views/Notifications.jsx";
 // import Icons from "views/Icons.jsx";
@@ -24,9 +23,6 @@
 // import TableList from "views/Tables.jsx";
 // import Maps from "views/Map.jsx";
 // import UserPage from "views/User.jsx";
-=======
->>>>>>> 2b772ac361d651b1b82d987c62a5e8e07452a903
-
 import RoomMap from "views/RoomMap.jsx";
 import Booking from "views/Booking.jsx";
 import TypeRoom from "views/TypeRoom.jsx";
