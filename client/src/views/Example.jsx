@@ -67,105 +67,7 @@ const Example = (props) => {
           <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
           <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
         </div>
-      },
-      {
-        id: '001',
-        fullname: 'Nguyễn Thị Phương Nhi',
-        id_card: '272695452',
-        email: 'phuongnhi301299@gmail.com',
-        birthday: '01/01/1999',
-        phone: '0961619712',
-        address: 'HCM',
-        button:
-        <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-        </div>
-      },
-      {
-        id: '001',
-        fullname: 'Nguyễn Thị Phương Nhi',
-        id_card: '272695452',
-        email: 'phuongnhi301299@gmail.com',
-        birthday: '01/01/1999',
-        phone: '0961619712',
-        address: 'HCM',
-        button:
-        <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-        </div>
-      },
-      {
-        id: '001',
-        fullname: 'Nguyễn Thị Phương Nhi',
-        id_card: '272695452',
-        email: 'phuongnhi301299@gmail.com',
-        birthday: '01/01/1999',
-        phone: '0961619712',
-        address: 'HCM',
-        button:
-        <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-        </div>
-      },
-      {
-        id: '001',
-        fullname: 'Nguyễn Thị Phương Nhi',
-        id_card: '272695452',
-        email: 'phuongnhi301299@gmail.com',
-        birthday: '01/01/1999',
-        phone: '0961619712',
-        address: 'HCM',
-        button:
-        <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-        </div>
-      },
-      {
-        id: '001',
-        fullname: 'Nguyễn Thị Phương Nhi',
-        id_card: '272695452',
-        email: 'phuongnhi301299@gmail.com',
-        birthday: '01/01/1999',
-        phone: '0961619712',
-        address: 'HCM',
-        button:
-        <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-        </div>
-      },
-      {
-        id: '001',
-        fullname: 'Nguyễn Thị Phương Nhi',
-        id_card: '272695452',
-        email: 'phuongnhi301299@gmail.com',
-        birthday: '01/01/1999',
-        phone: '0961619712',
-        address: 'HCM',
-        button:
-        <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-        </div>
-      },
-      {
-        id: '001',
-        fullname: 'Nguyễn Thị Phương Nhi',
-        id_card: '272695452',
-        email: 'phuongnhi301299@gmail.com',
-        birthday: '01/01/1999',
-        phone: '0961619712',
-        address: 'HCM',
-        button:
-        <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-        </div>
-      },
+      }
 
     ]
   };
@@ -183,7 +85,8 @@ const Example = (props) => {
             <MDBCardBody>
               <MDBBtn className="add-btn" size="sm">Thêm</MDBBtn>
               <MDBTable responsive>
-                <MDBDataTable data = {data}/>
+              
+              <MDBDataTable data = {data}/>
               </MDBTable>
             </MDBCardBody>
           </MDBCard>

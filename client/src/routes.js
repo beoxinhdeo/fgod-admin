@@ -24,13 +24,11 @@ import Customer from "views/Customer.jsx";
 import Role from "views/Role.jsx";
 import Bill from "views/Bill.jsx";
 import Statistic from "views/Statistic.jsx";
-<<<<<<< HEAD
 import Icons from "views/Icons";
 import User from "views/User";
 import Example from "views/Example";
-=======
 import Employee from "views/Employee";
->>>>>>> 2c800b21af4e5cc86d98617aabc4cb7663b87347
+import DatatablePage from "views/AddEmp";
 
 var routes = [
   {
@@ -79,7 +77,7 @@ var routes = [
     path: "/bill",
     name: "Hóa đơn",
     icon: "fas fa-clipboard-list",
-    component: Bill,
+    component: DatatablePage,
     layout: "/admin"
   },
   {

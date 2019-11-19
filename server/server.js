@@ -20,12 +20,12 @@ app.use(session({
 var Users = require('./route/Users')
 var Customers = require('./route/Customers')
 var Bills = require('./route/Bills')
-var Statistical = require('./route/Statistical')
+//var Statistical = require('./route/Statistical')
 
 app.use('/users',Users)
 app.use('/customers',Customers)
 app.use('/bills',Bills)
-app.use('/statistical',Statistical)
+//app.use('/statistical',Statistical)
 
 app.listen(port, () => {
     console.log("Server is running on port:" + port )
