@@ -1,8 +1,34 @@
 import React from 'react';
 import { MDBDataTable, MDBTableHead, MDBTable, MDBTableBody, MDBCard, MDBCardHeader, MDBCardBody, MDBCardFooter, MDBCardTitle, MDBBtn } from 'mdbreact';
 import { Table, Card, CardHeader, CardTitle, CardBody, Row, Col, Button } from "reactstrap";
+import { readJsonConfigFile } from 'typescript';
+import axios from 'axios';
 
-const Example = (props) => {
+
+
+class Example extends React.Component  {
+  constructor()
+  {
+    super()
+    this.state = { user : [] };
+   }
+  componentDidMount() {
+    this.getUsers();
+  }
+  getUsers()
+  {
+    axios.get('http://localhost:5000/users/show')
+     .then( response => {
+      console.log(response);
+      this.setState({ user : response});
+     })
+     .catch(function (error) {
+       console.log(error);
+     })
+  }
+
+render()
+{
   const data = {
     columns: [
       {
@@ -53,26 +79,9 @@ const Example = (props) => {
         width: 100
       }
     ],
-    rows: [
-      {
-        id: '001',
-        fullname: 'Nguyễn Thị Phương Nhi',
-        id_card: '272695452',
-        email: 'phuongnhi301299@gmail.com',
-        birthday: '01/01/1999',
-        phone: '0961619712',
-        address: 'HCM',
-        button:
-        <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-        </div>
-      }
-
-    ]
+    rows: this.state.user
   };
-
-  return (
+    return (
     <div className="content">
       <Row>
         <Col md="12">
@@ -93,7 +102,8 @@ const Example = (props) => {
         </Col>
       </Row>
     </div> 
-  );
+  )
+}
 };
 
 export default Example;
