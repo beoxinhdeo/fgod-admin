@@ -64,12 +64,12 @@ const Customer = (props) => {
         address: 'HCM',
         button:
         <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
+          <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+          <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
         </div>
       },
       {
-        id: '001',
+        id: '002',
         fullname: 'Nguyễn Thị Phương Nhi',
         id_card: '272695452',
         email: 'phuongnhi301299@gmail.com',
@@ -83,7 +83,7 @@ const Customer = (props) => {
         </div>
       },
       {
-        id: '001',
+        id: '003',
         fullname: 'Nguyễn Thị Phương Nhi',
         id_card: '272695452',
         email: 'phuongnhi301299@gmail.com',
@@ -97,7 +97,7 @@ const Customer = (props) => {
         </div>
       },
       {
-        id: '001',
+        id: '004',
         fullname: 'Nguyễn Thị Phương Nhi',
         id_card: '272695452',
         email: 'phuongnhi301299@gmail.com',
@@ -111,7 +111,7 @@ const Customer = (props) => {
         </div>
       },
       {
-        id: '001',
+        id: '005',
         fullname: 'Nguyễn Thị Phương Nhi',
         id_card: '272695452',
         email: 'phuongnhi301299@gmail.com',
@@ -125,7 +125,7 @@ const Customer = (props) => {
         </div>
       },
       {
-        id: '001',
+        id: '006',
         fullname: 'Nguyễn Thị Phương Nhi',
         id_card: '272695452',
         email: 'phuongnhi301299@gmail.com',
@@ -139,7 +139,7 @@ const Customer = (props) => {
         </div>
       },
       {
-        id: '001',
+        id: '007',
         fullname: 'Nguyễn Thị Phương Nhi',
         id_card: '272695452',
         email: 'phuongnhi301299@gmail.com',
@@ -153,7 +153,7 @@ const Customer = (props) => {
         </div>
       },
       {
-        id: '001',
+        id: '008',
         fullname: 'Nguyễn Thị Phương Nhi',
         id_card: '272695452',
         email: 'phuongnhi301299@gmail.com',
@@ -162,7 +162,7 @@ const Customer = (props) => {
         address: 'HCM',
         button:
         <div>
-          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
+          <MDBBtn className="edit-btn"size="sm">Sửa</MDBBtn>
           <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
         </div>
       },
@@ -181,14 +181,14 @@ const Customer = (props) => {
                   <Col md="6">
                     Danh sách khách hàng</Col>
                   <Col md="6" className="flex-end">
-                    <MDBBtn className="add-btn" size="sm">Thêm khách hàng</MDBBtn>
+                    <MDBBtn className="add-btn"> Thêm khách hàng</MDBBtn>
                   </Col>
                 </Row>
               </MDBCardTitle>
             </MDBCardHeader>
             <MDBCardBody>
               <MDBTable responsive>
-                <MDBDataTable data = {data}/>
+                <MDBDataTable striped data = {data}/>
               </MDBTable>
             </MDBCardBody>
           </MDBCard>
