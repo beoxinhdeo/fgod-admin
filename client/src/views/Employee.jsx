@@ -65,7 +65,7 @@ class Employee extends React.Component{
         }
 
         if(fullnameError || emailError) {
-            this.setState({fullnameError});
+            this.setState({fullnameError, emailError});
             return false;
         }
         return true;
