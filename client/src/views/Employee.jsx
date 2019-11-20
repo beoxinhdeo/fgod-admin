@@ -2,20 +2,8 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 
-import{
-    Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    Label,
-    Row,
-    Col,
-    CardTitle,
-    FormGroup,
-    Input,
-    Button,
-    Table
-}from 'reactstrap';
+import{Card, CardBody, CardFooter, CardHeader, Label, Row, Col, CardTitle, FormGroup, Input, Button, Table} from 'reactstrap';
+import { MDBDataTable, MDBTableHead, MDBTable, MDBTableBody, MDBCard, MDBCardHeader, MDBCardBody, MDBCardFooter, MDBCardTitle, MDBBtn } from 'mdbreact';
 const initialState = {
     isShow : true,
         fullname :"",
@@ -28,6 +16,88 @@ const initialState = {
         fullnameError:"",
         emailError:""
 }
+
+    const data = {
+      columns: [
+        {
+          label: 'ID',
+          field: 'id',
+          sort: 'asc',
+          width: 150
+        },
+        {
+          label: 'Họ và tên',
+          field: 'fullname',
+          sort: 'asc',
+          width: 270
+        },
+        {
+          label: 'CMND',
+          field: 'id_card',
+          sort: 'asc',
+          width: 200
+        },
+        {
+          label: 'Email',
+          field: 'email',
+          sort: 'asc',
+          width: 100
+        },
+        {
+          label: 'Ngày sinh',
+          field: 'birthday',
+          sort: 'asc',
+          width: 150
+        },
+        {
+          label: 'Số điện thoại',
+          field: 'phone',
+          sort: 'asc',
+          width: 100
+        },
+        {
+          label: 'Địa chỉ',
+          field: 'address',
+          sort: 'asc',
+          width: 100
+        },
+        {
+          label: 'Quyền',
+          field: 'role',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'Trạng thái',
+          field: 'status',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'Thao tác',
+          field: 'button',
+          width: 100
+        }
+      ],
+      rows: [
+        {
+          id: '001',
+          fullname: 'Nguyễn Thị Phương Nhi',
+          id_card: '272695452',
+          email: 'phuongnhi@gmail.com',
+          birthday: '01/01/1999',
+          phone: '0961619712',
+          address: 'HCM',
+          role: '1',
+          status: '1',
+          button:
+          <div>
+            <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+            <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+          </div>
+        },
+      ]
+    };
 class Employee extends React.Component{
     state = initialState;
 
@@ -209,53 +279,34 @@ class Employee extends React.Component{
 /*-------------------- End Form Add --------------------*/
     render() {
         return (
-            <>
-                <div className="content">
-                    <Row>
-                        <Col md="12">
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle tag = "h3">Danh sách nhân viên</CardTitle>  
-                                </CardHeader>
-                                <CardBody>
-                                <div className="space-between">
-                                    <form className="form-inline search-bar">
-                                        <input style={{width: '300px'}} className="form-control" type="text" placeholder="Tìm kiếm..."/>
-                                    </form>
-{/*--------------------- Show Form Add-------------------------*/}               
-                                    <Popup modal trigger={<button className = "btn btn-primary" name="btn_adduser" onClick={() => this.handleClick()}>
-                                        <i className="fas fa-user-plus" />  Thêm nhân viên</button>}>        
-                                        {this.showForm()}
-                                    </Popup>
-{/*------------------------End Show ----------  ---------------*/}
-                                </div>
-                                    <Table responsive>
-                                        <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Họ</th>
-                                            <th>Tên</th>
-                                            <th>CMND</th>
-                                            <th>Email</th>
-                                            <th>SĐT</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Sửa</th>
-                                            <th>Xóa</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>                                        
-                                        </tbody>
-                                    </Table>
-                                </CardBody>
-                                <CardFooter>
-                                </CardFooter>
-                            </Card>
+            <div className="content">
+            <Row>
+              <Col md="12">
+                <MDBCard>
+                  <MDBCardHeader>
+                    <MDBCardTitle tag="h3">
+                      <Row>
+                        <Col md="6">
+                          Danh sách khách hàng</Col>
+                        <Col md="6" className="flex-end">
+                            <Popup modal trigger={<MDBBtn className = "add-btn" onClick={() => this.handleClick()}>Thêm nhân viên</MDBBtn>}>        
+                                {this.showForm()}
+                            </Popup>
                         </Col>
-                    </Row>
-                </div>
-            </>
+                      </Row>
+                    </MDBCardTitle>
+                  </MDBCardHeader>
+                  <MDBCardBody>
+                    <MDBTable responsive>
+                      <MDBDataTable striped data = {data}/>
+                    </MDBTable>
+                  </MDBCardBody>
+                </MDBCard>
+              </Col>
+            </Row>
+          </div> 
         );
-    }
-}
+        }
+    };
 
 export default Employee;
