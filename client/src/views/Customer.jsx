@@ -182,6 +182,7 @@ class Customer extends React.Component {
   state = {
     showForm : false
   };
+  
   onChange = updatevalue => {
     this.setState({fields : {
         ...this.state.fields,
