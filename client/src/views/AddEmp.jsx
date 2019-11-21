@@ -1,514 +1,334 @@
-import React from 'react';
-import { MDBDataTable } from 'mdbreact';
+import React from "react";
+import "./Style.css";
+import Popup from 'reactjs-popup';
 
-const DatatablePage = () => {
-  const data = {
-    columns: [
-      {
-        label: 'Name',
-        field: 'name',
-        sort: 'asc',
-        width: 150
-      },
-      {
-        label: 'Position',
-        field: 'position',
-        sort: 'asc',
-        width: 270
-      },
-      {
-        label: 'Office',
-        field: 'office',
-        sort: 'asc',
-        width: 200
-      },
-      {
-        label: 'Age',
-        field: 'age',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'Start date',
-        field: 'date',
-        sort: 'asc',
-        width: 150
-      },
-      {
-        label: 'Salary',
-        field: 'salary',
-        sort: 'asc',
-        width: 100
-      }
-    ],
-    rows: [
-      {
-        name: 'Tiger Nixon',
-        position: 'System Architect',
-        office: 'Edinburgh',
-        age: '61',
-        date: '2011/04/25',
-        salary: '$320'
-      },
-      {
-        name: 'Garrett Winters',
-        position: 'Accountant',
-        office: 'Tokyo',
-        age: '63',
-        date: '2011/07/25',
-        salary: '$170'
-      },
-      {
-        name: 'Ashton Cox',
-        position: 'Junior Technical Author',
-        office: 'San Francisco',
-        age: '66',
-        date: '2009/01/12',
-        salary: '$86'
-      },
-      {
-        name: 'Cedric Kelly',
-        position: 'Senior Javascript Developer',
-        office: 'Edinburgh',
-        age: '22',
-        date: '2012/03/29',
-        salary: '$433'
-      },
-      {
-        name: 'Airi Satou',
-        position: 'Accountant',
-        office: 'Tokyo',
-        age: '33',
-        date: '2008/11/28',
-        salary: '$162'
-      },
-      {
-        name: 'Brielle Williamson',
-        position: 'Integration Specialist',
-        office: 'New York',
-        age: '61',
-        date: '2012/12/02',
-        salary: '$372'
-      },
-      {
-        name: 'Herrod Chandler',
-        position: 'Sales Assistant',
-        office: 'San Francisco',
-        age: '59',
-        date: '2012/08/06',
-        salary: '$137'
-      },
-      {
-        name: 'Rhona Davidson',
-        position: 'Integration Specialist',
-        office: 'Tokyo',
-        age: '55',
-        date: '2010/10/14',
-        salary: '$327'
-      },
-      {
-        name: 'Colleen Hurst',
-        position: 'Javascript Developer',
-        office: 'San Francisco',
-        age: '39',
-        date: '2009/09/15',
-        salary: '$205'
-      },
-      {
-        name: 'Sonya Frost',
-        position: 'Software Engineer',
-        office: 'Edinburgh',
-        age: '23',
-        date: '2008/12/13',
-        salary: '$103'
-      },
-      {
-        name: 'Jena Gaines',
-        position: 'Office Manager',
-        office: 'London',
-        age: '30',
-        date: '2008/12/19',
-        salary: '$90'
-      },
-      {
-        name: 'Quinn Flynn',
-        position: 'Support Lead',
-        office: 'Edinburgh',
-        age: '22',
-        date: '2013/03/03',
-        salary: '$342'
-      },
-      {
-        name: 'Charde Marshall',
-        position: 'Regional Director',
-        office: 'San Francisco',
-        age: '36',
-        date: '2008/10/16',
-        salary: '$470'
-      },
-      {
-        name: 'Haley Kennedy',
-        position: 'Senior Marketing Designer',
-        office: 'London',
-        age: '43',
-        date: '2012/12/18',
-        salary: '$313'
-      },
-      {
-        name: 'Tatyana Fitzpatrick',
-        position: 'Regional Director',
-        office: 'London',
-        age: '19',
-        date: '2010/03/17',
-        salary: '$385'
-      },
-      {
-        name: 'Michael Silva',
-        position: 'Marketing Designer',
-        office: 'London',
-        age: '66',
-        date: '2012/11/27',
-        salary: '$198'
-      },
-      {
-        name: 'Paul Byrd',
-        position: 'Chief Financial Officer (CFO)',
-        office: 'New York',
-        age: '64',
-        date: '2010/06/09',
-        salary: '$725'
-      },
-      {
-        name: 'Gloria Little',
-        position: 'Systems Administrator',
-        office: 'New York',
-        age: '59',
-        date: '2009/04/10',
-        salary: '$237'
-      },
-      {
-        name: 'Bradley Greer',
-        position: 'Software Engineer',
-        office: 'London',
-        age: '41',
-        date: '2012/10/13',
-        salary: '$132'
-      },
-      {
-        name: 'Dai Rios',
-        position: 'Personnel Lead',
-        office: 'Edinburgh',
-        age: '35',
-        date: '2012/09/26',
-        salary: '$217'
-      },
-      {
-        name: 'Jenette Caldwell',
-        position: 'Development Lead',
-        office: 'New York',
-        age: '30',
-        date: '2011/09/03',
-        salary: '$345'
-      },
-      {
-        name: 'Yuri Berry',
-        position: 'Chief Marketing Officer (CMO)',
-        office: 'New York',
-        age: '40',
-        date: '2009/06/25',
-        salary: '$675'
-      },
-      {
-        name: 'Caesar Vance',
-        position: 'Pre-Sales Support',
-        office: 'New York',
-        age: '21',
-        date: '2011/12/12',
-        salary: '$106'
-      },
-      {
-        name: 'Doris Wilder',
-        position: 'Sales Assistant',
-        office: 'Sidney',
-        age: '23',
-        date: '2010/09/20',
-        salary: '$85'
-      },
-      {
-        name: 'Angelica Ramos',
-        position: 'Chief Executive Officer (CEO)',
-        office: 'London',
-        age: '47',
-        date: '2009/10/09',
-        salary: '$1'
-      },
-      {
-        name: 'Gavin Joyce',
-        position: 'Developer',
-        office: 'Edinburgh',
-        age: '42',
-        date: '2010/12/22',
-        salary: '$92'
-      },
-      {
-        name: 'Jennifer Chang',
-        position: 'Regional Director',
-        office: 'Singapore',
-        age: '28',
-        date: '2010/11/14',
-        salary: '$357'
-      },
-      {
-        name: 'Brenden Wagner',
-        position: 'Software Engineer',
-        office: 'San Francisco',
-        age: '28',
-        date: '2011/06/07',
-        salary: '$206'
-      },
-      {
-        name: 'Fiona Green',
-        position: 'Chief Operating Officer (COO)',
-        office: 'San Francisco',
-        age: '48',
-        date: '2010/03/11',
-        salary: '$850'
-      },
-      {
-        name: 'Shou Itou',
-        position: 'Regional Marketing',
-        office: 'Tokyo',
-        age: '20',
-        date: '2011/08/14',
-        salary: '$163'
-      },
-      {
-        name: 'Michelle House',
-        position: 'Integration Specialist',
-        office: 'Sidney',
-        age: '37',
-        date: '2011/06/02',
-        salary: '$95'
-      },
-      {
-        name: 'Suki Burks',
-        position: 'Developer',
-        office: 'London',
-        age: '53',
-        date: '2009/10/22',
-        salary: '$114'
-      },
-      {
-        name: 'Prescott Bartlett',
-        position: 'Technical Author',
-        office: 'London',
-        age: '27',
-        date: '2011/05/07',
-        salary: '$145'
-      },
-      {
-        name: 'Gavin Cortez',
-        position: 'Team Leader',
-        office: 'San Francisco',
-        age: '22',
-        date: '2008/10/26',
-        salary: '$235'
-      },
-      {
-        name: 'Martena Mccray',
-        position: 'Post-Sales support',
-        office: 'Edinburgh',
-        age: '46',
-        date: '2011/03/09',
-        salary: '$324'
-      },
-      {
-        name: 'Unity Butler',
-        position: 'Marketing Designer',
-        office: 'San Francisco',
-        age: '47',
-        date: '2009/12/09',
-        salary: '$85'
-      },
-      {
-        name: 'Howard Hatfield',
-        position: 'Office Manager',
-        office: 'San Francisco',
-        age: '51',
-        date: '2008/12/16',
-        salary: '$164'
-      },
-      {
-        name: 'Hope Fuentes',
-        position: 'Secretary',
-        office: 'San Francisco',
-        age: '41',
-        date: '2010/02/12',
-        salary: '$109'
-      },
-      {
-        name: 'Vivian Harrell',
-        position: 'Financial Controller',
-        office: 'San Francisco',
-        age: '62',
-        date: '2009/02/14',
-        salary: '$452'
-      },
-      {
-        name: 'Timothy Mooney',
-        position: 'Office Manager',
-        office: 'London',
-        age: '37',
-        date: '2008/12/11',
-        salary: '$136'
-      },
-      {
-        name: 'Jackson Bradshaw',
-        position: 'Director',
-        office: 'New York',
-        age: '65',
-        date: '2008/09/26',
-        salary: '$645'
-      },
-      {
-        name: 'Olivia Liang',
-        position: 'Support Engineer',
-        office: 'Singapore',
-        age: '64',
-        date: '2011/02/03',
-        salary: '$234'
-      },
-      {
-        name: 'Bruno Nash',
-        position: 'Software Engineer',
-        office: 'London',
-        age: '38',
-        date: '2011/05/03',
-        salary: '$163'
-      },
-      {
-        name: 'Sakura Yamamoto',
-        position: 'Support Engineer',
-        office: 'Tokyo',
-        age: '37',
-        date: '2009/08/19',
-        salary: '$139'
-      },
-      {
-        name: 'Thor Walton',
-        position: 'Developer',
-        office: 'New York',
-        age: '61',
-        date: '2013/08/11',
-        salary: '$98'
-      },
-      {
-        name: 'Finn Camacho',
-        position: 'Support Engineer',
-        office: 'San Francisco',
-        age: '47',
-        date: '2009/07/07',
-        salary: '$87'
-      },
-      {
-        name: 'Serge Baldwin',
-        position: 'Data Coordinator',
-        office: 'Singapore',
-        age: '64',
-        date: '2012/04/09',
-        salary: '$138'
-      },
-      {
-        name: 'Zenaida Frank',
-        position: 'Software Engineer',
-        office: 'New York',
-        age: '63',
-        date: '2010/01/04',
-        salary: '$125'
-      },
-      {
-        name: 'Zorita Serrano',
-        position: 'Software Engineer',
-        office: 'San Francisco',
-        age: '56',
-        date: '2012/06/01',
-        salary: '$115'
-      },
-      {
-        name: 'Jennifer Acosta',
-        position: 'Junior Javascript Developer',
-        office: 'Edinburgh',
-        age: '43',
-        date: '2013/02/01',
-        salary: '$75'
-      },
-      {
-        name: 'Cara Stevens',
-        position: 'Sales Assistant',
-        office: 'New York',
-        age: '46',
-        date: '2011/12/06',
-        salary: '$145'
-      },
-      {
-        name: 'Hermione Butler',
-        position: 'Regional Director',
-        office: 'London',
-        age: '47',
-        date: '2011/03/21',
-        salary: '$356'
-      },
-      {
-        name: 'Lael Greer',
-        position: 'Systems Administrator',
-        office: 'London',
-        age: '21',
-        date: '2009/02/27',
-        salary: '$103'
-      },
-      {
-        name: 'Jonas Alexander',
-        position: 'Developer',
-        office: 'San Francisco',
-        age: '30',
-        date: '2010/07/14',
-        salary: '$86'
-      },
-      {
-        name: 'Shad Decker',
-        position: 'Regional Director',
-        office: 'Edinburgh',
-        age: '51',
-        date: '2008/11/13',
-        salary: '$183'
-      },
-      {
-        name: 'Michael Bruce',
-        position: 'Javascript Developer',
-        office: 'Singapore',
-        age: '29',
-        date: '2011/06/27',
-        salary: '$183'
-      },
-      {
-        name: 'Donna Snider',
-        position: 'Customer Support',
-        office: 'New York',
-        age: '27',
-        date: '2011/01/25',
-        salary: '$112'
-      }
-    ]
-  };
+import{
+    Label,
+    Row,
+    Col,
+    FormGroup,
+    Input,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    Button
+} from 'reactstrap';
 
-  return (
-    <MDBDataTable
-      striped
-      bordered
-      hover
-      data={data}
-    />
-  );
+
+
+export default class Form extends React.Component {
+  state = {
+        fullname :"",
+        fullnameError: "",
+        birthday :"",
+        birthdayError:"",
+        email :"",
+        emailError:"",
+        password :"",
+        passwordError:"",
+        passwordagain:"",
+        passwordagainError:"",
+        identity_card:"",
+        identity_cardError:"",
+        phone: "",
+        phoneError:"",
+        address:"",
+        addressError:"",
+        showForm : true
+    };
+    //handle change
+change = e => {
+    this.props.onChange({[e.target.name]: e.target.value});
+    this.setState({
+        [e.target.name]: e.target.value,
+        fullnameError: "",
+        birthdayError:"",
+        emailError:"",
+        passwordError:"",
+        identity_cardError:"",
+        phoneError:"",
+        addressError:""
+    });
+};
+
+    //Reg ex
+validate = () => {
+    let isError = false;
+    const errors = {};
+    const pattEmail = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/g;
+    const pattPass  = /^.{8,20}$/g;
+    const pattfullname  = /^([^0-9`!@#$%^&*()_\-=+\[\](){};'",./:\s]){2,}(\s[^0-9`!@#$%^&*()_\-=+\[\](){};'",./:\s]+)+$/g;
+    const pattPhone = /^0(3[2-9]|5[68-9]|7[06-9]|8[1-68-9]|9[0-46-9])[0-9]{7}$/g;
+    const pattAddress = /^[^\'\"\!@#$%^&*\(\)\{\}\[\]<>?]{10,}$/g;
+    if(!this.state.fullname){
+        isError = true;
+        errors.fullnameError = "Họ và tên không được để trống";
+    }
+    else if(this.state.fullname){
+        if(!this.state.fullname.match(pattfullname)){
+        isError = true;
+        errors.fullnameError = "Họ và tên không hợp lệ";
+        }
+    }
+    if(!this.state.email){
+        isError = true;
+        errors.emailError = "Email không được để trống"
+    }
+    else if(this.state.email){
+        if(!this.state.email.match(pattEmail)){
+        isError = true;
+        errors.emailError = "Email không hợp lệ";
+        }
+    }
+    if(!this.state.identity_card){
+        isError = true;
+        errors.identity_cardError = "Số chứng minh không được để trống";
+    }
+
+    if(typeof this.state.password){
+        if(!this.state.password.match(pattPass)){
+        isError = true;
+        errors.passwordError = "Mật khẩu phải có tối thiểu 8 kí tự, tối đa 20 kí tự";
+        }
+    }
+    //chưa check nhập lại pass
+    if(!this.state.passwordagain){
+        if(!this.state.passwordagain.includes(this.state.password)){
+        isError = true;
+        errors.passwordagainError = "Vui lòng nhập lại mật khẩu";
+        }
+    }
+    if(typeof this.state.phone){
+        if(!this.state.phone.match(pattPhone)){
+        isError = true;
+        errors.phoneError = "Số điện thoại không hợp lệ";
+        }
+    }
+    if(typeof this.state.address){
+        if(!this.state.address.match(pattAddress)){
+        isError = true;
+        errors.addressError = "Địa chỉ không hợp lệ";
+        }
+    }
+    
+    
+    if(isError){
+        this.setState ({
+            ...this.state,
+            ...errors
+        });
+    }
+
+    return isError;
 }
 
-export default DatatablePage;
+    //handle Submit
+onSubmit = e => {
+    e.preventDefault();
+    console.log(this.state);
+    //this.props.onSubmit(this.state);
+    //Check error
+    const error = this.validate();
+    if(!error){
+    //clear form
+        this.setState({
+            fullname :"",
+            fullnameError: "",
+            birthday :"",
+            birthdayError:"",
+            email :"",
+            emailError:"",
+            password :"",
+            passwordError:"",
+            passwordagain:"",
+            passwordagainError:"",
+            identity_card:"",
+            identity_cardError:"",
+            phone: "",
+            phoneError:"",
+            address:"",
+            addressError:"",
+            showForm: !this.state.showForm
+          });
+        this.props.onChange({
+            fullname :"",
+            fullnameError: "",
+            birthday :"",
+            birthdayError:"",
+            email :"",
+            emailError:"",
+            password :"",
+            passwordError:"",
+            passwordagain:"",
+            passwordagainError:"",
+            identity_card:"",
+            identity_cardError:"",
+            phone: "",
+            phoneError:"",
+            address:"",
+            addressError:""
+        });
+        this.props.closeForm({
+            showForm: !this.state.showForm
+        })
+
+        alert("Bạn đã thêm "+ this.state.fullname); 
+    }
+}
+render() {
+    return (
+        <div className = 'popup'>
+            <div className = 'popup-inner'>
+                <form onSubmit= {e => this.onSubmit()}>
+                    <Card>
+                        <CardHeader>
+                            <h3>Thêm nhân viên</h3>
+                            <button type="button" class="close" 
+                            onClick={this.props.closeForm}>
+                                &times;
+                            </button>
+                        </CardHeader>
+                        <CardBody>
+                            <FormGroup style = {{fontSize : '16px'}}>
+                                <Row form>
+                                    <Col md={6}>
+                                        <FormGroup >
+                                            <Label for="fullname">Họ và tên</Label>
+                                            <Input type="text"
+                                                name = "fullname"
+                                                placeholder="Nhập họ và tên"
+                                                value = {this.state.fullname}
+                                                onChange= {e => this.change(e)}
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.fullnameError}</label>
+                                        </FormGroup>
+                                    </Col>  
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label for="birthday">Ngày sinh</Label>
+                                            <Input type="date" 
+                                                name="birthday"
+                                                value = {this.state.birthday}
+                                                onChange= {e => this.change(e)} 
+                                            />
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label for="email">Email</Label>
+                                            <Input type="email" 
+                                                name="email"
+                                                placeholder="Email"
+                                                value = {this.state.email}
+                                                onChange= {e => this.change(e)} 
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.emailError}</label>               
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label for="identity_card">Chứng minh nhân dân</Label>
+                                            <Input type="text"
+                                                name="identity_card" 
+                                                placeholder="Số chứng minh thư"
+                                                value = {this.state.identity_card}
+                                                onChange= {e => this.change(e)}
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.identity_cardError}</label>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label for="password">Mật khẩu</Label>
+                                            <Input type="password"
+                                                name="password"
+                                                placeholder="Mật khẩu"
+                                                value = {this.state.password}
+                                                onChange= {e => this.change(e)}
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.passwordError}</label>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md = {6}>
+                                        <FormGroup>
+                                            <Label for="passwordagain">Nhập lại mật khẩu</Label>
+                                            <Input type="password"
+                                                name="passwordagain"
+                                                placeholder="Nhập lại mật khẩu"
+                                                value = {this.state.passwordagain}
+                                                onChange= {e => this.change(e)}
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.passwordagainError}</label>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <FormGroup>
+                                    <Label for="address">Address</Label>
+                                    <Input type="text"
+                                        name="address"
+                                        placeholder="1234 Main St"
+                                        value = {this.state.address}
+                                        onChange= {e => this.change(e)}
+                                    />
+                                    <label style ={{color:'red'}}>{this.state.addressError}</label>
+                                </FormGroup>               
+                                <Row form>
+                                    <Col md={4}>
+                                        <FormGroup>
+                                            <Label for="phone">Số điện thoại</Label>
+                                                <Input type="text"
+                                                name="phone"
+                                                placeholder="Nhập số điện thoại"
+                                                value = {this.state.phone}
+                                                onChange= {e => this.change(e)} 
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.phoneError}</label>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={4}>
+                                        <FormGroup>
+                                            <Label for="role">Chức vụ</Label>
+                                            <Input type="select" 
+                                            name = "role"
+                                            value = {this.state.role}
+                                            onChange= {e => this.change(e)}>
+                                                <option value="1">Quản lý</option>
+                                                <option value="2">Kế toán</option>
+                                                <option value="3">Lễ tân</option>
+                                            </Input>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={4}>
+                                        <FormGroup>
+                                            <Label for="status">Trạng thái</Label>
+                                            <Input type="select"
+                                            name = "statuss"
+                                            value = {this.state.status}
+                                            onChange= {e => this.change(e)}>
+                                                <option value="1">Hoạt động</option>
+                                                <option value="2">Khóa</option>
+                                            </Input>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>  
+                            </FormGroup>
+                        </CardBody>
+                        <CardFooter>
+                            <Col md={12} className="flex-end">
+                                <Button outline color="gray">Hủy</Button>
+                                <button onClick = {e => this.onSubmit(e)} 
+                                className = "btn btn-primary">
+                                    Thêm
+                                </button>
+                            </Col>
+                        </CardFooter>
+                    </Card>
+                </form>
+            </div>
+        </div>
+    );
+  }
+}
