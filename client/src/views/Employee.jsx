@@ -16,7 +16,30 @@ import {
     MDBCardTitle,
     MDBBtn 
 } from 'mdbreact';
-    const data = {
+import axios from 'axios';   
+
+class Employee extends React.Component{
+state = {
+  showForm : false
+};
+
+onChange = updatevalue => {
+  this.setState({fields : {
+      ...this.state.fields,
+      ...updatevalue
+    }
+  });
+};
+
+toggleForm() {
+  this.setState({
+    showForm: !this.state.showForm
+  });
+}
+constructor(props) {
+  super(props)
+  this.state = {
+    data : {
       columns: [
         {
           label: 'ID',
@@ -61,24 +84,13 @@ import {
           width: 100
         },
         {
-          label: 'Quyền',
-          field: 'role',
-          sort: 'asc',
-          width: 50
-        },
-        {
-          label: 'Trạng thái',
-          field: 'status',
-          sort: 'asc',
-          width: 50
-        },
-        {
           label: 'Thao tác',
           field: 'button',
           width: 100
         }
       ],
-      rows: [
+      rows: //his.props 
+      [
         {
           id: '001',
           fullname: 'Nguyễn Thị Phương Nhi',
@@ -96,24 +108,83 @@ import {
           </div>
         },
       ]
-    };
-class Employee extends React.Component{
-state = {
-  showForm : false
-};
-onChange = updatevalue => {
-  this.setState({fields : {
-      ...this.state.fields,
-      ...updatevalue
-    }
-  });
-};
-
-toggleForm() {
-  this.setState({
-    showForm: !this.state.showForm
-  });
+    },
+    isActive : true
+  }
 }
+
+componentWillMount(){
+const data = this.state.data;
+
+  axios.post('http://localhost:5000/users/show')
+    .then((res) => 
+    {   console.log(res.data)
+        let ress = res.data.map (data => data.button =  <div>
+          <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+          <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+        </div>) 
+    
+       this.setState({
+        data: {
+          columns: [
+            {
+              label: 'ID',
+              field: 'code_emp',
+              sort: 'asc',
+              width: 150
+            },
+            {
+              label: 'Họ và tên',
+              field: 'fullname',
+              sort: 'asc',
+              width: 270
+            },
+            {
+              label: 'CMND',
+              field: 'identity_card',
+              sort: 'asc',
+              width: 200
+            },
+            {
+              label: 'Email',
+              field: 'email',
+              sort: 'asc',
+              width: 100
+            },
+            // {
+            //   label: 'Ngày sinh',
+            //   field: 'birthday',
+            //   sort: 'asc',
+            //   width: 150
+            // },
+            {
+              label: 'Số điện thoại',
+              field: 'phone',
+              sort: 'asc',
+              width: 100
+            },
+            {
+              label: 'Địa chỉ',
+              field: 'address',
+              sort: 'asc',
+              width: 100
+            },
+            {
+              label: 'Thao tác',
+              field: 'button',
+              width: 100
+            }
+          ],
+        rows : res.data 
+      
+        }
+        })
+  console.log(this.state.data);
+  
+}
+);
+}
+
 
     render() {
         return (
@@ -140,7 +211,7 @@ toggleForm() {
                   </MDBCardHeader>
                   <MDBCardBody>
                     <MDBTable responsive>
-                      <MDBDataTable striped data = {data}/>
+                      <MDBDataTable striped data = {this.state.data}/>
                     </MDBTable>
                   </MDBCardBody>
                 </MDBCard>

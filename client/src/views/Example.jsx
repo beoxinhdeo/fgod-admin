@@ -3,84 +3,161 @@ import { MDBDataTable, MDBTableHead, MDBTable, MDBTableBody, MDBCard, MDBCardHea
 import { Table, Card, CardHeader, CardTitle, CardBody, Row, Col, Button } from "reactstrap";
 import { readJsonConfigFile } from 'typescript';
 import axios from 'axios';
-
+//import { connect } from 'react-redux';
 
 
 class Example extends React.Component  {
-  constructor()
-  {
-    super()
-    this.state = { user : [] };
-   }
-  componentDidMount() {
-    this.getUsers();
-  }
-  getUsers()
-  {
-    axios.get('http://localhost:5000/users/show')
-     .then( response => {
-      console.log(response);
-      this.setState({ user : response});
-     })
-     .catch(function (error) {
-       console.log(error);
-     })
+  constructor(props) {
+    super(props)
+    this.state = {
+      data : {
+        columns: [
+          {
+            label: 'ID',
+            field: 'id',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: 'Họ và tên',
+            field: 'fullname',
+            sort: 'asc',
+            width: 270
+          },
+          {
+            label: 'CMND',
+            field: 'id_card',
+            sort: 'asc',
+            width: 200
+          },
+          {
+            label: 'Email',
+            field: 'email',
+            sort: 'asc',
+            width: 100
+          },
+          {
+            label: 'Ngày sinh',
+            field: 'birthday',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: 'Số điện thoại',
+            field: 'phone',
+            sort: 'asc',
+            width: 100
+          },
+          {
+            label: 'Địa chỉ',
+            field: 'address',
+            sort: 'asc',
+            width: 100
+          },
+          {
+            label: 'Thao tác',
+            field: 'button',
+            width: 100
+          }
+        ],
+        rows: //his.props 
+        [
+          {
+            id: '001',
+            fullname: 'Nguyễn Thị Phương Nhi',
+            id_card: '272695452',
+            email: 'phuongnhi@gmail.com',
+            birthday: '01/01/1999',
+            phone: '0961619712',
+            address: 'HCM',
+            role: '1',
+            status: '1',
+            button:
+            <div>
+              <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+              <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+            </div>
+          },
+        ]
+      },
+      isActive : true
+    }
   }
 
+componentWillMount(){
+  const data = this.state.data;
+
+    axios.post('http://localhost:5000/users/show')
+      .then((res) => 
+      {   console.log(res.data)
+          let ress = res.data.map (data => data.button =  <div>
+            <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+            <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+          </div>) 
+      
+         this.setState({
+          data: {
+            columns: [
+              {
+                label: 'ID',
+                field: 'code_emp',
+                sort: 'asc',
+                width: 150
+              },
+              {
+                label: 'Họ và tên',
+                field: 'fullname',
+                sort: 'asc',
+                width: 270
+              },
+              {
+                label: 'CMND',
+                field: 'identity_card',
+                sort: 'asc',
+                width: 200
+              },
+              {
+                label: 'Email',
+                field: 'email',
+                sort: 'asc',
+                width: 100
+              },
+              // {
+              //   label: 'Ngày sinh',
+              //   field: 'birthday',
+              //   sort: 'asc',
+              //   width: 150
+              // },
+              {
+                label: 'Số điện thoại',
+                field: 'phone',
+                sort: 'asc',
+                width: 100
+              },
+              {
+                label: 'Địa chỉ',
+                field: 'address',
+                sort: 'asc',
+                width: 100
+              },
+              {
+                label: 'Thao tác',
+                field: 'button',
+                width: 100
+              }
+            ],
+          rows : res.data 
+        
+          }
+          })
+    console.log(this.state.data);
+    
+  }
+  );
+}
+
 render()
-{
-  const data = {
-    columns: [
-      {
-        label: 'ID',
-        field: 'id',
-        sort: 'asc',
-        width: 150
-      },
-      {
-        label: 'Họ và tên',
-        field: 'fullname',
-        sort: 'asc',
-        width: 270
-      },
-      {
-        label: 'CMND',
-        field: 'id_card',
-        sort: 'asc',
-        width: 200
-      },
-      {
-        label: 'Email',
-        field: 'email',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'Ngày sinh',
-        field: 'birthday',
-        sort: 'asc',
-        width: 150
-      },
-      {
-        label: 'Số điện thoại',
-        field: 'phone',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'Địa chỉ',
-        field: 'address',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'Thao tác',
-        field: 'button',
-        width: 100
-      }
-    ],
-    rows: this.state.user
-  };
+{ 
     return (
     <div className="content">
       <Row>
@@ -94,8 +171,8 @@ render()
             <MDBCardBody>
               <MDBBtn className="add-btn" size="sm">Thêm</MDBBtn>
               <MDBTable responsive>
-              
-              <MDBDataTable data = {data}/>
+              <MDBDataTable data = {this.state.data} >
+              </MDBDataTable>
               </MDBTable>
             </MDBCardBody>
           </MDBCard>
@@ -104,6 +181,6 @@ render()
     </div> 
   )
 }
-};
+}
 
 export default Example;

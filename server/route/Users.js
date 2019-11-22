@@ -120,7 +120,7 @@ users.post('/update', (req,res) =>{
 
 users.post('/show', (req,res) =>{
     const userData = {
-        code_emp : req.body.code_emp,
+        code_emp :      req.body.code_emp,
         fullname :      req.body.fullname,
         identity_card : req.body.identity_card,
         email :         req.body.email,

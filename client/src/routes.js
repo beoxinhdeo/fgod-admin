@@ -24,6 +24,7 @@ import Statistic from "views/Statistic.jsx";
 import Icons from "views/Icons";
 import User from "views/User";
 import Employee from "views/Employee.jsx";
+import Example from "views/Example.jsx";
 
 var routes = [
   {
@@ -72,7 +73,7 @@ var routes = [
     path: "/bill",
     name: "Hóa đơn",
     icon: "fas fa-clipboard-list",
-    component: Bill,
+    component: Example,
     layout: "/admin"
   },
   {

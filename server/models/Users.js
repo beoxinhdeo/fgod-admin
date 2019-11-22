@@ -18,16 +18,18 @@ module.exports = db.sequelize.define(
         },
         email:{
             type: Sequelize.STRING
+        }, 
+        phone:{
+            type: Sequelize.STRING
+        }, 
+        address:{
+            type: Sequelize.STRING
         },
         password:{
             type: Sequelize.STRING
         },
-        phone:{
-            type: Sequelize.STRING
-        },
-        address:{
-            type: Sequelize.STRING
-        },
+       
+       
         role:{
             type: Sequelize.STRING,
             references: 'quyen', // <<< Note, its table's name, not object name
