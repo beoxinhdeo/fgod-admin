@@ -19,24 +19,20 @@ import{
 
 export default class Form extends React.Component {
   state = {
-        fullname :"",
-        fullnameError: "",
-        birthday :"",
-        birthdayError:"",
-        email :"",
-        emailError:"",
-        password :"",
-        passwordError:"",
-        passwordagain:"",
-        passwordagainError:"",
-        identity_card:"",
-        identity_cardError:"",
-        phone: "",
-        phoneError:"",
-        address:"",
-        addressError:"",
-        showForm : true
-    };
+    fullname :"",
+    fullnameError: "",
+    birthday :"",
+    birthdayError:"",
+    email :"",
+    emailError:"",
+    idcard_passport:"",
+    idcard_passportError:"",
+    phone: "",
+    phoneError:"",
+    address:"",
+    addressError:"",
+    showForm : true
+};
     //handle change
 change = e => {
     this.props.onChange({[e.target.name]: e.target.value});
@@ -45,8 +41,7 @@ change = e => {
         fullnameError: "",
         birthdayError:"",
         emailError:"",
-        passwordError:"",
-        identity_cardError:"",
+        idcard_passportError:"",
         phoneError:"",
         addressError:""
     });
@@ -57,7 +52,6 @@ validate = () => {
     let isError = false;
     const errors = {};
     const pattEmail = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/g;
-    const pattPass  = /^.{8,20}$/g;
     const pattfullname  = /^([^0-9`!@#$%^&*()_\-=+\[\](){};'",./:\s]){2,}(\s[^0-9`!@#$%^&*()_\-=+\[\](){};'",./:\s]+)+$/g;
     const pattPhone = /^0(3[2-9]|5[68-9]|7[06-9]|8[1-68-9]|9[0-46-9])[0-9]{7}$/g;
     const pattAddress = /^[^\'\"\!@#$%^&*\(\)\{\}\[\]<>?]{10,}$/g;
@@ -81,23 +75,9 @@ validate = () => {
         errors.emailError = "Email không hợp lệ";
         }
     }
-    if(!this.state.identity_card){
+    if(!this.state.idcard_passport){
         isError = true;
-        errors.identity_cardError = "Số chứng minh không được để trống";
-    }
-
-    if(typeof this.state.password){
-        if(!this.state.password.match(pattPass)){
-        isError = true;
-        errors.passwordError = "Mật khẩu phải có tối thiểu 8 kí tự, tối đa 20 kí tự";
-        }
-    }
-    //chưa check nhập lại pass
-    if(!this.state.passwordagain){
-        if(!this.state.passwordagain.includes(this.state.password)){
-        isError = true;
-        errors.passwordagainError = "Vui lòng nhập lại mật khẩu";
-        }
+        errors.idcard_passportError = "Số chứng minh không được để trống";
     }
     if(typeof this.state.phone){
         if(!this.state.phone.match(pattPhone)){
@@ -139,12 +119,8 @@ onSubmit = e => {
             birthdayError:"",
             email :"",
             emailError:"",
-            password :"",
-            passwordError:"",
-            passwordagain:"",
-            passwordagainError:"",
-            identity_card:"",
-            identity_cardError:"",
+            idcard_passport:"",
+            idcard_passportError:"",
             phone: "",
             phoneError:"",
             address:"",
@@ -158,12 +134,8 @@ onSubmit = e => {
             birthdayError:"",
             email :"",
             emailError:"",
-            password :"",
-            passwordError:"",
-            passwordagain:"",
-            passwordagainError:"",
-            identity_card:"",
-            identity_cardError:"",
+            idcard_passport:"",
+            idcard_passportError:"",
             phone: "",
             phoneError:"",
             address:"",
@@ -184,7 +156,7 @@ render() {
                 <form onSubmit= {e => this.onSubmit()}>
                     <Card>
                         <CardHeader>
-                            <h3>Thêm nhân viên</h3>
+                            <h3>Thêm khách hàng</h3>
                             <button type="button" class="close" 
                             onClick={this.props.closeForm}>
                                 &times;
@@ -229,53 +201,17 @@ render() {
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="identity_card">Chứng minh nhân dân</Label>
+                                            <Label for="idcard_passport">Chứng minh nhân dân/Passport</Label>
                                             <Input type="text"
-                                                name="identity_card" 
-                                                placeholder="Số chứng minh thư"
-                                                value = {this.state.identity_card}
+                                                name="idcard_passport" 
+                                                placeholder="Số chứng minh thư hoặc passport"
+                                                value = {this.state.idcard_passport}
                                                 onChange= {e => this.change(e)}
                                             />
-                                            <label style ={{color:'red'}}>{this.state.identity_cardError}</label>
+                                            <label style ={{color:'red'}}>{this.state.idcard_passportError}</label>
                                         </FormGroup>
                                     </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="password">Mật khẩu</Label>
-                                            <Input type="password"
-                                                name="password"
-                                                placeholder="Mật khẩu"
-                                                value = {this.state.password}
-                                                onChange= {e => this.change(e)}
-                                            />
-                                            <label style ={{color:'red'}}>{this.state.passwordError}</label>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md = {6}>
-                                        <FormGroup>
-                                            <Label for="passwordagain">Nhập lại mật khẩu</Label>
-                                            <Input type="password"
-                                                name="passwordagain"
-                                                placeholder="Nhập lại mật khẩu"
-                                                value = {this.state.passwordagain}
-                                                onChange= {e => this.change(e)}
-                                            />
-                                            <label style ={{color:'red'}}>{this.state.passwordagainError}</label>
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <FormGroup>
-                                    <Label for="address">Address</Label>
-                                    <Input type="text"
-                                        name="address"
-                                        placeholder="1234 Main St"
-                                        value = {this.state.address}
-                                        onChange= {e => this.change(e)}
-                                    />
-                                    <label style ={{color:'red'}}>{this.state.addressError}</label>
-                                </FormGroup>               
+                                </Row>              
                                 <Row form>
                                     <Col md={4}>
                                         <FormGroup>
@@ -289,30 +225,17 @@ render() {
                                             <label style ={{color:'red'}}>{this.state.phoneError}</label>
                                         </FormGroup>
                                     </Col>
-                                    <Col md={4}>
+                                    <Col md={8}>
                                         <FormGroup>
-                                            <Label for="role">Chức vụ</Label>
-                                            <Input type="select" 
-                                            name = "role"
-                                            value = {this.state.role}
-                                            onChange= {e => this.change(e)}>
-                                                <option value="1">Quản lý</option>
-                                                <option value="2">Kế toán</option>
-                                                <option value="3">Lễ tân</option>
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={4}>
-                                        <FormGroup>
-                                            <Label for="status">Trạng thái</Label>
-                                            <Input type="select"
-                                            name = "statuss"
-                                            value = {this.state.status}
-                                            onChange= {e => this.change(e)}>
-                                                <option value="1">Hoạt động</option>
-                                                <option value="2">Khóa</option>
-                                            </Input>
-                                        </FormGroup>
+                                            <Label for="address">Address</Label>
+                                            <Input type="text"
+                                                name="address"
+                                                placeholder="1234 Main St"
+                                                value = {this.state.address}
+                                                onChange= {e => this.change(e)}
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.addressError}</label>
+                                        </FormGroup> 
                                     </Col>
                                 </Row>  
                             </FormGroup>
