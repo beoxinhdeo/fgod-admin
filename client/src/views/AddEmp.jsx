@@ -1,5 +1,5 @@
 import React from "react";
-import "./Style.css";
+//import "./Style.css";
 // import Popup from 'reactjs-popup';
 
 import{
@@ -37,6 +37,7 @@ export default class Form extends React.Component {
         addressError:"",
         showForm : true
     };
+    
     //handle change
 change = e => {
     this.props.onChange({[e.target.name]: e.target.value});
@@ -180,12 +181,13 @@ onSubmit = e => {
 render() {
     return (
         <div className = 'popup'>
+            <div className="background"></div>
             <div className = 'popup-inner'>
                 <form onSubmit= {e => this.onSubmit()}>
                     <Card>
                         <CardHeader>
                             <h3>Thêm nhân viên</h3>
-                            <button type="button" class="close" 
+                            <button type="button" className="close" 
                             onClick={this.props.closeForm}>
                                 &times;
                             </button>

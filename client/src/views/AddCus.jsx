@@ -1,5 +1,5 @@
 import React from "react";
-import "./Style.css";
+import "./Stylee.css";
 // import Popup from 'reactjs-popup';
 
 import{
@@ -152,6 +152,7 @@ onSubmit = e => {
 render() {
     return (
         <div className = 'popup'>
+             <div className="background"></div>
             <div className = 'popup-inner'>
                 <form onSubmit= {e => this.onSubmit()}>
                     <Card>

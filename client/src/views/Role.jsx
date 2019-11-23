@@ -1,126 +1,160 @@
-/*!
 
-=========================================================
-* Paper Dashboard React - v1.1.0
-=========================================================
+import React from 'react';
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
 
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
+import Form from "views/AddEmp.jsx";
 
-* Coded by Creative Tim
+import{
+    Row,
+    Col
+} from 'reactstrap';
 
-=========================================================
+import { 
+    MDBDataTable,
+    MDBTable,
+    MDBCard,
+    MDBCardHeader,
+    MDBCardBody,
+    MDBCardTitle,
+    MDBBtn 
+} from 'mdbreact';
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+import axios from 'axios';   
 
-*/
-import React from "react";
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Col,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  Row,
-  Table,
-} from "reactstrap";
+class Role extends React.Component{
+state = {
+  showForm : false
+};
 
-import "./Style.css"
+onChange = updatevalue => {
+  this.setState({fields : {
+      ...this.state.fields,
+      ...updatevalue
+    }
+  });
+};
 
-class Tables extends React.Component {
-  render() {
-    return (
-      <>
-        <div className="content">
-          <Row>
-            <Col md="12">
-              <Card>
-                <CardHeader>
-                  <CardTitle tag="h3">Danh sách bộ phận</CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div className="space-between">
-                    <Button className="add-btn">Thêm</Button>
-                    <form className="form-inline search-bar">
-                      <input className="form-control" type="text" placeholder="Tìm kiếm..."/>
-                    </form>
-                  </div>
-                  <Table responsive>
-                    <thead>
-                      <tr>
-                        <th>Mã bộ phận</th>
-                        <th>Tên bộ phận</th>
-                        <th>Thao tác</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>0001</td>
-                        <td>Lễ tân</td>
-                        <td className="space-between">
-                          <Button className="edit-btn" type="button">Sửa</Button>
-                          <Button className="delete-btn">Xóa</Button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </CardBody>
-                <CardFooter>
-                  <Pagination aria-label="Page navigation example" className="flex-end">
-                    <PaginationItem>
-                      <PaginationLink first href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink previous href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        1
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        2
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        3
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        4
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        5
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink next href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink last href="#" />
-                    </PaginationItem>
-                  </Pagination>
-                </CardFooter>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      </>
-    );
+toggleForm() {
+  this.setState({
+    showForm: !this.state.showForm
+  });
+}
+
+
+constructor(props) {
+  super(props)
+  this.state = {
+    data : {  }
   }
 }
 
-export default Tables;
+componentWillMount(){
+const data = this.state.data;
+
+  axios.post('http://localhost:5000/users/show')
+    .then((res) => 
+    {   console.log(res.data)
+        let ress = res.data.map (data => data.button =  <div>
+          <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+          <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+        </div>) 
+    
+       this.setState({
+        data: {
+          columns: [
+            {
+              label: 'ID',
+              field: 'code_emp',
+              sort: 'asc',
+              width: 150
+            },
+            {
+              label: 'Họ và tên',
+              field: 'fullname',
+              sort: 'asc',
+              width: 270
+            },
+            {
+              label: 'CMND',
+              field: 'identity_card',
+              sort: 'asc',
+              width: 200
+            },
+            {
+              label: 'Email',
+              field: 'email',
+              sort: 'asc',
+              width: 100
+            },
+            // {
+            //   label: 'Ngày sinh',
+            //   field: 'birthday',
+            //   sort: 'asc',
+            //   width: 150
+            // },
+            {
+              label: 'Số điện thoại',
+              field: 'phone',
+              sort: 'asc',
+              width: 100
+            },
+            {
+              label: 'Địa chỉ',
+              field: 'address',
+              sort: 'asc',
+              width: 100
+            },
+            {
+              label: 'Thao tác',
+              field: 'button',
+              width: 100
+            }
+          ],
+        rows : res.data 
+      
+        }
+        })
+  console.log(this.state.data);
+  
+}
+);
+}
+
+
+    render() {
+        return (
+            <div className="content">
+            <Row>
+              <Col md="12">
+                <MDBCard>
+                  <MDBCardHeader>
+                    <MDBCardTitle tag="h3">
+                      <Row>
+                        <Col md="6">Danh sách khách hàng</Col>
+                        <Col md="6" className="flex-end">
+                          <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn"> Thêm nhân viên </MDBBtn>
+                          {this.state.showForm ? 
+                            <Form
+                              closeForm={this.toggleForm.bind(this)}
+                              onChange = {fields => this.onChange(fields)}
+                              className="form"
+                            />
+                            : null
+                          }
+                        </Col>
+                      </Row>
+                    </MDBCardTitle>
+                  </MDBCardHeader>
+                  <MDBCardBody>
+                    <MDBTable responsive>
+                      <MDBDataTable striped data = {this.state.data}/>
+                    </MDBTable>
+                  </MDBCardBody>
+                </MDBCard>
+              </Col>
+            </Row>
+          </div> 
+        );
+        }
+};
+export default Role;

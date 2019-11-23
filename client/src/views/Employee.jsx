@@ -1,12 +1,14 @@
 
 import React from 'react';
 
+
 import Form from "views/AddEmp.jsx";
 
 import{
     Row,
     Col
 } from 'reactstrap';
+
 import { 
     MDBDataTable,
     MDBTable,
@@ -16,6 +18,7 @@ import {
     MDBCardTitle,
     MDBBtn 
 } from 'mdbreact';
+
 import axios from 'axios';   
 
 class Employee extends React.Component{
@@ -36,6 +39,8 @@ toggleForm() {
     showForm: !this.state.showForm
   });
 }
+
+
 constructor(props) {
   super(props)
   this.state = {
@@ -197,13 +202,12 @@ const data = this.state.data;
                       <Row>
                         <Col md="6">Danh sách khách hàng</Col>
                         <Col md="6" className="flex-end">
-                          <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn">
-                            <i className = "fas fa-user-plus"/> Thêm nhân viên 
-                          </MDBBtn>
+                          <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn"> Thêm nhân viên </MDBBtn>
                           {this.state.showForm ? 
                             <Form
                               closeForm={this.toggleForm.bind(this)}
                               onChange = {fields => this.onChange(fields)}
+                              className="form"
                             />
                             : null
                           }
