@@ -20,22 +20,37 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
+//import { createStore, applyMiddleware } from 'redux';
+//import { Provider } from 'react-redux';
+//import thunk from 'redux-thunk';
+
+//import store from './store';
 
 import "bootstrap/dist/css/bootstrap.css";
 import "assets/scss/paper-dashboard.scss?v=1.1.0";
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+
 import AdminLayout from "layouts/Admin.jsx";
+//MDB Datatable
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 const hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
+    {/* <Provider store={store}> */}
     <Switch>
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
       <Redirect to="/admin/dashboard" />
     </Switch>
+    {/* </Provider> */}
   </Router>,
   document.getElementById("root")
 );

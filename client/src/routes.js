@@ -14,42 +14,31 @@
 =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
 */
-<<<<<<< HEAD
-// import Dashboard from "views/Dashboard.jsx";
-// import Notifications from "views/Notifications.jsx";
-// import Icons from "views/Icons.jsx";
-// import Typography from "views/Typography.jsx";
-// import TableList from "views/Tables.jsx";
-// import Maps from "views/Map.jsx";
-// import UserPage from "views/User.jsx";
-=======
->>>>>>> 2b772ac361d651b1b82d987c62a5e8e07452a903
 
-import RoomMap from "views/RoomMap.jsx";
-import Booking from "views/Booking.jsx";
 import TypeRoom from "views/TypeRoom.jsx";
 import Customer from "views/Customer.jsx";
-// import Add_Emp from "views/Add_Emp.jsx";
 import Role from "views/Role.jsx";
 import Bill from "views/Bill.jsx";
 import Statistic from "views/Statistic.jsx";
-import Employee from "views/Employee";
+import Icons from "views/Icons";
+import User from "views/User";
+import Employee from "views/Employee.jsx";
+import Example from "views/Example.jsx";
 
 var routes = [
   {
     path: "/roommap",
     name: "Sơ đồ phòng",
     icon: "	fas fa-building",
-    component: RoomMap,
+    component: Icons,
     layout: "/admin"
   },
   {
     path: "/booking",
     name: "Đặt phòng",
     icon: "fa fa-address-card",
-    component: Booking,
+    component: User,
     layout: "/admin"
   },
   {
@@ -84,7 +73,7 @@ var routes = [
     path: "/bill",
     name: "Hóa đơn",
     icon: "fas fa-clipboard-list",
-    component: Bill,
+    component: Example,
     layout: "/admin"
   },
   {
@@ -93,6 +82,6 @@ var routes = [
     icon: "fas fa-chart-bar",
     component: Statistic,
     layout: "/admin"
-  }
+  },
 ];
 export default routes;
