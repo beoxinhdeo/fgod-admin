@@ -32,7 +32,7 @@ onChange = updatevalue => {
       ...updatevalue
     }
   });
-};
+}
 
 toggleForm() {
   this.setState({
@@ -118,7 +118,8 @@ constructor(props) {
   }
 }
 
-componentWillMount(){
+
+componentWillUpdate(){
 const data = this.state.data;
 
   axios.post('http://localhost:5000/users/show')
@@ -189,6 +190,79 @@ const data = this.state.data;
 }
 );
 }
+componentWillMount(){
+  const data = this.state.data;
+  
+    axios.post('http://localhost:5000/users/show')
+      .then((res) => 
+      {   console.log(res.data)
+          let ress = res.data.map (data => data.button =  <div>
+            <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+            <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+          </div>) 
+      
+         this.setState({
+          data: {
+            columns: [
+              {
+                label: 'ID',
+                field: 'code_emp',
+                sort: 'asc',
+                width: 150
+              },
+              {
+                label: 'Họ và tên',
+                field: 'fullname',
+                sort: 'asc',
+                width: 270
+              },
+              {
+                label: 'CMND',
+                field: 'identity_card',
+                sort: 'asc',
+                width: 200
+              },
+              {
+                label: 'Email',
+                field: 'email',
+                sort: 'asc',
+                width: 100
+              },
+              // {
+              //   label: 'Ngày sinh',
+              //   field: 'birthday',
+              //   sort: 'asc',
+              //   width: 150
+              // },
+              {
+                label: 'Số điện thoại',
+                field: 'phone',
+                sort: 'asc',
+                width: 100
+              },
+              {
+                label: 'Địa chỉ',
+                field: 'address',
+                sort: 'asc',
+                width: 100
+              },
+              {
+                label: 'Thao tác',
+                field: 'button',
+                width: 100
+              }
+            ],
+          rows : res.data 
+        
+          }
+          })
+    console.log(this.state.data);
+    
+  }
+  );
+  }
+
+
 
 
     render() {

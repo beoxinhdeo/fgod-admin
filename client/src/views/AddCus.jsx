@@ -110,6 +110,7 @@ onSubmit = e => {
     //this.props.onSubmit(this.state);
     //Check error
     const error = this.validate();
+    
     if(!error){
     //clear form
         this.setState({
