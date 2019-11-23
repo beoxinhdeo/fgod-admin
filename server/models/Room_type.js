@@ -21,11 +21,11 @@ module.exports = db.sequelize.define(
         },
         status:
         {
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
             references:
              {
-                model: 'room', // 'persons' refers to table name
-                key: 'code_room', // 'id' refers to column name in persons table
+                model: 'status_room', // 'persons' refers to table name
+                key: 'code_status', // 'id' refers to column name in persons table
              }
         },
         

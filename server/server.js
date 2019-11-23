@@ -25,7 +25,7 @@ app.use(session({
     cookie: { maxAge: 60000 }}))
 
 
-var Users = require('./route/Users')
+//var Users = require('./route/Users')
 
 //var Users = require('./route/Customers')
 
@@ -38,7 +38,7 @@ var Rooms = require('./route/Rooms')
 var Room_types = require('./route/Room_type')
 var Status_users = require('./route/Status_users')
 
-app.use('/users',Users)
+//app.use('/users',Users)
 app.use('/customers',Customers)
 app.use('/bills',Bills)
 

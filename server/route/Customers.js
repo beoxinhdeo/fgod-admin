@@ -48,12 +48,12 @@ customers.post('/update', (req,res) =>{
         if(customer){
             Customer.update(cusdata,{where: {code_cus:req.body.code_cus}}).then(customer =>{
                 res.send({status:customer.fullname, message:"thành công"});
-            }).catch(ex =>{res.send("err : "+ex)});
+            }).catch(err =>{res.send("err : "+err)});
         } else{
             res.send({status:false,message:"Nhập lại mã khách hàng"});
         }
-    }).catch(ex =>{
-        res.send("err : "+ ex);
+    }).catch(err =>{
+        res.send("err : "+ err);
     })
 })
 
@@ -72,14 +72,14 @@ customers.post('/create', (req,res) =>{
         if(!customer){
             Customer.create(cusdata).then(customer =>{
                 res.send({status:customer.fullname,message:"thành công"});
-            }).catch(ex =>{
-                res.send("err : "+ex);
+            }).catch(err =>{
+                res.send("err : "+err);
             })
         } else {
             res.send({status:false,message:"Đã tồn tại"});
         }
-    }).catch(ex =>{
-        res.send("err :"+ ex);
+    }).catch(err =>{
+        res.send("err :"+ err);
     })
 })
 

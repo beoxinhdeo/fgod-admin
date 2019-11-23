@@ -3,7 +3,7 @@ const db = require('../database/db')
 
 
 module.exports = db.sequelize.define(
-    'status_user',
+    'status_users',
     {
         code_status:
         {

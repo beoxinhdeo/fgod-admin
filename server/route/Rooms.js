@@ -22,7 +22,7 @@ rooms.post('/update', (req,res) =>{
         description:req.body.description,
         status:req.body.status
     }
-    Bill.findOne({where:{code_room:req.body.code_room}}).then(room =>{
+    Room.findOne({where:{code_room:req.body.code_room}}).then(room =>{
         if(room){
             Room.update(roomdata,{where:{code_room:req.body.code_room}}).then(room =>{
                 res.send({status:room.code_room, message:"thành công"});
@@ -41,7 +41,7 @@ rooms.post('/updatelock', (req,res) =>{
         code_room:req.body.code_room,
         status:req.body.status
     }
-    Bill.findOne({where:{code_room:req.body.code_room}}).then(room =>{
+    Room.findOne({where:{code_room:req.body.code_room}}).then(room =>{
         if(room){
             Room.update(roomdata,{where:{code_room:req.body.code_room}}).then(room =>{
                 res.send({status:room.code_room, message:"thành công"});
@@ -63,7 +63,7 @@ rooms.post('/create', (req,res) =>{
         description:req.body.description,
         status:req.body.status
     }
-    Bill.findOne({where:{code_room:req.body.code_room}}).then(room =>{
+    Room.findOne({where:{code_room:req.body.code_room}}).then(room =>{
         if(!room){
             Room.create(roomdata).then(room =>{
                 res.send({status:room.code_room, message:"thành công"});
@@ -80,4 +80,4 @@ rooms.post('/create', (req,res) =>{
 
 
 
-module.exports = bills
+module.exports = rooms

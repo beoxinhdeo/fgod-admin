@@ -59,7 +59,7 @@ status_users.post('/create', (req,res) =>{
         name:req.body.name,
         
     }
-    Status_user.findOne({where:{code_room:req.body.code_room}}).then(status_user =>{
+    Status_user.findOne({where:{code_status:req.body.code_status}}).then(status_user =>{
         if(!status_user){
             Status_user.create(statusdata).then(status_user =>{
                 res.send({status:status_user.code_status, message:"thành công"});

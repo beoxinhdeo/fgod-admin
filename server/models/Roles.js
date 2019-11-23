@@ -3,22 +3,17 @@ const db = require('../database/db')
 
 
 module.exports = db.sequelize.define(
-    'room',
+    'role',
     {
-        code_room:
+        idrole:
         {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        code_type:
+        rolename:
         {
-            type: Sequelize.INTEGER,
-            referencesKey: 'code_type',
-        },
-        price:
-        {
-            type: Sequelize.INTEGER
+            type: Sequelize.STRING
         },
         description:
         {
@@ -29,10 +24,12 @@ module.exports = db.sequelize.define(
             type: Sequelize.INTEGER,
             references:
              {
-                model: 'status_room', // 'persons' refers to table name
+                model: 'status_users', // 'persons' refers to table name
                 key: 'code_status', // 'id' refers to column name in persons table
              }
         },
+        
+        
         
     },
     {
