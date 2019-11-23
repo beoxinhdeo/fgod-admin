@@ -25,7 +25,7 @@ module.exports = db.sequelize.define(
             references:
              {
                 model: 'status_users', // 'persons' refers to table name
-                key: 'code_status', // 'id' refers to column name in persons table
+                key: 'code_status', // 'id' refers to column name in persons table 
              }
         },
         
