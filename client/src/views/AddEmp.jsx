@@ -180,6 +180,7 @@ onSubmit = e => {
 render() {
     return (
         <div className = 'popup'>
+            <div className = 'background'></div>
             <div className = 'popup-inner'>
                 <form onSubmit= {e => this.onSubmit()}>
                     <Card>

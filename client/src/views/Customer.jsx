@@ -16,7 +16,7 @@ const data = {
   columns: [
     {
       label: 'ID',
-      field: 'id',
+      field: 'code_cus',
       sort: 'asc',
       width: 150
     },
@@ -27,8 +27,8 @@ const data = {
       width: 270
     },
     {
-      label: 'CMND',
-      field: 'id_card',
+      label: 'CMND/Passport',
+      field: 'idcard_passport',
       sort: 'asc',
       width: 200
     },
@@ -64,9 +64,9 @@ const data = {
   ],
   rows: [
     {
-      id: '001',
+      code_cus: '001',
       fullname: 'Nguyễn Thị Phương Nhi',
-      id_card: '272695452',
+      idcard_passport: '272695452',
       email: 'phuongnhi301299@gmail.com',
       birthday: '01/01/1999',
       phone: '0961619712',
@@ -75,104 +75,6 @@ const data = {
       <div>
         <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
         <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
-      </div>
-    },
-    {
-      id: '002',
-      fullname: 'Nguyễn Thị Phương Nhi',
-      id_card: '272695452',
-      email: 'phuongnhi301299@gmail.com',
-      birthday: '01/01/1999',
-      phone: '0961619712',
-      address: 'HCM',
-      button:
-      <div>
-        <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-      </div>
-    },
-    {
-      id: '003',
-      fullname: 'Nguyễn Thị Phương Nhi',
-      id_card: '272695452',
-      email: 'phuongnhi301299@gmail.com',
-      birthday: '01/01/1999',
-      phone: '0961619712',
-      address: 'HCM',
-      button:
-      <div>
-        <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-      </div>
-    },
-    {
-      id: '004',
-      fullname: 'Nguyễn Thị Phương Nhi',
-      id_card: '272695452',
-      email: 'phuongnhi301299@gmail.com',
-      birthday: '01/01/1999',
-      phone: '0961619712',
-      address: 'HCM',
-      button:
-      <div>
-        <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-      </div>
-    },
-    {
-      id: '005',
-      fullname: 'Nguyễn Thị Phương Nhi',
-      id_card: '272695452',
-      email: 'phuongnhi301299@gmail.com',
-      birthday: '01/01/1999',
-      phone: '0961619712',
-      address: 'HCM',
-      button:
-      <div>
-        <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-      </div>
-    },
-    {
-      id: '006',
-      fullname: 'Nguyễn Thị Phương Nhi',
-      id_card: '272695452',
-      email: 'phuongnhi301299@gmail.com',
-      birthday: '01/01/1999',
-      phone: '0961619712',
-      address: 'HCM',
-      button:
-      <div>
-        <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-      </div>
-    },
-    {
-      id: '007',
-      fullname: 'Nguyễn Thị Phương Nhi',
-      id_card: '272695452',
-      email: 'phuongnhi301299@gmail.com',
-      birthday: '01/01/1999',
-      phone: '0961619712',
-      address: 'HCM',
-      button:
-      <div>
-        <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
-      </div>
-    },
-    {
-      id: '008',
-      fullname: 'Nguyễn Thị Phương Nhi',
-      id_card: '272695452',
-      email: 'phuongnhi301299@gmail.com',
-      birthday: '01/01/1999',
-      phone: '0961619712',
-      address: 'HCM',
-      button:
-      <div>
-        <MDBBtn className="edit-btn"size="sm">Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
       </div>
     },
 

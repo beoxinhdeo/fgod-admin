@@ -1,126 +1,127 @@
-/*!
+// /*!
 
-=========================================================
-* Paper Dashboard React - v1.1.0
-=========================================================
+// =========================================================
+// * Paper Dashboard React - v1.1.0
+// =========================================================
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+// * Product Page: https://www.creative-tim.com/product/paper-dashboard-react
+// * Copyright 2019 Creative Tim (https://www.creative-tim.com)
 
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
+// * Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
 
-* Coded by Creative Tim
+// * Coded by Creative Tim
 
-=========================================================
+// =========================================================
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+// * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-*/
-import React from "react";
-// reactstrap components
+// */
+
+
+import React from 'react';
+import { 
+  MDBDataTable,
+  MDBTable,
+  MDBCard,
+  MDBCardHeader,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBBtn 
+} from 'mdbreact';
+
+import Form from "views/FormRole.jsx";
+
 import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Col,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   Row,
-  Table,
+  Col
 } from "reactstrap";
+const data = {
+  columns: [
+    {
+      label: 'ID',
+      field: 'code_role',
+      sort: 'asc',
+      width: 150
+    },
+    {
+      label: 'Bộ phận',
+      field: 'rolename',
+      sort: 'asc',
+      width: 500
+    },
+    {
+      label: 'Thao tác',
+      field: 'button',
+      width: 100
+    }
+  ],
+  rows: [
+    {
+      code_role: '001',
+      rolename: 'Quản lý',
+      button:
+      <div>
+        <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+        <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+      </div>
+    },
+  ]
+};
+class Role extends React.Component {
+  state = {
+    showForm : false
+  };
 
-import "./Style.css"
-
-class Tables extends React.Component {
-  render() {
-    return (
-      <>
-        <div className="content">
-          <Row>
-            <Col md="12">
-              <Card>
-                <CardHeader>
-                  <CardTitle tag="h3">Danh sách bộ phận</CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div className="space-between">
-                    <Button className="add-btn">Thêm</Button>
-                    <form className="form-inline search-bar">
-                      <input className="form-control" type="text" placeholder="Tìm kiếm..."/>
-                    </form>
-                  </div>
-                  <Table responsive>
-                    <thead>
-                      <tr>
-                        <th>Mã bộ phận</th>
-                        <th>Tên bộ phận</th>
-                        <th>Thao tác</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>0001</td>
-                        <td>Lễ tân</td>
-                        <td className="space-between">
-                          <Button className="edit-btn" type="button">Sửa</Button>
-                          <Button className="delete-btn">Xóa</Button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </CardBody>
-                <CardFooter>
-                  <Pagination aria-label="Page navigation example" className="flex-end">
-                    <PaginationItem>
-                      <PaginationLink first href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink previous href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        1
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        2
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        3
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        4
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">
-                        5
-                          </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink next href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink last href="#" />
-                    </PaginationItem>
-                  </Pagination>
-                </CardFooter>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      </>
-    );
-  }
+onChange = updatevalue => {
+  this.setState({fields : {
+      ...this.state.fields,
+      ...updatevalue
+    }
+  });
+};
+  
+toggleForm() {
+  this.setState({
+    showForm: !this.state.showForm
+  });
+}
+render(){
+  return (
+    <div className="content">
+      <Row>
+        <Col md="12">
+          <MDBCard>
+            <MDBCardHeader>
+              <MDBCardTitle tag="h3">
+                <Row>
+                  <Col md="6">
+                    Danh sách bộ phận</Col>
+                  <Col md="6" className="flex-end">
+                    <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn">
+                      <i className = "fas fa-user-plus"/> Thêm bộ phận
+                    </MDBBtn>
+                    {this.state.showForm ? 
+                      <Form
+                        closeForm={this.toggleForm.bind(this)}
+                        onChange = {fields => this.onChange(fields)}
+                      />
+                      : null
+                    }
+                  </Col>
+                </Row>
+              </MDBCardTitle>
+            </MDBCardHeader>
+            <MDBCardBody>
+              <MDBTable responsive>
+                <MDBDataTable striped data = {data}/>
+              </MDBTable>
+            </MDBCardBody>
+          </MDBCard>
+        </Col>
+      </Row>
+    </div> 
+  );
+};
 }
 
-export default Tables;
+export default Role;
