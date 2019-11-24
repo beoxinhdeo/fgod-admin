@@ -1,7 +1,7 @@
 import React from 'react';
-import { MDBDataTable, MDBTable, MDBCard, MDBCardHeader, MDBCardBody, MDBCardTitle, MDBBtn } from 'mdbreact';
-import {  Row, Col} from "reactstrap";
-
+import {MDBDataTable, MDBTable, MDBCard, MDBCardHeader, MDBCardBody, MDBCardTitle, MDBBtn } from 'mdbreact';
+import {Row, Col} from "reactstrap";
+import "./Style.css"
 const Customer = (props) => {
   const data = {
     columns: [
@@ -64,8 +64,8 @@ const Customer = (props) => {
         address: 'HCM',
         button:
         <div>
-          <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
-          <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+          <MDBBtn className="edit-btn" size="sm">Sửa</MDBBtn>
+          <MDBBtn className="delete-btn" size="sm">Xóa</MDBBtn>
         </div>
       },
       {
@@ -181,7 +181,7 @@ const Customer = (props) => {
                   <Col md="6">
                     Danh sách khách hàng</Col>
                   <Col md="6" className="flex-end">
-                    <MDBBtn className="add-btn"> Thêm khách hàng</MDBBtn>
+                    <MDBBtn className="add-btn">Thêm khách hàng</MDBBtn>
                   </Col>
                 </Row>
               </MDBCardTitle>

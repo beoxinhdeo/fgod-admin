@@ -1,3 +1,8 @@
+.card-login {
+    margin-top: 50px !important;
+    background-color: antiquewhite;
+}
+
 .flex-end {
     display: flex;
     justify-content: flex-end;
@@ -5,6 +10,10 @@
 .space-between {
     display: flex;
     justify-content: space-between;
+}
+.center {
+    display: flex;
+    justify-content: center;
 }
 .add-btn {
     font-weight: bold;
@@ -18,4 +27,120 @@
 .delete-btn {
     background-color: #dd2c00 !important;
     border-radius: 5px;
+}
+.detail-btn {
+    background-color: rosybrown !important;
+    border-radius: 5px;
+}
+.add-btn-form {
+    background-color: orangered !important;
+}
+
+.card-roommap {
+    height: 12.7rem;
+    padding: 0px 20px 10px 20px;
+}
+.row-roommap {
+    padding-top: 10px;
+}
+.card-room {
+    display: block;
+    width: 10rem;
+    height: 9rem;
+}
+.card-room :hover {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.status0 {
+    background-color: mediumaquamarine !important;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0 !important;
+}
+.status1 {
+    background-color: lightblue !important;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0 !important;
+}
+.status2 {
+    background-color: khaki !important;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0 !important;
+}
+.status0-btn, .status1-btn, .status2-btn, .all-btn {
+    width: 9rem !important;
+}
+.booking-btn {
+    color: black;
+    width: 60px;
+    height: 30px;
+    padding: 2px !important;
+    background-color: mediumaquamarine !important;
+    border-radius: 5px;
+}
+.checkin1-btn, .status0-btn {
+    color: black;
+    width: 90px;
+    height: 30px;
+    padding: 2px !important;
+    background-color: mediumaquamarine !important;
+    border-radius: 5px;
+}
+.checkout-btn, .status1-btn {
+    color: black;
+    width: 90px;
+    height: 30px;
+    padding: 2px !important;
+    background-color: lightblue !important;
+    border-radius: 5px;
+}
+.checkin2-btn, .status2-btn {
+    color: black;
+    width: 90px;
+    height: 30px;
+    padding: 2px !important;
+    background-color: khaki !important;
+    border-radius: 5px;
+}
+.all-btn {
+    color: black;
+    width: 90px;
+    height: 30px;
+    padding: 2px !important;
+    background-color: khaki !important;
+    border-radius: 5px;
+}
+.cancle-btn {
+    color: black;
+    width: 60px;
+    height: 30px;
+    padding: 2px !important;
+    background-color: khaki !important;
+    border-radius: 5px;
+}
+
+.booking-btn, .checkin1-btn, .checkin2-btn, .checkout-btn, .cancle-btn {
+    box-shadow: none;
+}
+
+.find-btn {
+    color: black;
+    width: 90px;
+    height: 30px;
+    padding: 2px !important;
+    background-color: darkturquoise !important;
+    border-radius: 5px;
+}
+
+.search-room {
+    width: max-content;
+    height: 30px;
+    margin: 6px !important;
 }
