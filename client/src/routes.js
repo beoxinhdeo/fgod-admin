@@ -21,17 +21,16 @@ import Customer from "views/Customer.jsx";
 import Role from "views/Role.jsx";
 import Bill from "views/Bill.jsx";
 import Statistic from "views/Statistic.jsx";
-import Icons from "views/Icons";
 import User from "views/User";
 import Employee from "views/Employee.jsx";
-import Example from "views/Example.jsx";
+import RoomMap from "views/RoomMap";
 
 var routes = [
   {
     path: "/roommap",
-    name: "Sơ đồ phòng",
+    name: "Quản lý phòng",
     icon: "	fas fa-building",
-    component: Icons,
+    component: RoomMap,
     layout: "/admin"
   },
   {
@@ -73,7 +72,7 @@ var routes = [
     path: "/bill",
     name: "Hóa đơn",
     icon: "fas fa-clipboard-list",
-    component: Example,
+    component: Bill,
     layout: "/admin"
   },
   {

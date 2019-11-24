@@ -95,40 +95,40 @@ toggleForm() {
 render(){
   return (
     <div className="content">
-      <Row>
-        <Col md="12">
-          <MDBCard>
-            <MDBCardHeader>
-              <MDBCardTitle tag="h3">
-                <Row>
-                  <Col md="6">
-                    Danh sách loại phòng</Col>
-                  <Col md="6" className="flex-end">
-                    <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn">
-                       Thêm loại phòng
-                    </MDBBtn>
-                    {this.state.showForm ? 
-                      <Form
-                        closeForm={this.toggleForm.bind(this)}
-                        onChange = {fields => this.onChange(fields)}
-                      />
-                      : null
-                    }
-                  </Col>
-                </Row>
-              </MDBCardTitle>
-            </MDBCardHeader>
-            <MDBCardBody>
-              <MDBTable responsive>
-                <MDBDataTable striped data = {data}/>
-              </MDBTable>
-            </MDBCardBody>
-          </MDBCard>
-        </Col>
-      </Row>
-    </div> 
-  );
+            <Row>
+              <Col md="12">
+                <MDBCard>
+                  <MDBCardHeader>
+                    <MDBCardTitle tag="h3">
+                      <Row>
+                        <Col md="6">Danh sách loại phòng</Col>
+                        <Col md="6" className="flex-end">
+                          <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn"> 
+                            Thêm loại phòng 
+                          </MDBBtn>
+                          {this.state.showForm ? 
+                            <Form
+                              closeForm={this.toggleForm.bind(this)}
+                              onChange = {fields => this.onChange(fields)}
+                              className="form"
+                            />
+                            : null
+                          }
+                        </Col>
+                      </Row>
+                    </MDBCardTitle>
+                  </MDBCardHeader>
+                  <MDBCardBody>
+                    <MDBTable responsive>
+                      <MDBDataTable striped data = {this.state.data}/>
+                    </MDBTable>
+                  </MDBCardBody>
+                </MDBCard>
+              </Col>
+            </Row>
+          </div> 
+        );
+        }
 };
-}
 
 export default Typeroom;
