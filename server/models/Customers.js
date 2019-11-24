@@ -19,6 +19,10 @@ module.exports = db.sequelize.define(
         {
             type: Sequelize.INTEGER
         },
+        birthday:
+        {
+            type: Sequelize.DATE
+        },
         phone:
         {
             type: Sequelize.INTEGER

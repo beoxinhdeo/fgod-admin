@@ -1,5 +1,5 @@
 import React from "react";
-import "./Style.css";
+import "./Stylee.css";
 // import Popup from 'reactjs-popup';
 
 import{
@@ -110,6 +110,7 @@ onSubmit = e => {
     //this.props.onSubmit(this.state);
     //Check error
     const error = this.validate();
+    
     if(!error){
     //clear form
         this.setState({
