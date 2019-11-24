@@ -224,7 +224,6 @@ class RoomMap extends React.Component {
                     <hr />
                     <Row className="flex-center">
                         <span className="flex-center">Tình trạng phòng: </span>
-                        <Button>Tất cả phòng</Button>
                         <Button className="status0-btn" type="button">Phòng trống: SL</Button>
                         <Button className="status1-btn" type="button">Đang ở: SL</Button>
                         <Button className="status2-btn" type="button">Đã đặt: SL</Button>

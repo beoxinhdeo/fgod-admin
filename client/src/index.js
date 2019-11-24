@@ -21,6 +21,12 @@ import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 
+//import { createStore, applyMiddleware } from 'redux';
+//import { Provider } from 'react-redux';
+//import thunk from 'redux-thunk';
+
+//import store from './store';
+
 import "bootstrap/dist/css/bootstrap.css";
 import "assets/scss/paper-dashboard.scss?v=1.1.0";
 import "assets/demo/demo.css";
@@ -44,10 +50,12 @@ const hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
+    {/* <Provider store={store}> */}
     <Switch>
       <Route path="/admin" render={props => <Admin {...props} />} />
       <Redirect to="/admin" />
     </Switch>
+    {/* </Provider> */}
   </Router>,
   document.getElementById("root")
 );
