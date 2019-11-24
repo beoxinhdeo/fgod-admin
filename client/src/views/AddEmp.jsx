@@ -1,5 +1,7 @@
 import React from "react";
-import "./Style.css";
+import axios from 'axios';   
+import Employee from "views/Employee.jsx";
+//import "./Style.css";
 // import Popup from 'reactjs-popup';
 
 import{
@@ -130,9 +132,25 @@ onSubmit = e => {
     //this.props.onSubmit(this.state);
     //Check error
     const error = this.validate();
+
     if(!error){
-    //clear form
-        this.setState({
+        const obj = {
+            fullname :      this.state.fullname,
+            birthday :      this.state.birthday,
+            identity_card : this.state.identity_card,
+            email :         this.state.email,
+            password :      this.state.password,
+            phone :         this.state.phone,
+            address :       this.state.address,
+            role :          this.state.role,
+            status :        this.state.status
+        };
+        axios.post('http://localhost:3000/users/register', obj)
+            .then(res =>
+                {
+                    console.log(res.data)
+
+                    this.setState({
             fullname :"",
             fullnameError: "",
             birthday :"",
@@ -173,6 +191,10 @@ onSubmit = e => {
         this.props.closeForm({
             showForm: !this.state.showForm
         })
+ });
+                
+
+        
 
         
     }
@@ -180,6 +202,7 @@ onSubmit = e => {
 render() {
     return (
         <div className = 'popup'>
+            <div className ="background" ></div>
             <div className = 'popup-inner'>
                 <form onSubmit= {e => this.onSubmit()}>
                     <Card>

@@ -83,6 +83,21 @@ customers.post('/create', (req,res) =>{
     })
 })
 
+customers.post('/show', (req,res) =>{
+
+    Customer.findAll().then(customer =>{
+        if(customer){
+                    res.send(customer).catch(err =>{res.send("err : " + err)});
+           
+        } 
+        else{
+            res.send({status:false,message:"Nhập lại mã khách hàng"});
+        }
+    }).catch(err =>{
+        res.send("err : "+ err);
+    })
+})
+
 
 
 // Customers.post('/create', (req, res) => {

@@ -33,7 +33,7 @@ import {
   Table,
 } from "reactstrap";
 
-import "./Style.css"
+//import "./Style.css"
 
 class Tables extends React.Component {
   render() {
