@@ -29,7 +29,7 @@ import {
   MDBBtn 
 } from 'mdbreact';
 
-import Form from "views/FormRole.jsx";
+import Form from "views/AddRole.jsx";
 
 import {
   Row,
