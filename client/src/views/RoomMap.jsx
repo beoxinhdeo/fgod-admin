@@ -1,6 +1,6 @@
 import React from "react";
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardHeader, MDBContainer, MDBBtn, MDBModal } from "mdbreact";
-import { Row, Col, Button, Input } from "reactstrap";
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardHeader, MDBBtn } from "mdbreact";
+import { Row, Button, Input } from "reactstrap";
 import "./Style.css";
 
 class RoomMap extends React.Component {
