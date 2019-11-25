@@ -32,115 +32,44 @@
     background-color: rosybrown !important;
     border-radius: 5px;
 }
-.add-btn-form {
-    background-color: orangered !important;
-}
-
 .card-roommap {
-    height: 12.7rem;
     padding: 0px 20px 10px 20px;
 }
 .row-roommap {
     padding-top: 10px;
 }
 .card-room {
-    display: block;
     width: 10rem;
     height: 9rem;
 }
-.card-room :hover {
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.status0 {
-    background-color: mediumaquamarine !important;
+.status0, .status1, .status2 {
     text-align: center;
     font-size: 22px;
     font-weight: bold;
     padding: 0 !important;
 }
-.status1 {
-    background-color: lightblue !important;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 0 !important;
-}
-.status2 {
-    background-color: khaki !important;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 0 !important;
-}
-.status0-btn, .status1-btn, .status2-btn, .all-btn {
-    width: 9rem !important;
-}
-.booking-btn {
+.status0-btn, .status1-btn, .status2-btn, .all-btn, .detail0-btn, .detail1-btn, .detail2-btn {
+    width: 7rem;
     color: black;
-    width: 60px;
-    height: 30px;
-    padding: 2px !important;
-    background-color: mediumaquamarine !important;
+    height: 2rem;
+    padding: 2px;
     border-radius: 5px;
 }
-.checkin1-btn, .status0-btn {
-    color: black;
-    width: 90px;
-    height: 30px;
-    padding: 2px !important;
-    background-color: mediumaquamarine !important;
-    border-radius: 5px;
-}
-.checkout-btn, .status1-btn {
-    color: black;
-    width: 90px;
-    height: 30px;
-    padding: 2px !important;
-    background-color: lightblue !important;
-    border-radius: 5px;
-}
-.checkin2-btn, .status2-btn {
-    color: black;
-    width: 90px;
-    height: 30px;
-    padding: 2px !important;
-    background-color: khaki !important;
-    border-radius: 5px;
-}
-.all-btn {
-    color: black;
-    width: 90px;
-    height: 30px;
-    padding: 2px !important;
-    background-color: khaki !important;
-    border-radius: 5px;
-}
-.cancle-btn {
-    color: black;
-    width: 60px;
-    height: 30px;
-    padding: 2px !important;
-    background-color: khaki !important;
-    border-radius: 5px;
-}
-
-.booking-btn, .checkin1-btn, .checkin2-btn, .checkout-btn, .cancle-btn {
+.detail0-btn, .detail1-btn, .detail2-btn {
     box-shadow: none;
 }
-
-.find-btn {
-    color: black;
-    width: 90px;
-    height: 30px;
-    padding: 2px !important;
-    background-color: darkturquoise !important;
-    border-radius: 5px;
+.status0, .status0-btn, .detail0-btn {
+    background-color: mediumseagreen !important;
+}
+.status1, .status1-btn, .detail1-btn {
+    background-color: cornflowerblue !important;
+}
+.status2, .status2-btn, .detail2-btn {
+    background-color: sandybrown !important;
+}
+.all-btn {
+    background-color: rosybrown !important;
 }
 
-.search-room {
-    width: max-content;
-    height: 30px;
-    margin: 6px !important;
-}
+
