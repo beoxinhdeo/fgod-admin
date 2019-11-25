@@ -46,6 +46,26 @@ change = e => {
         addressError:""
     });
 };
+// submitedit = e => {
+//     this.props.onChange
+//     ({fullname : ,
+//         birthday: ,
+//         email:     ,
+//         idcard_passport: ,
+//         phone: ,
+//         address: ,
+
+//     });
+//     this.setState({
+//         [e.target.name]: e.target.value,
+//         fullnameError: "",
+//         birthdayError:"",
+//         emailError:"",
+//         idcard_passportError:"",
+//         phoneError:"",
+//         addressError:""
+//     });
+// };
 
     //Reg ex
 validate = () => {
@@ -110,8 +130,10 @@ onSubmit = e => {
     //this.props.onSubmit(this.state);
     //Check error
     const error = this.validate();
-    
+
     if(!error){
+
+        
     //clear form
         this.setState({
             fullname :"",

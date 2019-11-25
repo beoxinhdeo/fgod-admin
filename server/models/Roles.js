@@ -15,7 +15,35 @@ module.exports = db.sequelize.define(
         {
             type: Sequelize.STRING
         },
-        description:
+        bill_role :
+        {
+            type: Sequelize.STRING
+        },
+        cus_role:
+        {
+            type: Sequelize.STRING
+        },
+        emp_role:
+        {
+            type: Sequelize.STRING
+        },
+        role_role:
+        {
+            type: Sequelize.STRING
+        },
+        room_role:
+        {
+            type: Sequelize.STRING
+        },
+        roomtype_role:
+        {
+            type: Sequelize.STRING
+        },
+        statistic_role:
+        {
+            type: Sequelize.STRING
+        },
+        booking_role:
         {
             type: Sequelize.STRING
         },

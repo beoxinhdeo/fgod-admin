@@ -88,9 +88,10 @@ users.post('/login',(req,res) => {
     })
 }) 
 
+
 users.post('/update', (req,res) =>{
     const userData = {
-        code_emp : req.body.code_emp,
+        code_emp :      req.body.code_emp,
         fullname :      req.body.fullname,
         identity_card : req.body.identity_card,
         email :         req.body.email,
@@ -118,6 +119,7 @@ users.post('/update', (req,res) =>{
     })
 })
 
+
 users.post('/show', (req,res) =>{
     const userData = {
         code_emp :      req.body.code_emp,
@@ -132,6 +134,32 @@ users.post('/show', (req,res) =>{
     }
 
     User.findAll().then(user =>{
+        if(user){
+                    res.send(user).catch(err =>{res.send("err : " + err)});
+           
+        } 
+        else{
+            res.send({status:false,message:"Nhập lại mã khách hàng"});
+        }
+    }).catch(err =>{
+        res.send("err : "+ err);
+    })
+})
+
+users.post('/find', (req,res) =>{
+    const userData = {
+        code_emp :      req.body.code_emp,
+        fullname :      req.body.fullname,
+        identity_card : req.body.identity_card,
+        email :         req.body.email,
+        password :      req.body.password,//bcrypt.hash(req.body.password,10,(err,hash) => {userData.password = err}),
+        phone :         req.body.phone,
+        address :       req.body.address,
+        role :          req.body.role,
+        status :        req.body.status
+    }
+
+    User.findAll({where :{ email : req.body.email }}).then(user =>{
         if(user){
                     res.send(user).catch(err =>{res.send("err : " + err)});
            
