@@ -10,14 +10,77 @@ import {
 } from 'mdbreact';
 
 import Form from "views/AddCus.jsx";
+import axios from 'axios';
 
 import {  Row, Col} from "reactstrap";
+const data = {
+  columns: [
+    {
+      label: 'ID',
+      field: 'code_cus',
+      sort: 'asc',
+      width: 150
+    },
+    {
+      label: 'Họ và tên',
+      field: 'fullname',
+      sort: 'asc',
+      width: 270
+    },
+    {
+      label: 'CMND/Passport',
+      field: 'idcard_passport',
+      sort: 'asc',
+      width: 200
+    },
+    {
+      label: 'Email',
+      field: 'email',
+      sort: 'asc',
+      width: 100
+    },
+    {
+      label: 'Ngày sinh',
+      field: 'birthday',
+      sort: 'asc',
+      width: 150
+    },
+    {
+      label: 'Số điện thoại',
+      field: 'phone',
+      sort: 'asc',
+      width: 100
+    },
+    {
+      label: 'Địa chỉ',
+      field: 'address',
+      sort: 'asc',
+      width: 100
+    },
+    {
+      label: 'Thao tác',
+      field: 'button',
+      width: 100
+    }
+  ],
+  rows: [
+    {
+      code_cus: '001',
+      fullname: 'Nguyễn Thị Phương Nhi',
+      idcard_passport: '272695452',
+      email: 'phuongnhi301299@gmail.com',
+      birthday: '01/01/1999',
+      phone: '0961619712',
+      address: 'HCM',
+      button:
+      <div>
+        <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+        <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+      </div>
+    },
 
-import axios from 'axios';  
-
-
-
-
+  ]
+};
 class Customer extends React.Component {
 
   state = {

@@ -242,73 +242,7 @@ renderRoles() {
 render() {
 
     return (
-        <div className = 'popup'>
-            <div className ="background" ></div>
-            <div className = 'popup-inner'>
-                <form onSubmit= {e => this.onSubmit()}>
-                    <Card>
-                        <CardHeader>
-                            <h3>Thêm nhân viên</h3>
-                            <button type="button" class="close" 
-                            onClick={this.props.closeForm}>
-                                &times;
-                            </button>
-                        </CardHeader>
-                        <CardBody>
-                            <FormGroup style = {{fontSize : '16px'}}>
-                                <Row form>
-                                    <Col md={6}>
-                                    </Col>  
-                                    <Col md={6}>
-                                    </Col>
-                                    <Col md={6}>
-                                    </Col>
-                                    <Col md={6}>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={6}>
-                                       
-                                    </Col>
-                                    <Col md = {6}>
-                                       
-                                    </Col>
-                                </Row>
-                                      
-                                <Row form>
-                                    <Col md={4}>
-                                        
-                                    </Col>
-                                    <Col md={4}>
-                                        <FormGroup>
-                                            <Label for="role">Chức vụ</Label>
-                                            <Input type="select" 
-                                            name = "role"
-                                            value = {this.state.role}
-                                            onChange= {e => this.change(e)}>
-                                                {this.renderRoles()}
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={4}>
-                                        
-                                    </Col>
-                                </Row>  
-                            </FormGroup>
-                        </CardBody>
-                        <CardFooter>
-                            <Col md={12} className="flex-end">
-                                <Button outline color="gray">Hủy</Button>
-                                <button onClick = {e => this.onSubmit(e)} 
-                                className = "btn btn-primary">
-                                    Thêm
-                                </button>
-                            </Col>
-                        </CardFooter>
-                    </Card>
-                </form>
-            </div>
-        </div>
+       
     );
   }
 }
