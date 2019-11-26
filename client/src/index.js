@@ -28,7 +28,7 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 //import store from './store';
 
 import "bootstrap/dist/css/bootstrap.css";
-import "assets/scss/paper-dashboard.scss?v=1.1.0";
+import "assets/scss/paper-dashboard.scss?v=1.1.0"
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 

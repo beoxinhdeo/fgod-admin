@@ -24,6 +24,7 @@ import Statistic from "views/Statistic.jsx";
 import User from "views/User";
 import Employee from "views/Employee.jsx";
 import RoomMap from "views/RoomMap";
+import Booking from "views/Booking";
 
 var routes = [
   {
@@ -37,7 +38,7 @@ var routes = [
     path: "/booking",
     name: "Đặt phòng",
     icon: "fa fa-address-card",
-    component: User,
+    component: Booking,
     layout: "/admin"
   },
   {

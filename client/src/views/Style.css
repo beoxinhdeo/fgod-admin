@@ -21,16 +21,28 @@
     border-radius: 5px;
 }
 .edit-btn {
-    background-color: #0277bd  !important;
+    background-color: royalblue  !important;
     border-radius: 5px;
 }
 .delete-btn {
-    background-color: #dd2c00 !important;
+    background-color: crimson!important;
     border-radius: 5px;
 }
 .detail-btn {
     background-color: rosybrown !important;
     border-radius: 5px;
+}
+.booking-btn {
+    background-color: rosybrown !important;
+    border-radius: 5px;
+}
+.find-btn {
+    color: black;
+    background-color: skyblue !important;
+    border-radius: 5px;
+}
+.booking-input {
+    width: 160px;
 }
 .card-roommap {
     padding: 0px 20px 10px 20px;
