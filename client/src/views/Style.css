@@ -38,7 +38,8 @@
     border-radius: 5px;
 }
 .booking-input {
-    width: 160px;
+    height: 30px;
+    width: 170px;
 }
 .card-roommap {
     padding: 0px 20px 10px 20px;

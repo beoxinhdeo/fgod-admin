@@ -2,16 +2,11 @@ import React from 'react';
 import { 
     MDBDataTable,
     MDBTable,
-    MDBCard,
-    MDBCardHeader,
-    MDBCardBody,
-    MDBCardTitle,
-    MDBBtn 
+    MDBBtn
   } from 'mdbreact';
   
   
-  import {  Row, Col} from "reactstrap";
-import { Input, Button } from '@material-ui/core';
+import { Card, CardBody, CardHeader, CardTitle, Row, Col, Input, Button} from "reactstrap";
   const data = {
     columns: [
       {
@@ -56,68 +51,53 @@ class Booking extends React.Component {
           <div className="content">
             <Row>
               <Col md="7">
-                <MDBCard>
-                  <MDBCardHeader>
-                    <MDBCardTitle tag="h3">
-                      <Row>
-                        <Col md="6">
-                          Tra cứu phòng
-                        </Col>
-                      </Row>
-                    </MDBCardTitle>
-                  </MDBCardHeader>
-
-
-                  <MDBCardBody>
-                    <Row>
+                <Card>
+                  <CardHeader>
+                    <CardTitle tag="h3">
+                      Tra cứu phòng
+                    </CardTitle>
+                  </CardHeader>
+                  <CardBody>
+                    <Row className="flex-center">
                         <Col md="4">
                             <Input type="date" className="booking-input"></Input>
                         </Col>
                         <Col>
-                            <i className="fas fa-arrow-right flex-center"></i>
-                        </Col>
-                        
+                            <i className="fas fa-arrow-right"></i>
+                        </Col>                       
                         <Col md="4">
                             <Input type="date" className="booking-input"></Input>
                         </Col>
                         <Col md="3">
-                            <MDBBtn type="button" size="sm" className="find-btn">Tra cứu</MDBBtn>
+                            <Button type="button" size="sm" className="find-btn">Tra cứu</Button>
                         </Col>
                     </Row>
                     <hr />
                     <MDBTable responsive>
                       <MDBDataTable striped data = {data}/>
                     </MDBTable>
-                  </MDBCardBody>
-                </MDBCard>
+                  </CardBody>
+                </Card>
               </Col>
               <Col md="5">
-                <MDBCard>
-                    <MDBCardHeader>
-                        <MDBCardTitle tag="h3">
-                        <Row>
-                            <Col md="6">
-                                Khách hàng
-                            </Col>
-                        </Row>
-                        </MDBCardTitle>
-                    </MDBCardHeader>
-                    <MDBCardBody>
-                    </MDBCardBody>
-                </MDBCard>
-                <MDBCard>
-                    <MDBCardHeader>
-                        <MDBCardTitle tag="h3">
-                        <Row>
-                            <Col md="6">
-                                Thanh toán
-                            </Col>
-                        </Row>
-                        </MDBCardTitle>
-                    </MDBCardHeader>
-                    <MDBCardBody>
-                    </MDBCardBody>
-                </MDBCard>                
+                <Card>
+                    <CardHeader>
+                        <CardTitle tag="h3">
+                          Thông tin khách hàng
+                        </CardTitle>
+                    </CardHeader>
+                    <CardBody>
+                    </CardBody>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle tag="h3">
+                          Thanh toán
+                        </CardTitle>
+                    </CardHeader>
+                    <CardBody>
+                    </CardBody>
+                </Card>                
               </Col>
             </Row>
           </div> 
