@@ -185,4 +185,5 @@ class RoomMap extends React.Component {
     }
 };
 
+
 export default RoomMap;
