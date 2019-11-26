@@ -52,7 +52,7 @@ ReactDOM.render(
   <Router history={hist}>
     {/* <Provider store={store}> */}
     <Switch>
-      <Route path="/admin" render={props => <Admin {...props} />} />
+      <Route path="/admin" render={props => <Login {...props} />} />
       <Redirect to="/admin" />
     </Switch>
     {/* </Provider> */}
