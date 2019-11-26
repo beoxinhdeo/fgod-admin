@@ -296,7 +296,7 @@ render_rooms(e) {
                     </MDBCardHeader>              
                     <Row className="flex-center">
                         <span className="flex-center">Tình trạng phòng: </span>
-        <Button className="all-btn" type="button" onClick = {this.setStateStatus_All.bind(this)} >Tất cả</Button>
+                        <Button className="all-btn" type="button" onClick = {this.setStateStatus_All.bind(this)} >Tất cả</Button>
                         <Button className="status0-btn" type="button" onClick = {this.setStateStatus_Empty.bind(this)}>Trống</Button>
                         <Button className="status1-btn" type="button" onClick = {this.setStateStatus_Busy.bind(this)}>Đang ở</Button>
                         <Button className="status2-btn" type="button" onClick = {this.setStateStatus_Ordered.bind(this)}>Đã đặt</Button>
