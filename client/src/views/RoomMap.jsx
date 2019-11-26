@@ -310,4 +310,5 @@ render_rooms(e) {
     }
 };
 
+
 export default RoomMap;
