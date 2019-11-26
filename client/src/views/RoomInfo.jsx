@@ -16,7 +16,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-
   const rows = [
     // createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
     // createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
@@ -35,7 +34,7 @@ export default class RoomInfo extends React.Component {
     render() {
         return (
             <div className = 'popup'>
-            <div className = 'background'></div>
+            <div className = 'background-modal-room'></div>
             <div className = 'popup-inner'>
                 <form>
                     <Card>

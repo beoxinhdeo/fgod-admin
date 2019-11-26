@@ -1,13 +1,14 @@
 import React from "react";
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardHeader, MDBBtn } from "mdbreact";
-import { Row, Button, Input } from "reactstrap";
+import { Row, Button} from "reactstrap";
 import "./Style.css";
-
+import RoomInfo from "views/RoomInfo.jsx";
 class RoomMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             status : '3',
+            showForm: false,
             rooms : [
                 {
                     status: 0,
@@ -94,7 +95,19 @@ class RoomMap extends React.Component {
         };
 
     }
-    
+onChange = updatevalue => {
+    this.setState({fields : {
+        ...this.state.fields,
+        ...updatevalue
+        }
+    });
+};
+
+toggleForm() {
+    this.setState({
+      showForm: !this.state.showForm
+    });
+}
 showAll() {
         return this.state.rooms.map((room, index) => {
             let result = '';
@@ -112,7 +125,17 @@ showAll() {
                                         {room.checkout}
                                     </Row>
                                     <Row className="center">
-                                        <MDBBtn className="detail0-btn">Chi tiết</MDBBtn>
+                                        <MDBBtn className="detail0-btn"
+                                            onClick={this.toggleForm.bind(this)}>
+                                                Chi tiết
+                                        </MDBBtn>
+                                        {this.state.showForm ? 
+                                            <RoomInfo
+                                                closeForm={this.toggleForm.bind(this)}
+                                                onChange = {fields => this.onChange(fields)}
+                                            />
+                                            : null
+                                        }
                                     </Row>
                                 </MDBCardBody>
                             </MDBCard>
@@ -131,7 +154,17 @@ showAll() {
                                         {room.checkout}
                                     </Row>
                                     <Row className="center">
-                                        <MDBBtn className="detail1-btn">Chi tiết</MDBBtn>
+                                        <MDBBtn className="detail1-btn" 
+                                            onClick={this.toggleForm.bind(this)}>
+                                                Chi tiết
+                                        </MDBBtn>
+                                        {this.state.showForm ? 
+                                            <RoomInfo
+                                                closeForm={this.toggleForm.bind(this)}
+                                                onChange = {fields => this.onChange(fields)}
+                                            />
+                                            : null
+                                        }
                                     </Row>
                                 </MDBCardBody>
                             </MDBCard>
@@ -150,7 +183,17 @@ showAll() {
                                         {room.checkout}
                                     </Row>
                                     <Row className="center">
-                                        <MDBBtn className="detail2-btn">Chi tiết</MDBBtn>
+                                        <MDBBtn className="detail2-btn"
+                                            onClick={this.toggleForm.bind(this)}>
+                                                Chi tiết
+                                        </MDBBtn>
+                                        {this.state.showForm ? 
+                                            <RoomInfo
+                                                closeForm={this.toggleForm.bind(this)}
+                                                onChange = {fields => this.onChange(fields)}
+                                            />
+                                            : null
+                                        }
                                     </Row>
                                 </MDBCardBody>
                             </MDBCard>
@@ -177,7 +220,17 @@ showStatus_Empty() {
                                     {room.checkout}
                                 </Row>
                                 <Row className="center">
-                                    <MDBBtn className="detail0-btn">Chi tiết</MDBBtn>
+                                    <MDBBtn className="detail0-btn"
+                                        onClick={this.toggleForm.bind(this)}>
+                                            Chi tiết
+                                    </MDBBtn>
+                                    {this.state.showForm ? 
+                                        <RoomInfo
+                                            closeForm={this.toggleForm.bind(this)}
+                                            onChange = {fields => this.onChange(fields)}
+                                        />
+                                        : null
+                                    }
                                 </Row>
                             </MDBCardBody>
                         </MDBCard>
@@ -206,7 +259,17 @@ showStatus_Busy() {
                                     {room.checkout}
                                 </Row>
                                 <Row className="center">
-                                    <MDBBtn className="detail1-btn">Chi tiết</MDBBtn>
+                                    <MDBBtn className="detail1-btn"
+                                        onClick={this.toggleForm.bind(this)}>
+                                            Chi tiết
+                                    </MDBBtn>
+                                    {this.state.showForm ? 
+                                        <RoomInfo
+                                            closeForm={this.toggleForm.bind(this)}
+                                            onChange = {fields => this.onChange(fields)}
+                                        />
+                                        : null
+                                    }
                                 </Row>
                             </MDBCardBody>
                         </MDBCard>
@@ -235,7 +298,17 @@ showStatus_Ordered() {
                                 {room.checkout}
                             </Row>
                             <Row className="center">
-                                <MDBBtn className="detail2-btn">Chi tiết</MDBBtn>
+                                <MDBBtn className="detail2-btn"
+                                    onClick={this.toggleForm.bind(this)}>
+                                        Chi tiết
+                                </MDBBtn>
+                                {this.state.showForm ? 
+                                    <RoomInfo
+                                        closeForm={this.toggleForm.bind(this)}
+                                        onChange = {fields => this.onChange(fields)}
+                                    />
+                                    : null
+                                }
                             </Row>
                         </MDBCardBody>
                     </MDBCard>
