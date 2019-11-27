@@ -41,6 +41,15 @@
     height: 30px;
     width: 170px;
 }
+.font {
+    font-size: 20px;
+    color: black;
+    height: 100px;
+}
+
+.container {
+    display: 'flex',
+}
 .card-roommap {
     padding: 0px 20px 10px 20px;
 }

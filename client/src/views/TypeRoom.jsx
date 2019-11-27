@@ -103,8 +103,8 @@ render(){
                       <Row>
                         <Col md="6">Danh sách loại phòng</Col>
                         <Col md="6" className="flex-end">
-                          <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn"> 
-                            Thêm loại phòng 
+                          <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn">
+                          <i className = "fas fa-plus"/>Thêm loại phòng 
                           </MDBBtn>
                           {this.state.showForm ? 
                             <Form

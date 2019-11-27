@@ -278,7 +278,8 @@ componentDidMount(){
                       <Row>
                         <Col md="6">Danh sách khách hàng</Col>
                         <Col md="6" className="flex-end">
-                          <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn"> Thêm nhân viên </MDBBtn>
+                          <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn"> 
+                          <i className = "fas fa-user-plus"/>Thêm nhân viên </MDBBtn>
                           {this.state.showForm ? 
                             <Form
                               closeForm={this.toggleForm.bind(this)}
