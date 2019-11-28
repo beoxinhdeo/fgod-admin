@@ -312,7 +312,7 @@ render(){
                     Danh sách bộ phận</Col>
                   <Col md="6" className="flex-end">
                     <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn">
-                      <i className = "fas fa-user-plus"/> Thêm bộ phận
+                    <i className = "fas fa-plus"/> Thêm bộ phận
                     </MDBBtn>
                     {this.state.showForm ? 
                       <Form

@@ -1,7 +1,3 @@
-.card-login {
-    margin-top: 50px !important;
-    background-color: antiquewhite;
-}
 
 .flex-end {
     display: flex;
@@ -25,11 +21,11 @@
     align-self: auto;
 }
 .edit-btn {
-    background-color: #0277bd  !important;
+    background-color: royalblue  !important;
     border-radius: 5px;
 }
 .delete-btn {
-    background-color: #dd2c00 !important;
+    background-color: crimson!important;
     border-radius: 5px;
 }
 .remove-btn {
@@ -42,6 +38,7 @@
     background-color: rosybrown !important;
     border-radius: 5px;
 }
+<<<<<<< HEAD
 .success-btn {
     background-color: green !important;
     border-radius: 5px;
@@ -50,6 +47,30 @@
 
 }
 
+=======
+.booking-btn {
+    background-color: rosybrown !important;
+    border-radius: 5px;
+}
+.find-btn {
+    color: black;
+    background-color: skyblue !important;
+    border-radius: 5px;
+}
+.booking-input {
+    height: 30px;
+    width: 170px;
+}
+.font {
+    font-size: 20px;
+    color: black;
+    height: 100px;
+}
+
+.container {
+    display: 'flex',
+}
+>>>>>>> d908358cf4e32aa6c20e4991accabc7a775f7ab7
 .card-roommap {
     padding: 0px 20px 10px 20px;
 }
@@ -89,9 +110,111 @@
 .all-btn {
     background-color: rosybrown !important;
 }
+<<<<<<< HEAD
 tbody + thead{
     display: none;
   }
+=======
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    align-self:center ;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 10000;
+}
+.popup-inner {
+    display: block;
+    position: absolute;
+    align-self:center ;
+    left: 25%;
+    right: 25%;
+    top: 5%;
+    bottom: 25%;
+    margin: auto;
+    opacity: 100%;
+    box-shadow: none !important;
+}
+  
+.background
+{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background:black;
+    opacity: 50% !important;    
+}
+
+.background-modal-room{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background:black;
+    opacity: 20% !important; 
+}
+.form
+{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+
+.close
+{
+    position: absolute;
+    top:2%;
+    right: 3%;
+    font-size: 2rem;
+}
+.form-login {
+    position: absolute;
+    align-self:center ;
+    width: 100%;
+    left: 40%;
+    right: 40%;
+    top: 5%;
+    bottom: 25%;
+    margin: auto;
+}
+
+.bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    align-self:center ;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: linear-gradient(#2980B9,#6DD5FA,#ffffff);
+}
+.bg-img {
+    background-image: url(../assets/img/photo-1499407225606-41ab9e4903d1.jpeg);
+    width: 68%;
+    display: block;
+    position: absolute;
+    align-self:center ;
+    left: 5%;
+    right: 5%;
+    top: 10%;
+    bottom: 10%;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.btn-login {
+    position: absolute;
+    align-self:center ;
+}
+
+>>>>>>> d908358cf4e32aa6c20e4991accabc7a775f7ab7
 
 .table-responsive
 {

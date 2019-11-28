@@ -28,7 +28,7 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 //import store from './store';
 
 import "bootstrap/dist/css/bootstrap.css";
-import "assets/scss/paper-dashboard.scss?v=1.1.0";
+import "assets/scss/paper-dashboard.scss?v=1.1.0"
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
@@ -43,8 +43,6 @@ import Admin from "layouts/Admin.jsx"
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
-
-
 
 const hist = createBrowserHistory();
 

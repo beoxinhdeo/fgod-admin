@@ -9,21 +9,37 @@ import{
     CardHeader
 } from 'reactstrap';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-
-
-  const rows = [
-    // createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    // createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    // createData('Eclair', 262, 16.0, 24, 6.0),
-    // createData('Cupcake', 305, 3.7, 67, 4.3),
-    // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
+import { 
+    MDBTable,
+    MDBTableBody,
+    MDBTableHead
+  } from 'mdbreact';
+const data = {
+    columns: [
+        {
+          label: 'Ngày đến',
+          field: 'check-in',
+          width: 150
+        },
+        {
+          label: 'Ngày đi',
+          field: 'check-out',
+          width: 150
+        },
+        {
+          label: 'Số ngày',
+          field: 'staying_days',
+          width: 150
+        },
+    ],
+    rows: [
+        {
+          checkin: '2019-10-20',
+          checkout: '2019-10-25',
+          staying_days:'5'
+        },
+    ]
+}
 export default class RoomInfo extends React.Component {
     state ={
         code_room: "",
@@ -35,7 +51,7 @@ export default class RoomInfo extends React.Component {
     render() {
         return (
             <div className = 'popup'>
-            <div className = 'background'></div>
+            <div className = 'background-modal-room'></div>
             <div className = 'popup-inner'>
                 <form>
                     <Card>
@@ -82,27 +98,11 @@ export default class RoomInfo extends React.Component {
                                 </Row>
                                 <br/>
                                 <label>Lịch đặt phòng</label><br/>
-                                <Row style={{width:"90%", marginLeft:"5%"}}>
-                                    <Paper style={{width:"100%"}}>
-                                        <Table>
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell>Ngày đi</TableCell>
-                                                    <TableCell align="right">Ngày đến</TableCell>
-                                                    <TableCell align="right">Số ngày</TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {rows.map(row => (
-                                                    <TableRow>
-                                                        <TableCell>{row.checkin}</TableCell>
-                                                        <TableCell align="right">{row.checkout}</TableCell>
-                                                        <TableCell align="right">{row.staying_days}</TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </Paper>
+                                <Row>
+                                    <MDBTable responsive>
+                                        <MDBTableHead columns={data.columns}/>
+                                        <MDBTableBody rows={data.rows} />
+                                    </MDBTable>
                                 </Row>
                             </FormGroup>
                         </CardBody>
