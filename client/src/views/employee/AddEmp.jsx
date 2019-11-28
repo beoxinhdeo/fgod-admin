@@ -39,23 +39,30 @@ state = {
         phoneError:"",
         address:"",
         addressError:"",
-        role_choose : "1",
-        role : [] ,
+        role_choose : [],
+        role : "1" ,
         showForm : true
     };
 
 
-    componentDidMount(){
+componentDidMount(){
   
     axios.post('http://localhost:5000/roles/show')
       .then((res) => 
       {         
          this.setState({
-           role :  res.data
+           role_choose :  res.data
           });  
   }
   );
-}
+
+  
+  }
+      
+
+
+
+
     //handle change
 change = e => {
   
@@ -68,6 +75,7 @@ change = e => {
         birthdayError:"",
         emailError:"",
         passwordError:"",
+        passwordagainError:"",
         identity_cardError:"",
         phoneError:"",
         addressError:""
@@ -119,8 +127,8 @@ validate = () => {
         }
     }
     //chưa check nhập lại pass
-    if(!this.state.passwordagain){
-        if(!this.state.passwordagain.includes(this.state.password)){
+    if(typeof this.state.passwordagain){
+        if(this.state.passwordagain!=this.state.password){
         isError = true;
         errors.passwordagainError = "Vui lòng nhập lại mật khẩu";
         }
@@ -149,11 +157,7 @@ validate = () => {
     return isError;
 }
 
-onSubmitt = e => {
-    e.preventDefault();
-    console.log(this.state);
-    
-}
+
     //handle Submit
 onSubmit = e => {
     e.preventDefault();
@@ -177,8 +181,13 @@ onSubmit = e => {
         axios.post('http://localhost:3000/users/register', obj)
             .then(res =>
                 {
-                    console.log(res.data)
-
+                    axios.post('http://localhost:5000/users/show')
+                    .then(response => {
+                            this.setState({ data: response.data });
+                            this.props.newlist(this.state.data)
+                    }
+                    )
+                    console.log(res)
                     this.setState({
             fullname :"",
             fullnameError: "",
@@ -220,6 +229,7 @@ onSubmit = e => {
         this.props.closeForm({
             showForm: !this.state.showForm
         })
+
  });
                 
 
@@ -231,7 +241,7 @@ onSubmit = e => {
 
 
 renderRoles() {
-    return this.state.role.map( data => 
+    return this.state.role_choose.map( data => 
         (    <option value = {data.idrole} > {data.rolename}</option>        )
     )
 }
@@ -240,156 +250,156 @@ render() {
 
     return (
 
-        // <div className = 'popup'>
-        //     <div className ="background" ></div>
-        //     <div className = 'popup-inner'>
-        //         <form onSubmit= {e => this.onSubmit()}>
-        //             <Card>
-        //                 <CardHeader>
-        //                     <h3>Thêm nhân viên</h3>
-        //                     <button type="button" class="close" 
-        //                     onClick={this.props.closeForm}>
-        //                         &times;
-        //                     </button>
-        //                 </CardHeader>
-        //                 <CardBody>
-        //                     <FormGroup style = {{fontSize : '16px'}}>
-        //                         <Row form>
-        //                             <Col md={6}>
-        //                                 <FormGroup >
-        //                                     <Label for="fullname">Họ và tên</Label>
-        //                                     <Input type="text"
-        //                                         name = "fullname"
-        //                                         placeholder="Nhập họ và tên"
-        //                                         value = {this.state.fullname}
-        //                                         onChange= {e => this.change(e)}
-        //                                     />
-        //                                     <label style ={{color:'red'}}>{this.state.fullnameError}</label>
-        //                                 </FormGroup>
-        //                             </Col>  
-        //                             <Col md={6}>
-        //                                 <FormGroup>
-        //                                     <Label for="birthday">Ngày sinh</Label>
-        //                                     <Input type="date" 
-        //                                         name="birthday"
-        //                                         value = {this.state.birthday}
-        //                                         onChange= {e => this.change(e)} 
-        //                                     />
-        //                                 </FormGroup>
-        //                             </Col>
-        //                             <Col md={6}>
-        //                                 <FormGroup>
-        //                                     <Label for="email">Email</Label>
-        //                                     <Input type="email" 
-        //                                         name="email"
-        //                                         placeholder="Email"
-        //                                         value = {this.state.email}
-        //                                         onChange= {e => this.change(e)} 
-        //                                     />
-        //                                     <label style ={{color:'red'}}>{this.state.emailError}</label>               
-        //                                 </FormGroup>
-        //                             </Col>
-        //                             <Col md={6}>
-        //                                 <FormGroup>
-        //                                     <Label for="identity_card">Chứng minh nhân dân</Label>
-        //                                     <Input type="text"
-        //                                         name="identity_card" 
-        //                                         placeholder="Số chứng minh thư"
-        //                                         value = {this.state.identity_card}
-        //                                         onChange= {e => this.change(e)}
-        //                                     />
-        //                                     <label style ={{color:'red'}}>{this.state.identity_cardError}</label>
-        //                                 </FormGroup>
-        //                             </Col>
-        //                         </Row>
-        //                         <Row>
-        //                             <Col md={6}>
-        //                                 <FormGroup>
-        //                                     <Label for="password">Mật khẩu</Label>
-        //                                     <Input type="password"
-        //                                         name="password"
-        //                                         placeholder="Mật khẩu"
-        //                                         value = {this.state.password}
-        //                                         onChange= {e => this.change(e)}
-        //                                     />
-        //                                     <label style ={{color:'red'}}>{this.state.passwordError}</label>
-        //                                 </FormGroup>
-        //                             </Col>
-        //                             <Col md = {6}>
-        //                                 <FormGroup>
-        //                                     <Label for="passwordagain">Nhập lại mật khẩu</Label>
-        //                                     <Input type="password"
-        //                                         name="passwordagain"
-        //                                         placeholder="Nhập lại mật khẩu"
-        //                                         value = {this.state.passwordagain}
-        //                                         onChange= {e => this.change(e)}
-        //                                     />
-        //                                     <label style ={{color:'red'}}>{this.state.passwordagainError}</label>
-        //                                 </FormGroup>
-        //                             </Col>
-        //                         </Row>
-        //                         <FormGroup>
-        //                             <Label for="address">Address</Label>
-        //                             <Input type="text"
-        //                                 name="address"
-        //                                 placeholder="1234 Main St"
-        //                                 value = {this.state.address}
-        //                                 onChange= {e => this.change(e)}
-        //                             />
-        //                             <label style ={{color:'red'}}>{this.state.addressError}</label>
-        //                         </FormGroup>               
-        //                         <Row form>
-        //                             <Col md={4}>
-        //                                 <FormGroup>
-        //                                     <Label for="phone">Số điện thoại</Label>
-        //                                         <Input type="text"
-        //                                         name="phone"
-        //                                         placeholder="Nhập số điện thoại"
-        //                                         value = {this.state.phone}
-        //                                         onChange= {e => this.change(e)} 
-        //                                     />
-        //                                     <label style ={{color:'red'}}>{this.state.phoneError}</label>
-        //                                 </FormGroup>
-        //                             </Col>
-        //                             <Col md={4}>
-        //                                 <FormGroup>
-        //                                     <Label for="role_choose">Chức vụ</Label>
-        //                                     <Input type="select" 
-        //                                     name = "role_choose"
+        <div className = 'popup'>
+            <div className ="background" ></div>
+            <div className = 'popup-inner'>
+                <form onSubmit= {e => this.onSubmit()}>
+                    <Card>
+                        <CardHeader>
+                            <h3>Thêm nhân viên</h3>
+                            <button type="button" class="close" 
+                            onClick={this.props.closeForm}>
+                                &times;
+                            </button>
+                        </CardHeader>
+                        <CardBody>
+                            <FormGroup style = {{fontSize : '16px'}}>
+                                <Row form>
+                                    <Col md={6}>
+                                        <FormGroup >
+                                            <Label for="fullname">Họ và tên</Label>
+                                            <Input type="text"
+                                                name = "fullname"
+                                                placeholder="Nhập họ và tên"
+                                                value = {this.state.fullname}
+                                                onChange= {e => this.change(e)}
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.fullnameError}</label>
+                                        </FormGroup>
+                                    </Col>  
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label for="birthday">Ngày sinh</Label>
+                                            <Input type="date" 
+                                                name="birthday"
+                                                value = {this.state.birthday}
+                                                onChange= {e => this.change(e)} 
+                                            />
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label for="email">Email</Label>
+                                            <Input type="email" 
+                                                name="email"
+                                                placeholder="Email"
+                                                value = {this.state.email}
+                                                onChange= {e => this.change(e)} 
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.emailError}</label>               
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label for="identity_card">Chứng minh nhân dân</Label>
+                                            <Input type="text"
+                                                name="identity_card" 
+                                                placeholder="Số chứng minh thư"
+                                                value = {this.state.identity_card}
+                                                onChange= {e => this.change(e)}
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.identity_cardError}</label>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label for="password">Mật khẩu</Label>
+                                            <Input type="password"
+                                                name="password"
+                                                placeholder="Mật khẩu"
+                                                value = {this.state.password}
+                                                onChange= {e => this.change(e)}
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.passwordError}</label>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md = {6}>
+                                        <FormGroup>
+                                            <Label for="passwordagain">Nhập lại mật khẩu</Label>
+                                            <Input type="password"
+                                                name="passwordagain"
+                                                placeholder="Nhập lại mật khẩu"
+                                                value = {this.state.passwordagain}
+                                                onChange= {e => this.change(e)}
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.passwordagainError}</label>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <FormGroup>
+                                    <Label for="address">Address</Label>
+                                    <Input type="text"
+                                        name="address"
+                                        placeholder="1234 Main St"
+                                        value = {this.state.address}
+                                        onChange= {e => this.change(e)}
+                                    />
+                                    <label style ={{color:'red'}}>{this.state.addressError}</label>
+                                </FormGroup>               
+                                <Row form>
+                                    <Col md={4}>
+                                        <FormGroup>
+                                            <Label for="phone">Số điện thoại</Label>
+                                                <Input type="text"
+                                                name="phone"
+                                                placeholder="Nhập số điện thoại"
+                                                value = {this.state.phone}
+                                                onChange= {e => this.change(e)} 
+                                            />
+                                            <label style ={{color:'red'}}>{this.state.phoneError}</label>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={4}>
+                                        <FormGroup>
+                                            <Label for="role">Chức vụ</Label>
+                                            <Input type="select" 
+                                            name = "role_choose"
                                             
-        //                                     onChange = {e => this.change(e)}>
-        //                                         {this.renderRoles()}
-        //                                     </Input>
-        //                                 </FormGroup>
-        //                             </Col>
-        //                             <Col md={4}>
-        //                                 <FormGroup>
-        //                                     <Label for="status">Trạng thái</Label>
-        //                                     <Input type="select"
-        //                                     name = "statuss"
-        //                                     value = {this.state.status}
-        //                                     onChange= {e => this.change(e)}>
-        //                                         <option value="1">Hoạt động</option>
-        //                                         <option value="2">Khóa</option>
-        //                                     </Input>
-        //                                 </FormGroup>
-        //                             </Col>
-        //                         </Row>  
-        //                     </FormGroup>
-        //                 </CardBody>
-        //                 <CardFooter>
-        //                     <Col md={12} className="flex-end">
-        //                         <Button outline color="gray">Hủy</Button>
-        //                         <button onClick = {e => this.onSubmit(e)} 
-        //                         className = "btn btn-primary">
-        //                             Thêm
-        //                         </button>
-        //                     </Col>
-        //                 </CardFooter>
-        //             </Card>
-        //         </form>
-        //     </div>
-        // </div>
+                                            onChange = {e => this.change(e)}>
+                                                {this.renderRoles()}
+                                            </Input>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={4}>
+                                        <FormGroup>
+                                            <Label for="status">Trạng thái</Label>
+                                            <Input type="select"
+                                            name = "statuss"
+                                            value = {this.state.status}
+                                            onChange= {e => this.change(e)}>
+                                                <option value="1">Hoạt động</option>
+                                                <option value="2">Khóa</option>
+                                            </Input>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>  
+                            </FormGroup>
+                        </CardBody>
+                        <CardFooter>
+                            <Col md={12} className="flex-end">
+                                <Button outline color="gray">Hủy</Button>
+                                <button onClick = {e => this.onSubmit(e)} 
+                                className = "btn btn-primary">
+                                    Thêm
+                                </button>
+                            </Col>
+                        </CardFooter>
+                    </Card>
+                </form>
+            </div>
+        </div>
 
 //=========================================================edit=========================
     //     <div className = 'popup'>
@@ -440,7 +450,7 @@ render() {
 
 
 
-<div className = 'popup'>
+/*<div className = 'popup'>
             <div className ="background" ></div>
             <div className = 'popup-inner'>
                 <form onSubmit= {e => this.onSubmit()}>
@@ -555,7 +565,7 @@ render() {
                 </form>
             </div>
         </div>
-
+ */
 
 
 
@@ -567,4 +577,13 @@ render() {
 
 
 }
+
+
+
+
+
+
+
+
+  
 }

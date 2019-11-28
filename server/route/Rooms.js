@@ -5,6 +5,7 @@ const cors = require('cors')
 const rooms = express.Router();
 const Room = require("../models/Rooms")
 
+
 rooms.use(cors())
 //thêm 
 //cd server
@@ -76,7 +77,26 @@ rooms.post('/create', (req,res) =>{
     })
 })
 
+rooms.post('/show', (req,res) =>{
 
+    Room.findAll().then(room =>{
+        if(room){
+            let rooom = room.map( each_room => {
+                findAll
+                if(each_room.role == "1")
+                each_room.status ="5";
+            
+            })
+                    res.send(room).catch(err =>{res.send("err : " + err)});
+           
+        } 
+        else{
+            res.send({status:false,message:"Nhập lại mã khách hàng"});
+        }
+    }).catch(err =>{
+        res.send("err : "+ err);
+    })
+})
 
 
 

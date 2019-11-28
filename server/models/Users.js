@@ -28,7 +28,9 @@ module.exports = db.sequelize.define(
         password:{
             type: Sequelize.STRING
         },
-       
+        birthday:{
+            type: Sequelize.DATE
+        },
        
         role:{
             type: Sequelize.STRING,

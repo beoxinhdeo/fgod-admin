@@ -26,7 +26,8 @@ import {
   MDBCardHeader,
   MDBCardBody,
   MDBCardTitle,
-  MDBBtn 
+  MDBBtn,
+  MDBBadge
 } from 'mdbreact';
 
 import Form from "views/AddRole.jsx";
@@ -35,6 +36,10 @@ import {
   Row,
   Col
 } from "reactstrap";
+
+import axios from 'axios';   
+
+
 const data = {
   columns: [
     {
@@ -67,6 +72,7 @@ const data = {
     },
   ]
 };
+
 class Role extends React.Component {
   state = {
     showForm : false
@@ -85,6 +91,214 @@ toggleForm() {
     showForm: !this.state.showForm
   });
 }
+
+
+
+
+
+
+componentDidMount(){
+  
+  axios.post('http://localhost:5000/roles/show')
+    .then((res) => 
+    {   
+        let ress = res.data.map (data =>
+          {
+          if(data.bill_role == "true")
+          {
+          data.button_bill =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+          if(data.bill_role == "false")
+          {
+          data.button_bill =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+
+
+          if(data.cus_role == "true")
+          {
+          data.button_cus =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+          if(data.cus_role == "false")
+          {
+          data.button_cus =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+
+
+          if(data.emp_role == "true")
+          {
+          data.button_emp =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+          if(data.emp_role == "false")
+          {
+          data.button_emp =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+
+
+          if(data.role_role == "true")
+          {
+          data.button_role =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+          if(data.role_role == "false")
+          {
+          data.button_role =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+
+
+          if(data.room_role == "true")
+          {
+          data.button_room =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+          if(data.room_role == "false")
+          {
+          data.button_room =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+
+
+          if(data.roomtype_role == "true")
+          {
+          data.button_roomtype =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+          if(data.roomtype_role == "false")
+          {
+          data.button_roomtype =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+
+
+          if(data.statistic_role == "true")
+          {
+          data.button_statistic =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+          if(data.statistic_role == "false")
+          {
+          data.button_statistic =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+
+
+
+          if(data.booking_role == "true")
+          {
+          data.button_booking =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+          if(data.booking_role == "false")
+          {
+          data.button_booking =  <div>
+          <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
+          </div>;
+          }
+
+
+
+
+          data.button=  <div>
+          <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+          <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+          </div>
+          }) 
+    
+       this.setState({
+        data: {
+          columns: [
+            {
+              label: 'ID',
+              field: 'idrole',
+              sort: 'asc',
+              //width: 100
+            },
+            {
+              label: 'Bộ phận',
+              field: 'rolename',
+              sort: 'asc',
+              //width: 500
+            },
+            
+            {
+              label: 'Hóa đơn',
+              field: 'button_bill',
+             // width: 100
+            },
+            {
+              label: 'Khách hàng',
+              field: 'button_cus',
+              //width: 100
+            },
+            {
+              label: 'Nhân viên',
+              field: 'button_emp',
+              //width: 100
+            },
+            {
+              label: 'Quyền',
+              field: 'button_role',
+              //width: 100
+            },
+            {
+              label: 'Phòng',
+              field: 'button_room',
+             // width: 100
+            },
+            {
+              label: 'Loại phòng',
+              field: 'button_roomtype',
+              //width: 100
+            },
+            {
+              label: 'Thống kê',
+              field: 'button_statistic',
+             // width: 100
+            },
+            {
+              label: 'Đặt phòng',
+              field: 'button_booking',
+             // width: 100
+            },
+            {
+              label: 'Thao tác',
+              field: 'button',
+             // width: 200
+            }
+          ],
+        rows : res.data 
+      
+        }
+        })
+  
+}
+);
+console.log(this.state.data)
+}
+
+
+
 render(){
   return (
     <div className="content">
@@ -113,7 +327,7 @@ render(){
             </MDBCardHeader>
             <MDBCardBody>
               <MDBTable responsive>
-                <MDBDataTable striped data = {data}/>
+                <MDBDataTable striped data ={this.state.data}/>
               </MDBTable>
             </MDBCardBody>
           </MDBCard>

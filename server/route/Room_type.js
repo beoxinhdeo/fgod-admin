@@ -6,6 +6,22 @@ const room_type = express.Router();
 const Room_type = require("../models/Room_type")
 
 room_type.use(cors())
+
+room_type.post('/show', (req,res) =>{
+    
+
+    Room_type.findAll().then(room_type =>{
+        if(room_type){
+                    res.send(room_type).catch(err =>{res.send("err : " + err)});
+           
+        } 
+        else{
+            res.send({status:false,message:"Nhập lại mã khách hàng"});
+        }
+    }).catch(err =>{
+        res.send("err : "+ err);
+    })
+})
 //thêm 
 //cd server
 //npm run dev

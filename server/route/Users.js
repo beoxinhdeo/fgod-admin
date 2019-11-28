@@ -23,8 +23,8 @@ users.post('/register', (req,res) => {
     }
 
     User.findOne({ where: { email: req.body.email } })
-        .then( employee => { 
-        if(!employee)
+        .then( data => { 
+        if(!data)
         {
           bcrypt.hash(req.body.password,10,(err,hash) => {
             userData.password = hash
@@ -147,19 +147,9 @@ users.post('/show', (req,res) =>{
 })
 
 users.post('/find', (req,res) =>{
-    const userData = {
-        code_emp :      req.body.code_emp,
-        fullname :      req.body.fullname,
-        identity_card : req.body.identity_card,
-        email :         req.body.email,
-        password :      req.body.password,//bcrypt.hash(req.body.password,10,(err,hash) => {userData.password = err}),
-        phone :         req.body.phone,
-        address :       req.body.address,
-        role :          req.body.role,
-        status :        req.body.status
-    }
+   
 
-    User.findAll({where :{ email : req.body.email }}).then(user =>{
+    User.findAll({where :{code_emp:req.body.code_emp }}).then(user =>{
         if(user){
                     res.send(user).catch(err =>{res.send("err : " + err)});
            

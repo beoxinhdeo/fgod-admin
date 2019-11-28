@@ -28,12 +28,8 @@ module.exports = db.sequelize.define(
         },
         total:
         {
-            type: Sequelize.INTEGER,
-        },
-        message:
-        {
             type: Sequelize.STRING,
-        },
+        }
     },
     {
         timestamps : false,

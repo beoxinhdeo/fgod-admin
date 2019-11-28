@@ -4,6 +4,16 @@ const cors = require('cors')
 
 const bills = express.Router();
 const Bill = require("../models/Bills")
+const Employee = require("../models/Users")
+const Customer = require("../models/Customers")
+
+Employee.hasMany(Bill, {foreignKey: 'code_bill'})
+Bill.belongsTo(Employee, {foreignKey: 'code_emp'})
+
+Customer.hasMany(Bill, {foreignKey: 'code_bill'})
+Bill.belongsTo(Customer, {foreignKey: 'code_cus'})
+
+
 
 bills.use(cors())
 //thêm 
@@ -36,7 +46,31 @@ bills.post('/create', (req,res) =>{
     })
 })
 
+bills.post('/show', (req,res) =>{
+    
 
+    Bill.findAll({
+        include: [{
+          model: Employee,
+          required: true
+         },
+         {
+            model: Customer,
+            required: true
+           }]
+         
+      }).then(bill =>{
+        if(bill){
+                    res.send(bill).catch(err =>{res.send("err : " + err)});
+           
+        } 
+        else{
+            res.send({status:false,message:"Nhập lại mã khách hàng"});
+        }
+    }).catch(err =>{
+        res.send("err : "+ err);
+    })
+})
 
 
 

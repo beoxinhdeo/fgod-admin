@@ -30,7 +30,7 @@ var Rooms = require('./route/Rooms')
 var Room_types = require('./route/Room_type')
 var Status_users = require('./route/Status_users')
 var Roles = require('./route/Roles')
-
+    
 app.use('/users',Users)
 app.use('/customers',Customers)
 app.use('/bills',Bills)

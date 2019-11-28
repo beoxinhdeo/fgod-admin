@@ -20,6 +20,10 @@
     font-size: 0.7rem;
     border-radius: 5px;
 }
+.icon {
+    margin-top: 12px;
+    align-self: auto;
+}
 .edit-btn {
     background-color: #0277bd  !important;
     border-radius: 5px;
@@ -28,10 +32,24 @@
     background-color: #dd2c00 !important;
     border-radius: 5px;
 }
+.remove-btn {
+    background-color: #dd2c00 !important;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+}
 .detail-btn {
     background-color: rosybrown !important;
     border-radius: 5px;
 }
+.success-btn {
+    background-color: green !important;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+
+}
+
 .card-roommap {
     padding: 0px 20px 10px 20px;
 }
@@ -71,4 +89,84 @@
 .all-btn {
     background-color: rosybrown !important;
 }
+tbody + thead{
+    display: none;
+  }
 
+.table-responsive
+{
+    overflow: hidden;
+}
+
+
+ 
+  .edit-btn {
+    background-color: #0277bd  !important;
+    border-radius: 5px;
+  }
+  .delete-btn {
+    background-color: #dd2c00 !important;
+    border-radius: 5px;
+  }
+  
+  .btn-cancel {
+  border-style: solid;
+  border-width: medium;
+  background-color: white;
+  border-color: gray;
+  }
+  
+  .popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    align-self:center ;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 10000;
+  }
+  
+  
+  .popup-inner {
+    display: block;
+    position: absolute;
+    align-self:center ;
+    left: 25%;
+    right: 25%;
+    top: 5%;
+    bottom: 25%;
+    margin: auto;
+    /* background: white; */
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    opacity: 100%;
+  
+  
+  }
+  
+  .background
+  {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background:black;
+    opacity: 50%;    
+  }
+  
+  .form
+  {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+  }
+  
+  .close
+  {
+    position: absolute;
+    top:2%;
+    right: 3%;
+    font-size: 2rem;
+  }

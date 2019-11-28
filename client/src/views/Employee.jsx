@@ -2,7 +2,8 @@
 import React from 'react';
 
 
-import Form from "views/AddEmp.jsx";
+import Form from "views/employee/AddEmp.jsx";
+import Edit from "views/employee/EditEmp.jsx";
 
 import{
     Row,
@@ -22,9 +23,21 @@ import {
 import axios from 'axios';   
 
 class Employee extends React.Component{
-state = {
-  showForm : false
+  _isMounted = false;
+  state = {
+  showForm : false,
+  showEdit : false,
+
 };
+
+componentDidMount(){
+  this._isMounted = true;
+  this.renderDataTable()
+};
+   
+componentWillUnmount() {
+  this._isMounted = false;
+}
 
 onChange = updatevalue => {
   this.setState({fields : {
@@ -40,229 +53,184 @@ toggleForm() {
   });
 }
 
-
-// constructor(props) {
-//   super(props)
-//   this.state = {
-//     data : {
-//       columns: [
-//         {
-//           label: 'ID',
-//           field: 'id',
-//           sort: 'asc',
-//           width: 150
-//         },
-//         {
-//           label: 'Họ và tên',
-//           field: 'fullname',
-//           sort: 'asc',
-//           width: 270
-//         },
-//         {
-//           label: 'CMND',
-//           field: 'id_card',
-//           sort: 'asc',
-//           width: 200
-//         },
-//         {
-//           label: 'Email',
-//           field: 'email',
-//           sort: 'asc',
-//           width: 100
-//         },
-//         {
-//           label: 'Ngày sinh',
-//           field: 'birthday',
-//           sort: 'asc',
-//           width: 150
-//         },
-//         {
-//           label: 'Số điện thoại',
-//           field: 'phone',
-//           sort: 'asc',
-//           width: 100
-//         },
-//         {
-//           label: 'Địa chỉ',
-//           field: 'address',
-//           sort: 'asc',
-//           width: 100
-//         },
-//         {
-//           label: 'Thao tác',
-//           field: 'button',
-//           width: 100
-//         }
-//       ],
-//       rows: //his.props 
-//       [
-//         {
-//           id: '001',
-//           fullname: 'Nguyễn Thị Phương Nhi',
-//           id_card: '272695452',
-//           email: 'phuongnhi@gmail.com',
-//           birthday: '01/01/1999',
-//           phone: '0961619712',
-//           address: 'HCM',
-//           role: '1',
-//           status: '1',
-//           button:
-//           <div>
-//             <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
-//             <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
-//           </div>
-//         },
-//       ]
-//     },
-//     isActive : true
-//   }
-// }
+toggleEdit(e) {
+  this.setState({
+    showEdit: !this.state.showEdit,
+    fullname: e
+  });
+}
 
 
-// componentWillUpdate(){
-// const data = this.state.data;
 
-//   axios.post('http://localhost:5000/users/show')
-//     .then((res) => 
-//     {  
-//         let ress = res.data.map (data => data.button =  <div>
-//           <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
-//           <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
-//         </div>) 
-    
-//        this.setState({
-//         data: {
-//           columns: [
-//             {
-//               label: 'ID',
-//               field: 'code_emp',
-//               sort: 'asc',
-//               width: 150
-//             },
-//             {
-//               label: 'Họ và tên',
-//               field: 'fullname',
-//               sort: 'asc',
-//               width: 270
-//             },
-//             {
-//               label: 'CMND',
-//               field: 'identity_card',
-//               sort: 'asc',
-//               width: 200
-//             },
-//             {
-//               label: 'Email',
-//               field: 'email',
-//               sort: 'asc',
-//               width: 100
-//             },
-//             // {
-//             //   label: 'Ngày sinh',
-//             //   field: 'birthday',
-//             //   sort: 'asc',
-//             //   width: 150
-//             // },
-//             {
-//               label: 'Số điện thoại',
-//               field: 'phone',
-//               sort: 'asc',
-//               width: 100
-//             },
-//             {
-//               label: 'Địa chỉ',
-//               field: 'address',
-//               sort: 'asc',
-//               width: 100
-//             },
-//             {
-//               label: 'Thao tác',
-//               field: 'button',
-//               width: 100
-//             }
-//           ],
-//         rows : res.data 
-      
-//         }
-//         })
+renderDataTable()
+{
+  axios.post('http://localhost:5000/users/show')
+  .then((res) => 
+  {   
   
-// }
-// );
-// }
-
-
-
-
-componentDidMount(){
+      let ress = res.data.map (data => data.button =  <div>
+        <MDBBtn onClick={this.toggleEdit.bind(this,data.code_emp)} className="edit-btn" size="sm"> Sửa</MDBBtn>
+        <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+      </div>) 
+      if (this._isMounted) {
   
-    axios.post('http://localhost:5000/users/show')
-      .then((res) => 
-      {   
-          let ress = res.data.map (data => data.button =  <div>
-            <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
-            <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
-          </div>) 
-      
-         this.setState({
-          data: {
-            columns: [
-              {
-                label: 'ID',
-                field: 'code_emp',
-                sort: 'asc',
-                width: 150
-              },
-              {
-                label: 'Họ và tên',
-                field: 'fullname',
-                sort: 'asc',
-                width: 270
-              },
-              {
-                label: 'CMND',
-                field: 'identity_card',
-                sort: 'asc',
-                width: 200
-              },
-              {
-                label: 'Email',
-                field: 'email',
-                sort: 'asc',
-                width: 100
-              },
-              // {
-              //   label: 'Ngày sinh',
-              //   field: 'birthday',
-              //   sort: 'asc',
-              //   width: 150
-              // },
-              {
-                label: 'Số điện thoại',
-                field: 'phone',
-                sort: 'asc',
-                width: 100
-              },
-              {
-                label: 'Địa chỉ',
-                field: 'address',
-                sort: 'asc',
-                width: 100
-              },
-              {
-                label: 'Thao tác',
-                field: 'button',
-                width: 100
-              }
-            ],
-          rows : res.data 
-        
+     this.setState({
+       fullname:"Beo xinh đẹp",
+      data: {
+        columns: [
+          {
+            label: 'ID',
+            field: 'code_emp',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: 'Họ và tên',
+            field: 'fullname',
+            sort: 'asc',
+            width: 270
+          },
+          {
+            label: 'CMND',
+            field: 'identity_card',
+            sort: 'asc',
+            width: 200
+          },
+          {
+            label: 'Email',
+            field: 'email',
+            sort: 'asc',
+            width: 100
+          },
+          // {
+          //   label: 'Ngày sinh',
+          //   field: 'birthday',
+          //   sort: 'asc',
+          //   width: 150
+          // },
+          {
+            label: 'Số điện thoại',
+            field: 'phone',
+            sort: 'asc',
+            width: 100
+          },
+          {
+            label: 'Địa chỉ',
+            field: 'address',
+            sort: 'asc',
+            width: 100
+          },
+          {
+            label: 'Thao tác',
+            field: 'button',
+            width: 100
           }
-          })
+        ],
+      rows : res.data 
     
-  }
-  );
-  console.log(this.state.data)
-  }
+      }
+      })
+    }
+
+}
+);
+console.log(this.state.data)
+
+}
+
+updateState(newlist)
+    {
+      this.renderDataTable()
+{
+  axios.post('http://localhost:5000/users/show')
+  .then((res) => 
+  {   
+  
+      let ress = res.data.map (data => data.button =  <div>
+        <MDBBtn onClick={this.toggleEdit.bind(this,data.code_emp)} className="edit-btn" size="sm"> Sửa</MDBBtn>
+        <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+      </div>) 
+      if (this._isMounted) {
+  
+     this.setState({
+       fullname:"Beo xinh đẹp",
+      data: {
+        columns: [
+          {
+            label: 'ID',
+            field: 'code_emp',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: 'Họ và tên',
+            field: 'fullname',
+            sort: 'asc',
+            width: 270
+          },
+          {
+            label: 'CMND',
+            field: 'identity_card',
+            sort: 'asc',
+            width: 200
+          },
+          {
+            label: 'Email',
+            field: 'email',
+            sort: 'asc',
+            width: 100
+          },
+          // {
+          //   label: 'Ngày sinh',
+          //   field: 'birthday',
+          //   sort: 'asc',
+          //   width: 150
+          // },
+          {
+            label: 'Số điện thoại',
+            field: 'phone',
+            sort: 'asc',
+            width: 100
+          },
+          {
+            label: 'Địa chỉ',
+            field: 'address',
+            sort: 'asc',
+            width: 100
+          },
+          {
+            label: 'Thao tác',
+            field: 'button',
+            width: 100
+          }
+        ],
+      rows : res.data 
+    
+      }
+      })
+    }
+
+}
+);
+console.log(this.state.data)
+
+}
+      // this._isMounted = true;
+      // this.setState({data: newlist});
+        
+    }
+
+
+
+
+
+
+// shouldComponentUpdate(nextProps, nextState) {
+//     if (this.state.data === nextState.data) {
+//         return false
+//     }
+//     return true
+// }
 
 
 
@@ -284,6 +252,18 @@ componentDidMount(){
                               closeForm={this.toggleForm.bind(this)}
                               onChange = {fields => this.onChange(fields)}
                               className="form"
+                              newlist ={this.updateState.bind(this)}
+                            />
+                            : null
+                          }
+
+                          {this.state.showEdit ? 
+                            <Edit
+                              id ={this.state.fullname}
+                              closeEdit={this.toggleEdit.bind(this)}
+                              onChange = {fields => this.onChange(fields)}
+                              className="form"
+                              newlist ={this.updateState.bind(this)}
                             />
                             : null
                           }
