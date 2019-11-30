@@ -20,10 +20,6 @@ module.exports = db.sequelize.define(
         {
             type: Sequelize.INTEGER
         },
-        description:
-        {
-            type: Sequelize.STRING
-        },
         status:
         {
             type: Sequelize.INTEGER,

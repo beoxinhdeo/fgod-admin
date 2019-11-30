@@ -1,11 +1,23 @@
 const express = require('express')
 const cors = require('cors')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
+
 
 
 const bills = express.Router();
+const Room_type = require("../models/Room_type")
+const Room = require("../models/Rooms")
 const Bill = require("../models/Bills")
+const Bill_detail = require("../models/Bill_detail")
 const Employee = require("../models/Users")
 const Customer = require("../models/Customers")
+
+Room.hasMany(Bill_detail, {foreignKey: 'code_room'})
+Bill_detail.belongsTo(Room, {foreignKey: 'code_room'})
+
+Room_type.hasMany(Room, {foreignKey: 'code_type'})
+Room.belongsTo(Room_type, {foreignKey: 'code_type'})
 
 Employee.hasMany(Bill, {foreignKey: 'code_bill'})
 Bill.belongsTo(Employee, {foreignKey: 'code_emp'})
@@ -16,6 +28,8 @@ Bill.belongsTo(Customer, {foreignKey: 'code_cus'})
 
 
 bills.use(cors())
+var a=5
+var b=[]
 //thêm 
 //cd server
 //npm run dev
@@ -47,6 +61,9 @@ bills.post('/create', (req,res) =>{
 })
 
 bills.post('/show', (req,res) =>{
+     //a++;
+    // console.log(a);
+    // res.send(a).catch(err =>{res.send("err : " + err)});
     
 
     Bill.findAll({
@@ -61,6 +78,8 @@ bills.post('/show', (req,res) =>{
          
       }).then(bill =>{
         if(bill){
+                    //a++;
+                    //console.log(a);
                     res.send(bill).catch(err =>{res.send("err : " + err)});
            
         } 
@@ -71,6 +90,89 @@ bills.post('/show', (req,res) =>{
         res.send("err : "+ err);
     })
 })
+
+
+
+
+
+bills.post('/find', (req,res) =>{
+
+
+
+
+Bill_detail.findAll(
+        {
+            attributes: ['code_room','price'],
+            where : {checkin: {[Op.between]: [req.body.checkin,req.body.checkout]}
+        },
+}).then(bill => {
+    billl = bill.map( bill => b.push(bill.dataValues.code_room))
+    console.log(b);
+
+
+
+
+    Room.findAll(
+        {
+            attributes: [
+                'code_room'
+             ],
+            where :
+            {
+                code_room : {[Op.notIn]: b}
+            },
+ 
+                   // [req.body.checkin,req.body.checkout]
+        include: [{
+        //             attributes: [
+        //                 'code_room'
+        //             ],
+        //             model: Bill_detail,
+        //             required: true,
+        //             where :  
+        //             { 
+        //             checkin: {[Op.notBetween]: [req.body.checkin,req.body.checkout],}
+        //             },
+        //             },
+        //             {
+                        model: Room_type,
+                        required: true,
+                         }
+
+                      ]
+  }
+ )
+    .then(bill =>{
+        if(bill){
+                    b=[]
+            
+                    res.send(bill).catch(err =>{res.send("err : " + err)});
+           
+        } 
+        else{
+            res.send({status:false,message:"Nhập lại mã khách hàng"});
+        }
+    }).catch(err =>{
+        res.send("err : "+ err);
+    })
+
+
+
+
+
+   
+}).catch(err =>{
+    res.send("err : "+ err);
+         })
+//})
+
+
+
+
+   
+})
+
+
 
 
 

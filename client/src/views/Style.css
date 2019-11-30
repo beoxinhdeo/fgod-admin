@@ -38,7 +38,6 @@
     background-color: rosybrown !important;
     border-radius: 5px;
 }
-<<<<<<< HEAD
 .success-btn {
     background-color: green !important;
     border-radius: 5px;
@@ -47,7 +46,6 @@
 
 }
 
-=======
 .booking-btn {
     background-color: rosybrown !important;
     border-radius: 5px;
@@ -70,7 +68,6 @@
 .container {
     display: 'flex',
 }
->>>>>>> d908358cf4e32aa6c20e4991accabc7a775f7ab7
 .card-roommap {
     padding: 0px 20px 10px 20px;
 }
@@ -110,11 +107,9 @@
 .all-btn {
     background-color: rosybrown !important;
 }
-<<<<<<< HEAD
 tbody + thead{
     display: none;
   }
-=======
 .popup {
     position: fixed;
     width: 100%;
@@ -214,7 +209,6 @@ tbody + thead{
     align-self:center ;
 }
 
->>>>>>> d908358cf4e32aa6c20e4991accabc7a775f7ab7
 
 .table-responsive
 {

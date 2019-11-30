@@ -1,10 +1,19 @@
 const express = require('express')
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const users = express.Router()
 
+const users = express.Router()
+const options = {};
 const User = require('../models/Users')
+users.use(session({
+    store: new FileStore(options),
+    secret: "dsfhkdhsk",
+    resave: false,
+    saveUninitialized: true,
+}));
 
 users.use(cors())
 
@@ -135,7 +144,13 @@ users.post('/show', (req,res) =>{
 
     User.findAll().then(user =>{
         if(user){
+                    var sessData = req.session;
+                    sessData.someAttribute = "Beo"
+                      ;
+                    console.log(req.session);
                     res.send(user).catch(err =>{res.send("err : " + err)});
+                   
+                    
            
         } 
         else{

@@ -98,6 +98,27 @@ rooms.post('/show', (req,res) =>{
     })
 })
 
+// rooms.post('/find', (req,res) =>{
+
+//     Room.findAll({where : }).then(room =>{
+//         if(room){
+//             let rooom = room.map( each_room => {
+//                 findAll
+//                 if(each_room.role == "1")
+//                 each_room.status ="5";
+            
+//             })
+//                     res.send(room).catch(err =>{res.send("err : " + err)});
+           
+//         } 
+//         else{
+//             res.send({status:false,message:"Nhập lại mã khách hàng"});
+//         }
+//     }).catch(err =>{
+//         res.send("err : "+ err);
+//     })
+// })
+
 
 
 module.exports = rooms

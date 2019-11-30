@@ -20,7 +20,7 @@ import{
 
 
 export default class Edit extends React.Component {
-_isMounted = false;   
+
 state = {
         fullname :"",
         fullnameError: "",
@@ -55,7 +55,7 @@ componentDidMount(){
 
 renderData()
 {
-    const obj={ code_emp : this.props.id}
+    const obj = { code_emp : this.props.id}
 
     axios.post('http://localhost:5000/users/find', obj)
       .then((res) => 
@@ -183,7 +183,7 @@ validate = () => {
     //handle Submit
 onSubmit = e => {
     e.preventDefault();
-    //console.log(this.state);
+    console.log(this.state);
     //this.props.onSubmit(this.state);
     //Check error
     const error = this.validate();
@@ -204,13 +204,8 @@ onSubmit = e => {
         axios.post('http://localhost:5000/users/update', obj)
             .then(res =>
                 {
-                    axios.post('http://localhost:5000/users/show')
-                    .then(response => {
-                        this.props.newlist(this.state.data)
-                        this.setState({ data: response.data })
-                        
-                    }
-                )
+                 this.props.newlist();
+                
 
                     this.setState({
             fullname :"",
@@ -268,6 +263,14 @@ renderRoles() {
         (    <option value = {data.idrole} > {data.rolename}</option>        )
     )
 }
+runScript(e) {
+    //See notes about 'which' and 'key'
+    if (e.keyCode == 13) {
+       this.onSubmit(e)
+    }
+    else 
+    return false
+}
 
 render() {
 
@@ -276,7 +279,7 @@ render() {
 <div className = 'popup'>
             <div className ="background" ></div>
             <div className = 'popup-inner'>
-                <form onSubmit= {e => this.onSubmit()}>
+                <form onSubmit= {e => this.onSubmit(e)}  >
                     <Card>
                         <CardHeader>
                             <h3>Thêm nhân viên</h3>
@@ -286,7 +289,7 @@ render() {
                             </button>
                         </CardHeader>
                         <CardBody>
-                            <FormGroup style = {{fontSize : '16px'}}>
+                            <FormGroup style = {{fontSize : '16px'}} >
                                 <Row form>
                                     <Col md={6}>
                                         <FormGroup >
@@ -296,6 +299,7 @@ render() {
                                                 placeholder="Nhập họ và tên"
                                                 value = {this.state.fullname}
                                                 onChange= {e => this.change(e)}
+                                                onKeyPress={e => this.runScript(e)}
                                             />
                                             <label style ={{color:'red'}}>{this.state.fullnameError}</label>
                                         </FormGroup>
@@ -306,7 +310,8 @@ render() {
                                             <Input type="date" 
                                                 name="birthday"
                                                 value = {this.state.birthday}
-                                                onChange= {e => this.change(e)} 
+                                                onChange= {e => this.change(e)}
+                                                onKeyPress={e => this.runScript(e)} 
                                             />
                                         </FormGroup>
                                     </Col>
@@ -317,7 +322,8 @@ render() {
                                                 name="email"
                                                 placeholder="Email"
                                                 value = {this.state.email}
-                                                onChange= {e => this.change(e)} 
+                                                onChange= {e => this.change(e)}
+                                                onKeyPress={e => this.runScript(e)} 
                                             />
                                             <label style ={{color:'red'}}>{this.state.emailError}</label>               
                                         </FormGroup>
@@ -330,6 +336,7 @@ render() {
                                                 placeholder="Số chứng minh thư"
                                                 value = {this.state.identity_card}
                                                 onChange= {e => this.change(e)}
+                                                onKeyPress={e => this.runScript(e)}
                                             />
                                             <label style ={{color:'red'}}>{this.state.identity_cardError}</label>
                                         </FormGroup>
@@ -350,6 +357,7 @@ render() {
                                         placeholder="1234 Main St"
                                         value = {this.state.address}
                                         onChange= {e => this.change(e)}
+                                        onKeyPress={e => this.runScript(e)}
                                     />
                                     <label style ={{color:'red'}}>{this.state.addressError}</label>
                                 </FormGroup>               
@@ -362,6 +370,7 @@ render() {
                                                 placeholder="Nhập số điện thoại"
                                                 value = {this.state.phone}
                                                 onChange= {e => this.change(e)} 
+                                                onKeyPress={e => this.runScript(e)}
                                             />
                                             <label style ={{color:'red'}}>{this.state.phoneError}</label>
                                         </FormGroup>
