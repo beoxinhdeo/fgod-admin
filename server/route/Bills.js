@@ -115,7 +115,7 @@ Bill_detail.findAll(
     Room.findAll(
         {
             attributes: [
-                'code_room'
+                'code_room','price'
              ],
             where :
             {

@@ -95,7 +95,9 @@ state = {
   amount:"",
   discount:"",
   charged:"",
-  total:""
+  total:"",
+  checkin:"",
+  checkout:""
 };
 
 // constructor() {
@@ -108,16 +110,33 @@ state = {
 
 componentDidMount()
 {
+  this.createSession()
   this.renderDataSearch()
   this.renderDataCart()
-  this.createSession()
+  
  
 }
 
 change = e => {
   
+  
+  
   this.onChange({[e.target.name]: e.target.value});
   
+  if(this.state.checkin && this.state.checkout)
+  {
+  
+  if(moment(this.state.checkout).isBefore(this.state.checkin))
+  //alert("Beoxinhdep");
+  //console.log(this.state);
+//   this.setState({
+//     checkout:"",
+//     checkin:""
+// });
+alert("Beoxinhdep");
+console.log(this.state);
+}
+
   this.setState({
       [e.target.name]: e.target.value,
 
@@ -126,6 +145,8 @@ change = e => {
       checkoutError:""
   });
   console.log(this.state);
+
+ 
 
 };
 
@@ -204,7 +225,9 @@ createSession()
 
 addtocart(e)
 {
-    const obj = {
+  if(this.state.checkout&&this.state.checkin)
+    {
+      const obj = {
     code_room :      e.code_room,
     price :          e.price,
     checkin :        this.state.checkin,
@@ -220,7 +243,9 @@ addtocart(e)
  this.renderDataCart();
 
 
-
+    }
+    else
+    alert("Bạn chưa chọn ngày checkin/checkout")
 }
 
 renderDataSearch()
@@ -238,7 +263,7 @@ renderDataSearch()
       (data =>
         {
       data.button = <div>
-         <MDBBtn className="booking-btn" id onClick={ this.addtocart.bind(this,data.room) } size="sm">Đặt phòng</MDBBtn>
+         <MDBBtn className="booking-btn" id onClick={ this.addtocart.bind(this,data) } size="sm">Đặt phòng</MDBBtn>
       </div>;
       //data.room_coderoom = data.room.code_room
       data.room_typename = data.room_type.type_name

@@ -1,48 +1,171 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-// react plugin used to create charts
-import { Line, Pie } from "react-chartjs-2";
-// reactstrap componeLinents
+import TextField from '@material-ui/core/TextField';
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   CardTitle,
   Row,
   Col
 } from "reactstrap";
-// core components
-import {
-  dashboard24HoursPerformanceChart,
-  dashboardEmailStatisticsChart,
-  dashboardNASDAQChart
-} from "variables/charts.jsx";
 
-class Dashboard extends React.Component {
+import { 
+  MDBTable,
+  MDBTableHead,
+  MDBTableBody,
+  MDBBtn 
+} from 'mdbreact';
+
+import Form from "views/Bill_detail.jsx";
+class Statistic extends React.Component {
+  state = {
+    room_name:"",
+    room_nameError:"",
+    phone:"",
+    phoneError:"",
+    date_from:"",
+    date_to:"",
+    showForm : false
+};
+
+toggleForm() {
+  this.setState({
+    showForm: !this.state.showForm
+  });
+}
+    //handle change
+change = e => {
+    this.setState({
+        [e.target.name]: e.target.value,
+    });
+};
+
+    //Reg ex
+validate = () => {
+    let isError = false;
+    const errors = {};
+    const pattname  = /^[^\'\"\!.,@#$%^&*\(\)\{\}\[\]<>?]{1,}$/g;
+    const pattPhone = /^0(3[2-9]|5[68-9]|7[06-9]|8[1-68-9]|9[0-46-9])[0-9]{7}$/g;
+    if(this.state.room_name){
+      if(!this.state.room_name.match(pattname)){
+      isError = true;
+      errors.room_nameError = "Số phòng không hợp lệ";
+      }
+    }
+    if(this.state.phone){
+      if(!this.state.phone.match(pattPhone)){
+      isError = true;
+      errors.phoneError = "Số điện thoại không hợp lệ";
+      }
+  }
+  let datefrom = Date.parse(this.state.date_from);
+  let dateto = Date.parse(this.state.date_to);
+  if(datefrom > dateto){
+    isError = true;
+    alert("Vui lòng chọn lại khoảng ngày");
+  }
+    if(isError){
+        this.setState ({
+            ...this.state,
+            ...errors
+        });
+    }
+    return isError;
+}
+
+    //handle Statistic
+onStatistic = e => {
+    console.log(this.state);
+    //this.props.onSubmit(this.state);
+    //Check error
+    const error = this.validate();
+    
+    if(!error){
+    //clear form
+        this.setState({
+          room_name:"",
+          room_nameError:"",
+          code_cus:"",
+          code_cusError:"",
+          date_from:"",
+          date_to:""
+        });
+    }
+  }
   render() {
+    const data = {
+      columns: [
+        {
+          label: 'ID',
+          field: 'id',
+          sort: 'asc',
+          width: 150
+        },
+        {
+          label: 'Khách hàng',
+          field: 'fullname',
+          sort: 'asc',
+          width: 150
+        },
+        {
+          label: 'Ngày',
+          field: 'date',
+          sort: 'asc',
+          width: 270
+        },
+        {
+          label: 'Tổng tiền',
+          field: 'total',
+          sort: 'asc',
+          width: 270
+        },
+        {
+          label: 'Thao tác',
+          field: 'button',
+          sort: 'asc',
+          width: 200
+        }
+      ],
+      rows: [
+        {
+          id: '001',
+          fullname:'Đặng Thị Kim Như',
+          date: '11/11/2019',
+          total: '1200000',
+          button:
+          <div>
+            <MDBBtn className="detail-btn" size="sm" onClick={this.toggleForm.bind(this)}>Chi tiết</MDBBtn>
+            {this.state.showForm ? 
+              <Form
+                closeForm={this.toggleForm.bind(this)}
+              />
+              : null
+            }
+          </div>
+        },
+        {
+          id: '002',
+          fullname:'Lý Ngọc Mỹ Phương',
+          date: '12/11/2019',
+          total: '2000000',
+          button:
+          <div>
+            <MDBBtn className="detail-btn" size="sm" onClick={this.toggleForm.bind(this)}>Chi tiết</MDBBtn>
+            {this.state.showForm ? 
+              <Form
+                closeForm={this.toggleForm.bind(this)}
+              />
+              : null
+            }
+          </div>
+        },
+      ]
+    };
     return (
       <>
         <div className="content">
           <Row>
-            <Col lg="3" md="6" sm="6">
+            <Col md={4}>
               <Card className="card-stats">
                 <CardBody>
                   <Row>
@@ -53,8 +176,8 @@ class Dashboard extends React.Component {
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Capacity</p>
-                        <CardTitle tag="p">150GB</CardTitle>
+                        <p className="card-category">Booking</p>
+                        <CardTitle tag="p" name="numberofbooking">12</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -63,50 +186,24 @@ class Dashboard extends React.Component {
                 <CardFooter>
                   <hr />
                   <div className="stats">
-                    <i className="fas fa-sync-alt" /> Update Now
+                    <i className="fas fa-sync-alt" /> Ngày 
                   </div>
                 </CardFooter>
               </Card>
-            </Col>
-            <Col lg="3" md="6" sm="6">
+            </Col>         
+            <Col md={4}>
               <Card className="card-stats">
                 <CardBody>
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-money-coins text-success" />
+                        <i className="nc-icon fas fa-user-friends text-danger" />
                       </div>
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Revenue</p>
-                        <CardTitle tag="p">$ 1,345</CardTitle>
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="far fa-calendar" /> Last day
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col lg="3" md="6" sm="6">
-              <Card className="card-stats">
-                <CardBody>
-                  <Row>
-                    <Col md="4" xs="5">
-                      <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-vector text-danger" />
-                      </div>
-                    </Col>
-                    <Col md="8" xs="7">
-                      <div className="numbers">
-                        <p className="card-category">Errors</p>
-                        <CardTitle tag="p">23</CardTitle>
+                        <p className="card-category">Khách hàng</p>
+                        <CardTitle tag="p" name="numberofcus">10</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -120,19 +217,19 @@ class Dashboard extends React.Component {
                 </CardFooter>
               </Card>
             </Col>
-            <Col lg="3" md="6" sm="6">
+            <Col md={4}>
               <Card className="card-stats">
                 <CardBody>
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-favourite-28 text-primary" />
+                        <i className="nc-icon nc-money-coins text-success" />
                       </div>
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Followers</p>
-                        <CardTitle tag="p">+45K</CardTitle>
+                        <p className="card-category">Doanh thu</p>
+                        <CardTitle tag="p" name="money">$ 1,345</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -141,94 +238,78 @@ class Dashboard extends React.Component {
                 <CardFooter>
                   <hr />
                   <div className="stats">
-                    <i className="fas fa-sync-alt" /> Update now
+                    <i className="far fa-calendar" /> Last day
                   </div>
                 </CardFooter>
               </Card>
             </Col>
           </Row>
-          <Row>
-            <Col md="12">
-              <Card>
-                <CardHeader>
-                  <CardTitle tag="h5">Users Behavior</CardTitle>
-                  <p className="card-category">24 Hours performance</p>
-                </CardHeader>
-                <CardBody>
-                  <Line
-                    data={dashboard24HoursPerformanceChart.data}
-                    options={dashboard24HoursPerformanceChart.options}
-                    width={400}
-                    height={100}
-                  />
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-history" /> Updated 3 minutes ago
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="4">
-              <Card>
-                <CardHeader>
-                  <CardTitle tag="h5">Email Statistics</CardTitle>
-                  <p className="card-category">Last Campaign Performance</p>
-                </CardHeader>
-                <CardBody>
-                  <Pie
-                    data={dashboardEmailStatisticsChart.data}
-                    options={dashboardEmailStatisticsChart.options}
-                  />
-                </CardBody>
-                <CardFooter>
-                  <div className="legend">
-                    <i className="fa fa-circle text-primary" /> Opened{" "}
-                    <i className="fa fa-circle text-warning" /> Read{" "}
-                    <i className="fa fa-circle text-danger" /> Deleted{" "}
-                    <i className="fa fa-circle text-gray" /> Unopened
-                  </div>
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-calendar" /> Number of emails sent
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col md="8">
-              <Card className="card-chart">
-                <CardHeader>
-                  <CardTitle tag="h5">NASDAQ: AAPL</CardTitle>
-                  <p className="card-category">Line Chart with Points</p>
-                </CardHeader>
-                <CardBody>
-                  <Line
-                    data={dashboardNASDAQChart.data}
-                    options={dashboardNASDAQChart.options}
-                    width={400}
-                    height={100}
-                  />
-                </CardBody>
-                <CardFooter>
-                  <div className="chart-legend">
-                    <i className="fa fa-circle text-info" /> Tesla Model S{" "}
-                    <i className="fa fa-circle text-warning" /> BMW 5 Series
-                  </div>
-                  <hr />
-                  <div className="card-stats">
-                    <i className="fa fa-check" /> Data information certified
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-          </Row>
+          <Card>
+            <form onSubmit= {e => this.onStatistic()}>
+              <Row className="view_form space-between">
+                <Col md={3}>
+                  <TextField margin="dense"
+                    variant="outlined"
+                    name="room_name"
+                    label="Số phòng" 
+                    value={this.state.room_name}
+                    onChange= {this.change}
+                    />
+                    <p style ={{color:'red'}}>{this.state.room_nameError}</p> 
+                </Col>
+                <Col md={3}>
+                  <TextField margin="dense"
+                    variant="outlined"
+                    label="SĐT khách hàng"
+                    name="phone"
+                    value={this.state.code_cus}
+                    onChange= {this.change} />
+                    <p style ={{color:'red'}}>{this.state.phoneError}</p> 
+                </Col>
+                <Col md={3}>
+                  <TextField margin="dense"
+                    variant="outlined"
+                    type="date"
+                    label="Từ ngày"
+                    name="date_from"
+                    value={this.state.date_from}
+                    onChange= {e => this.change(e)}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}/>
+                </Col>
+                <Col md={3}>
+                  <TextField margin="dense"
+                    variant="outlined"
+                    type="date"
+                    label="Đến ngày"
+                    name="date_to"
+                    value={this.state.date_to}
+                    onChange= {e => this.change(e)}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}/>
+                </Col>
+              </Row>
+              <hr/>
+              <Row>
+                <Col className="center">
+                  <MDBBtn className="add-btn"  onClick = {e => this.onStatistic(e)} >Thống kê</MDBBtn>
+                </Col>
+              </Row>
+            </form>
+          </Card>
+          <Card>
+            <br/>
+            <MDBTable responsive>
+                <MDBTableHead columns={data.columns}/>
+                <MDBTableBody rows={data.rows} />
+            </MDBTable>
+          </Card>
         </div>
       </>
     );
   }
 }
 
-export default Dashboard;
+export default Statistic;
