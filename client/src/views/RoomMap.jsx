@@ -326,17 +326,17 @@ setStateStatus_All() {
 }
 setStateStatus_Empty() {
     this.setState({
-        status : 0
+        status : "0"
        }); 
 }
 setStateStatus_Busy() {
     this.setState({
-        status : 1
+        status : "1"
        }); 
 }
 setStateStatus_Ordered() {
     this.setState({
-        status : 2
+        status : "2"
        }); 
 }
 

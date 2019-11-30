@@ -46,12 +46,14 @@ import 'mdbreact/dist/css/mdb.css';
 
 const hist = createBrowserHistory();
 
+
 ReactDOM.render(
   <Router history={hist}>
     {/* <Provider store={store}> */}
     <Switch>
       <Route path="/admin" render={props => <Admin {...props} />} />
-      <Redirect to="/admin" />
+      <Route path="/login" render={props => <Login {...props} />} />
+      <Redirect to="/admin/roommap" />
     </Switch>
     {/* </Provider> */}
   </Router>,

@@ -5,6 +5,8 @@ import {
   MDBInput
 } from 'mdbreact';
 import Fab from '@material-ui/core/Fab';
+
+
 class Login extends React.Component {
   state = {
     email :"",
@@ -13,14 +15,16 @@ class Login extends React.Component {
     passwordError:"",
     error:""
 };
+
 change = e => {
   this.setState({
       [e.target.name]: e.target.value,
       error:""
   });
-  // console.log(this.state);
 
 };
+
+
 validate = () => {
   let isError = false;
   const errors = {};
@@ -43,6 +47,9 @@ validate = () => {
 
   return isError;
 }
+
+
+
 onSubmit = e => {
   e.preventDefault();
   console.log(this.state);
@@ -60,7 +67,9 @@ onSubmit = e => {
          });
   }
 }
-  render() {
+
+
+render() {
     return (
       <div className="bg">
         <div className = "bg-img">

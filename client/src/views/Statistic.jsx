@@ -10,13 +10,17 @@ import {
 } from "reactstrap";
 
 import { 
+  MDBDataTable,
   MDBTable,
-  MDBTableHead,
-  MDBTableBody,
   MDBBtn 
 } from 'mdbreact';
 
 import Form from "views/Bill_detail.jsx";
+import axios from 'axios'; 
+
+
+
+
 class Statistic extends React.Component {
   state = {
     room_name:"",
@@ -25,20 +29,34 @@ class Statistic extends React.Component {
     phoneError:"",
     date_from:"",
     date_to:"",
-    showForm : false
+    showForm : false,
+    columns : [],
+    rows:[]
 };
+
+
+
+
 
 toggleForm() {
   this.setState({
     showForm: !this.state.showForm
   });
 }
+
+
+
+
     //handle change
 change = e => {
     this.setState({
         [e.target.name]: e.target.value,
     });
 };
+
+
+
+
 
     //Reg ex
 validate = () => {
@@ -53,6 +71,20 @@ validate = () => {
       }
     }
     if(this.state.phone){
+      var obj = { phone : this.state.phone}
+      axios.post('http://localhost:5000/customer/findvalid',obj).then(res => {
+        if(res.data != "") 
+        this.setState({
+          phone : res.data[0].fullname,
+          code_cus : res.data[0].code_cus,
+        });
+        //alert(res)
+        else
+        {
+        alert("Sai mât khẩu");
+        isError = true;
+        }
+      })
       if(!this.state.phone.match(pattPhone)){
       isError = true;
       errors.phoneError = "Số điện thoại không hợp lệ";
@@ -73,6 +105,11 @@ validate = () => {
     return isError;
 }
 
+
+
+
+
+
     //handle Statistic
 onStatistic = e => {
     console.log(this.state);
@@ -92,7 +129,89 @@ onStatistic = e => {
         });
     }
   }
+
+
+componentDidMount(){
+    this.renderDataTable()
+  };
+
+
+
+
+renderDataTable()
+{
+  const obj ={
+    checkin : "2019-11-01",//this.state.chekin,
+    checkout : "2019-11-30",//this.state.checkout,
+    code_cus : 3//this.state.code_cus
+  }
+
+
+
+  axios.post('http://localhost:5000/bills/show')
+  .then((res) => 
+  {    
+    console.log(res.data);
+    
+    let rest = res.data.map ( data => 
+    {
+      data.cus_name = data.customer.fullname;
+      data.emp_name = data.employee.fullname;
+      data.button = <div>
+      <MDBBtn className="detail-btn" size="sm" onClick={this.toggleForm.bind(this)}>Chi tiết</MDBBtn>
+      
+    </div>
+    })
+  
+     this.setState({
+       data : {
+        columns: [
+          {
+            label: 'ID',
+            field: 'code_bill',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: 'Khách hàng',
+            field: 'cus_name',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: 'Ngày',
+            field: 'bill_date',
+            sort: 'asc',
+            width: 270
+          },
+          {
+            label: 'Tổng tiền',
+            field: 'total',
+            sort: 'asc',
+            width: 270
+          },
+          {
+            label: 'Thao tác',
+            field: 'button',
+            sort: 'asc',
+            width: 200
+          }
+        ],
+        rows : res.data
+      }
+   })
+
+}
+);
+
+}
+
   render() {
+
+
+
+
+
     const data = {
       columns: [
         {
@@ -161,6 +280,14 @@ onStatistic = e => {
         },
       ]
     };
+
+
+
+
+
+
+
+
     return (
       <>
         <div className="content">
@@ -185,9 +312,9 @@ onStatistic = e => {
                 </CardBody>
                 <CardFooter>
                   <hr />
-                  <div className="stats">
+                  {/* <div className="stats">
                     <i className="fas fa-sync-alt" /> Ngày 
-                  </div>
+                  </div> */}
                 </CardFooter>
               </Card>
             </Col>         
@@ -211,9 +338,9 @@ onStatistic = e => {
                 </CardBody>
                 <CardFooter>
                   <hr />
-                  <div className="stats">
+                  {/* <div className="stats">
                     <i className="far fa-clock" /> In the last hour
-                  </div>
+                  </div> */}
                 </CardFooter>
               </Card>
             </Col>
@@ -237,9 +364,9 @@ onStatistic = e => {
                 </CardBody>
                 <CardFooter>
                   <hr />
-                  <div className="stats">
+                  {/* <div className="stats">
                     <i className="far fa-calendar" /> Last day
-                  </div>
+                  </div> */}
                 </CardFooter>
               </Card>
             </Col>
@@ -247,7 +374,7 @@ onStatistic = e => {
           <Card>
             <form onSubmit= {e => this.onStatistic()}>
               <Row className="view_form space-between">
-                <Col md={3}>
+                {/* <Col md={3}>
                   <TextField margin="dense"
                     variant="outlined"
                     name="room_name"
@@ -256,13 +383,14 @@ onStatistic = e => {
                     onChange= {this.change}
                     />
                     <p style ={{color:'red'}}>{this.state.room_nameError}</p> 
-                </Col>
+                </Col> */}
+                
                 <Col md={3}>
                   <TextField margin="dense"
                     variant="outlined"
                     label="SĐT khách hàng"
                     name="phone"
-                    value={this.state.code_cus}
+                    value={this.state.phone}
                     onChange= {this.change} />
                     <p style ={{color:'red'}}>{this.state.phoneError}</p> 
                 </Col>
@@ -271,8 +399,8 @@ onStatistic = e => {
                     variant="outlined"
                     type="date"
                     label="Từ ngày"
-                    name="date_from"
-                    value={this.state.date_from}
+                    name="checkin"
+                    value={this.state.checkin}
                     onChange= {e => this.change(e)}
                     InputLabelProps={{
                       shrink: true,
@@ -283,8 +411,8 @@ onStatistic = e => {
                     variant="outlined"
                     type="date"
                     label="Đến ngày"
-                    name="date_to"
-                    value={this.state.date_to}
+                    name="checkout"
+                    value={this.state.checkout}
                     onChange= {e => this.change(e)}
                     InputLabelProps={{
                       shrink: true,
@@ -302,11 +430,20 @@ onStatistic = e => {
           <Card>
             <br/>
             <MDBTable responsive>
-                <MDBTableHead columns={data.columns}/>
-                <MDBTableBody rows={data.rows} />
+                {/* <MDBTableHead columns={this.state.data.columns}/>
+                <MDBTableBody rows={this.state.data.rows} /> */}
+                <MDBDataTable striped data = {this.state.data}/>
             </MDBTable>
           </Card>
         </div>
+        <div>        {this.state.showForm ? 
+        <Form
+          closeForm={this.toggleForm.bind(this)}
+        />
+        : null
+      }
+      </div>
+
       </>
     );
   }

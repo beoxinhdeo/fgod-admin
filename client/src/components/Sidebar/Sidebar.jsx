@@ -61,13 +61,14 @@ class Sidebar extends React.Component {
         <div className="logo">
             {/* <div className="logo-img">
               <img src={logo} alt="react-logo" />
-            </div>
+            </div> */}
           <a
-            href="#"
-            className="simple-text logo-normal"
+            href="http://localhost:3000/admin/roomap"
+            className="simple-text logo-normal "
+            style={{"text-align" : "center"}}
           >
             FGOD HOTEL
-          </a> */}
+          </a>
         </div>
 
         <div className="sidebar-wrapper" ref={this.sidebar}>

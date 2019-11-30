@@ -39,7 +39,7 @@ change = e => {
 validate = () => {
     let isError = false;
     const errors = {};
-    const pattname  = /^[^\'\"\!.,@#$%^&*\(\)\{\}\[\]<>?]{1,}$/g;
+    const pattname  = /^[^.,@#$%^&*\]<>?]{1,}$/g;
     if(!this.state.type_name){
         isError = true;
         errors.type_nameError = "Loại phòng không được để trống";

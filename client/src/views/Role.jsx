@@ -104,13 +104,13 @@ componentDidMount(){
     {   
         let ress = res.data.map (data =>
           {
-          if(data.bill_role == "true")
+          if(data.bill_role === "true")
           {
           data.button_bill =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
           </div>;
           }
-          if(data.bill_role == "false")
+          if(data.bill_role === "false")
           {
           data.button_bill =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
@@ -118,13 +118,13 @@ componentDidMount(){
           }
 
 
-          if(data.cus_role == "true")
+          if(data.cus_role === "true")
           {
           data.button_cus =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
           </div>;
           }
-          if(data.cus_role == "false")
+          if(data.cus_role === "false")
           {
           data.button_cus =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
@@ -132,13 +132,13 @@ componentDidMount(){
           }
 
 
-          if(data.emp_role == "true")
+          if(data.emp_role === "true")
           {
           data.button_emp =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
           </div>;
           }
-          if(data.emp_role == "false")
+          if(data.emp_role === "false")
           {
           data.button_emp =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
@@ -146,13 +146,13 @@ componentDidMount(){
           }
 
 
-          if(data.role_role == "true")
+          if(data.role_role === "true")
           {
           data.button_role =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
           </div>;
           }
-          if(data.role_role == "false")
+          if(data.role_role === "false")
           {
           data.button_role =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
@@ -160,13 +160,13 @@ componentDidMount(){
           }
 
 
-          if(data.room_role == "true")
+          if(data.room_role === "true")
           {
           data.button_room =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
           </div>;
           }
-          if(data.room_role == "false")
+          if(data.room_role === "false")
           {
           data.button_room =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
@@ -174,13 +174,13 @@ componentDidMount(){
           }
 
 
-          if(data.roomtype_role == "true")
+          if(data.roomtype_role === "true")
           {
           data.button_roomtype =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
           </div>;
           }
-          if(data.roomtype_role == "false")
+          if(data.roomtype_role === "false")
           {
           data.button_roomtype =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
@@ -188,13 +188,13 @@ componentDidMount(){
           }
 
 
-          if(data.statistic_role == "true")
+          if(data.statistic_role === "true")
           {
           data.button_statistic =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
           </div>;
           }
-          if(data.statistic_role == "false")
+          if(data.statistic_role === "false")
           {
           data.button_statistic =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
@@ -203,13 +203,13 @@ componentDidMount(){
 
 
 
-          if(data.booking_role == "true")
+          if(data.booking_role === "true")
           {
           data.button_booking =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default success-btn"><i className="fas fa-check-circle fa-lg icon"></i></MDBBadge>
           </div>;
           }
-          if(data.booking_role == "false")
+          if(data.booking_role === "false")
           {
           data.button_booking =  <div>
           <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>

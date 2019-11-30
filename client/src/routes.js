@@ -42,17 +42,17 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/room",
-    name: "Quản lý phòng",
-    icon: "	fas fa-building",
-    component: Room,
-    layout: "/admin"
-  },
-  {
     path: "/typeroom",
     name: "Loại phòng",
     icon: "	fas fa-bed",
     component: TypeRoom,
+    layout: "/admin"
+  },
+  {
+    path: "/everyroom",
+    name: "Quản lí phòng",
+    icon: "	fas fa-building",
+    component: Room,
     layout: "/admin"
   },
   {

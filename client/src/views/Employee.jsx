@@ -169,7 +169,7 @@ updateState()
                   <MDBCardHeader>
                     <MDBCardTitle tag="h3">
                       <Row>
-                        <Col md="6">Danh sách khách hàng</Col>
+                        <Col md="6">Danh sách nhân viên</Col>
                         <Col md="6" className="flex-end">
                           <MDBBtn onClick={this.toggleForm.bind(this)} className="add-btn"> 
                           <i className = "fas fa-user-plus"/>Thêm nhân viên </MDBBtn>

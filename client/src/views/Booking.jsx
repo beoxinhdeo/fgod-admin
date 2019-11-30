@@ -24,10 +24,11 @@ import {
   Button
 } from "reactstrap";
 import axios from 'axios';   
-import { da } from 'date-fns/locale';
-import { createAsExpression } from 'typescript';
+
 import moment from 'moment';
 
+var cart = JSON.parse(localStorage.getItem("cart"))
+var total = JSON.parse(localStorage.getItem("total"))
 
 const datasearch = {
   columns: [
@@ -73,22 +74,6 @@ const datasearch = {
   ]
 };
 
-
-const cart = JSON.parse(localStorage.getItem("cart"))
-
-// cart.rows.push( {
-//   code_room: '001',
-//   price: '100000',
-//   checkin: '2019-10-20',
-//   checkout: '2019-10-25',
-//   staying_days:'5',
-//   amount:'500000',
-// })
-
-// if(localStorage){
-// datadetail = JSON.parse(localStorage.getItem('cart'))
-// }
-
 class Booking extends React.Component {
 state = {
   showForm : false,
@@ -97,7 +82,10 @@ state = {
   charged:"",
   total:"",
   checkin:"",
-  checkout:""
+  checkout:"",
+  tamtinh :0,
+  tongtien: 0,
+  phuphi:0
 };
 
 // constructor() {
@@ -110,11 +98,11 @@ state = {
 
 componentDidMount()
 {
+
   this.createSession()
   this.renderDataSearch()
   this.renderDataCart()
   
- 
 }
 
 change = e => {
@@ -127,12 +115,6 @@ change = e => {
   {
   
   if(moment(this.state.checkout).isBefore(this.state.checkin))
-  //alert("Beoxinhdep");
-  //console.log(this.state);
-//   this.setState({
-//     checkout:"",
-//     checkin:""
-// });
 alert("Beoxinhdep");
 console.log(this.state);
 }
@@ -191,31 +173,33 @@ createSession()
       }
     ],
     rows: [
-      {
-        code_room: '001',
-        price: '100000',
-        checkin: '2019-10-20',
-        checkout: '2019-10-25',
-        staying_days:'5',
-        amount:'500000',
-      },
-      {
-        code_room: '001',
-        price: '100000',
-        checkin: '2019-10-20',
-        checkout: '2019-10-25',
-        staying_days:'5',
-        amount:'500000',
-      },
+      // {
+      //   code_room: '001',
+      //   price: '100000',
+      //   checkin: '2019-10-20',
+      //   checkout: '2019-10-25',
+      //   staying_days:'5',
+      //   amount:'500000',
+      // },
+      // {
+      //   code_room: '001',
+      //   price: '100000',
+      //   checkin: '2019-10-20',
+      //   checkout: '2019-10-25',
+      //   staying_days:'5',
+      //   amount:'500000',
+      // },
     ]
   };
-  
+  var total_cart = 0
 
   const myJSON = JSON.stringify(datadetail);
+  const myTotal = JSON.stringify(total_cart);
   if (localStorage) {
 	
 	      
-	      localStorage.setItem('cart', myJSON);
+        localStorage.setItem('cart', myJSON);
+        localStorage.setItem('total', myTotal);
 	 
 	}
   console.log(myJSON);
@@ -225,7 +209,7 @@ createSession()
 
 addtocart(e)
 {
-  if(this.state.checkout&&this.state.checkin)
+  if(this.state.checkout && this.state.checkin)
     {
       const obj = {
     code_room :      e.code_room,
@@ -237,19 +221,44 @@ addtocart(e)
    
 };
 
+
  cart.rows.push(obj);
- console.log(obj);
+
+ total=total+obj.amount;
+
+ const myJSON = JSON.stringify(cart);
+ const myTotal = JSON.stringify(total);
+  if (localStorage) {
+	      
+        localStorage.setItem('cart', myJSON);
+        localStorage.setItem('total', myTotal);
+	 
+	}
  
  this.renderDataCart();
+ this.setState({
+  
+   tongtien: this.state.tongtien + obj.amount,
+   ///tongtien : this.state.tamtinh + obj.amount-this.state.phuphi,
+  })
 
 
-    }
-    else
+    }  
+
+  else
     alert("Bạn chưa chọn ngày checkin/checkout")
 }
 
+deletefromcart(e)
+{
+  var new_cart = cart.slice(e,e)
+
+}
+
+
 renderDataSearch()
 {
+
   const date={
     checkin : this.state.checkin,
     checkout : this.state.checkout,
@@ -314,20 +323,27 @@ renderDataSearch()
 
 renderDataCart()
 {
-  
+  const i = 0;
   let CART = cart.rows.map 
   (data => {
+    
+    // var obj={
+    //   id : i,
+    //   price : data.price
+    // }
+    console.log(data);
+    
     data.button = <div>
-    <MDBIcon icon="trash-alt" size="lg" name="trash" type="button"/>
+    <MDBIcon id={i} icon="trash-alt" size="lg" onClick={ this.deletefromcart.bind(this,i) } name="trash" type="button"/>
  </div>
+
   } )
-  
+
   this.setState({
     columns : cart.columns,
     rows    : cart.rows,
    
 })
-
 
 }
 
@@ -412,45 +428,50 @@ toggleForm() {
                     </MDBTable>
                   </Row>
                   <hr />
-                  <Row className="flex-end">
+                  {/* <Row className="flex-end">
                     <Col md={6} >
                       <MDBInputGroup
                       material
                       name="temp"
                       prepend="Tạm tính"
                       size="sm"
+                      value={this.state.tamtinh}
                       disabled
                       />
                     </Col>
-                  </Row>
-                  <Row className="flex-end">
+                  </Row> */}
+                  {/* <Row className="flex-end">
                     <Col md={6} >
                       <MDBInputGroup
                       material
                       name="discount"
                       prepend="Giảm giá"
+                      value={this.state.giamgia}
                       size="sm"
                       />
                     </Col>
-                  </Row>
-                  <Row className="flex-end">
+                  </Row> */}
+                  {/* <Row className="flex-end">
                     <Col md={6} >
                       <MDBInputGroup
                       material
-                      name="charged"
+                      name="phuphi"
                       prepend="Phụ phí"
+                      value={this.state.phuphi}
+                      onChange= {e => this.change(e)}
                       size="sm"
                       />
                     </Col>
-                  </Row>
+                  </Row> */}
                   <Row className="flex-end">
                     <Col md={6} >
                       <MDBInputGroup
                       material
                       name="total"
                       prepend="Tổng tiền"
+                      value={total}
                       size="sm"
-                      disable="disable"
+                      disable = "disable"
                       />
                     </Col>
                   </Row>

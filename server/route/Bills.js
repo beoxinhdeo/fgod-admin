@@ -60,6 +60,9 @@ bills.post('/create', (req,res) =>{
     })
 })
 
+
+
+
 bills.post('/show', (req,res) =>{
      //a++;
     // console.log(a);
@@ -93,6 +96,45 @@ bills.post('/show', (req,res) =>{
 
 
 
+bills.post('/findbill', (req,res) =>{
+    //a++;
+   // console.log(a);
+   // res.send(a).catch(err =>{res.send("err : " + err)});
+   
+
+   Bill.findAll({
+       include: [{
+             model: Employee,
+             required: true
+        },
+        {
+             model: Customer,
+             required: true
+          }],
+        where: {
+            bill_date : {[Op.between]: [req.body.checkin,req.body.checkout]},
+            code_cus : req.body.code_cus
+            
+        }
+
+        
+     }).then(bill =>{
+       if(bill){
+                   //a++;
+                   //console.log(a);
+                   res.send(bill).catch(err =>{res.send("err : " + err)});
+          
+       } 
+       else{
+           res.send({status:false,message:"Nhập lại mã khách hàng"});
+       }
+   }).catch(err =>{
+       res.send("err : "+ err);
+   })
+})
+
+
+
 
 
 bills.post('/find', (req,res) =>{
@@ -103,15 +145,13 @@ bills.post('/find', (req,res) =>{
 Bill_detail.findAll(
         {
             attributes: ['code_room','price'],
-            where : {checkin: {[Op.between]: [req.body.checkin,req.body.checkout]}
+            where : {checkin: {[Op.between]: ["",""]}
         },
-}).then(bill => {
+}
+).then(bill => {
+    console.log(bill);
+    
     billl = bill.map( bill => b.push(bill.dataValues.code_room))
-    console.log(b);
-
-
-
-
     Room.findAll(
         {
             attributes: [
@@ -123,19 +163,7 @@ Bill_detail.findAll(
             },
  
                    // [req.body.checkin,req.body.checkout]
-        include: [{
-        //             attributes: [
-        //                 'code_room'
-        //             ],
-        //             model: Bill_detail,
-        //             required: true,
-        //             where :  
-        //             { 
-        //             checkin: {[Op.notBetween]: [req.body.checkin,req.body.checkout],}
-        //             },
-        //             },
-        //             {
-                        model: Room_type,
+        include: [{     model: Room_type,
                         required: true,
                          }
 
@@ -145,9 +173,7 @@ Bill_detail.findAll(
     .then(bill =>{
         if(bill){
                     b=[]
-            
                     res.send(bill).catch(err =>{res.send("err : " + err)});
-           
         } 
         else{
             res.send({status:false,message:"Nhập lại mã khách hàng"});

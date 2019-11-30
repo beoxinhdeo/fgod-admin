@@ -109,11 +109,11 @@ change = e => {
 validate = () => {
     let isError = false;
     const errors = {};
-    const pattEmail = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/g;
+    const pattEmail = /^[a-z][a-z0-9_]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/g;
     const pattPass  = /^.{8,20}$/g;
-    const pattfullname  = /^([^0-9`!@#$%^&*()_\-=+\[\](){};'",./:\s]){2,}(\s[^0-9`!@#$%^&*()_\-=+\[\](){};'",./:\s]+)+$/g;
+    const pattfullname  = /^([^0-9`!@#$%^&*()_\-=+\](){};'",./:\s]){2,}(\s[^0-9`!@#$%^&*()_\-=+\](){};'",./:\s]+)+$/g;
     const pattPhone = /^0(3[2-9]|5[68-9]|7[06-9]|8[1-68-9]|9[0-46-9])[0-9]{7}$/g;
-    const pattAddress = /^[^\'\"\!@#$%^&*\(\)\{\}\[\]<>?]{10,}$/g;
+    const pattAddress = /^[^@#$%^&*\]<>?]{10,}$/g;
     if(!this.state.fullname){
         isError = true;
         errors.fullnameError = "Họ và tên không được để trống";
@@ -265,7 +265,7 @@ renderRoles() {
 }
 runScript(e) {
     //See notes about 'which' and 'key'
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
        this.onSubmit(e)
     }
     else 
