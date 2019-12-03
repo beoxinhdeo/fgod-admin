@@ -65,7 +65,7 @@ class Sidebar extends React.Component {
           <a
             href="http://localhost:3000/admin/roomap"
             className="simple-text logo-normal "
-            style={{"text-align" : "center"}}
+            style={{"textAlign" : "center"}}
           >
             FGOD HOTEL
           </a>

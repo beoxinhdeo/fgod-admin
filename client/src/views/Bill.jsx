@@ -1,8 +1,6 @@
 
 import React from 'react';
-
-
-import Form from "views/employee/AddEmp.jsx";
+//import TextField from '@material-ui/core/TextField';
 
 import{
     Row,
@@ -19,7 +17,10 @@ import {
     MDBBtn 
 } from 'mdbreact';
 
-import axios from 'axios';   
+import axios from 'axios';  
+import Form from "views/Bill_detail.jsx" 
+
+
 
 class Bill extends React.Component{
 state = {
@@ -48,11 +49,11 @@ componentDidMount(){
     axios.post('http://localhost:5000/bills/show')
       .then((res) => 
       {   
-          let ress = res.data.map (data => data.button =  <div>
-            <MDBBtn className="edit-btn" size="sm"> Chi Tiết</MDBBtn>
+         res.data.map (data => data.button =  <div>
+            <MDBBtn className="edit-btn" onClick={this.toggleForm.bind(this)} size="sm"> Chi Tiết</MDBBtn>
           </div>)
 
-          let rest = res.data.map ( data => 
+         res.data.map ( data => 
             {
               data.cus_name = data.customer.fullname;
               data.emp_name = data.employee.fullname
@@ -114,6 +115,14 @@ componentDidMount(){
     render() {
         return (
             <div className="content">
+              <div>{this.state.showForm ? 
+                            <Form
+                              closeForm={this.toggleForm.bind(this)}
+                              onChange = {fields => this.onChange(fields)}
+                              className="form"
+                            />
+                            : null
+                          }</div>
             <Row>
               <Col md="12">
                 <MDBCard>
@@ -123,14 +132,6 @@ componentDidMount(){
                         <Col md="6">Danh sách hóa đơn</Col>
                         <Col md="6" className="flex-end">
                           
-                          {this.state.showForm ? 
-                            <Form
-                              closeForm={this.toggleForm.bind(this)}
-                              onChange = {fields => this.onChange(fields)}
-                              className="form"
-                            />
-                            : null
-                          }
                         </Col>
                       </Row>
                     </MDBCardTitle>

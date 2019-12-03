@@ -36,45 +36,45 @@ import {
   Col
 } from "reactstrap";
 import axios from 'axios';  
-const data = {
-  columns: [
-    {
-      label: 'ID',
-      field: 'code_type',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Loại phòng',
-      field: 'type_name',
-      sort: 'asc',
-      width: 500
-    },
-    {
-      label: 'Mô tả',
-      field: 'description',
-      sort: 'asc',
-      width: 500
-    },
-    {
-      label: 'Thao tác',
-      field: 'button',
-      width: 100
-    }
-  ],
-  rows: [
-    {
-      code_type: '001',
-      type_name: 'Phòng đôi',
-      description: 'Đây là phòng đôi',
-      button:
-      <div>
-        <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
-      </div>
-    },
-  ]
-};
+// const data = {
+//   columns: [
+//     {
+//       label: 'ID',
+//       field: 'code_type',
+//       sort: 'asc',
+//       width: 150
+//     },
+//     {
+//       label: 'Loại phòng',
+//       field: 'type_name',
+//       sort: 'asc',
+//       width: 500
+//     },
+//     {
+//       label: 'Mô tả',
+//       field: 'description',
+//       sort: 'asc',
+//       width: 500
+//     },
+//     {
+//       label: 'Thao tác',
+//       field: 'button',
+//       width: 100
+//     }
+//   ],
+//   rows: [
+//     {
+//       code_type: '001',
+//       type_name: 'Phòng đôi',
+//       description: 'Đây là phòng đôi',
+//       button:
+//       <div>
+//         <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+//         <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+//       </div>
+//     },
+//   ]
+// };
 
 
 class Typeroom extends React.Component {
@@ -103,7 +103,7 @@ componentDidMount(){
   axios.post('http://localhost:5000/room_type/show')
     .then((res) => 
     {   
-        let ress = res.data.map (data => data.button =  <div>
+       res.data.map (data => data.button =  <div>
           <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
           <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
         </div>) 

@@ -4,7 +4,10 @@ import {
   MDBRow,
   MDBInput
 } from 'mdbreact';
+
+import {Redirect} from 'react-router-dom'
 import Fab from '@material-ui/core/Fab';
+import axios from "axios";
 
 
 class Login extends React.Component {
@@ -13,7 +16,9 @@ class Login extends React.Component {
     emailError:"",
     password :"",
     passwordError:"",
-    error:""
+    error:"",
+    loggedIn:false
+
 };
 
 change = e => {
@@ -53,23 +58,51 @@ validate = () => {
 onSubmit = e => {
   e.preventDefault();
   console.log(this.state);
-  //this.props.onSubmit(this.state);
   //Check error
   const error = this.validate();
   if(!error){
+    var obj = {
+      email:this.state.email,
+      password:this.state.password
+    }
+    axios.post('http://localhost:5000/users/login',obj).then(data => {
+      if(data.data.status==="success")   
+      this.setState({loggedIn:true})
+    })
+
+    if(this.state.email==="A" && this.state.password==="B")
   //clear form
       this.setState({
           email :"",
           emailError:"",
           password :"",
           passwordError:"",
-          error:""
+          error:"",
+          loggedIn : false
          });
   }
 }
 
+componentDidMount()
+{
+  this.checkSession()
+}
+
+checkSession(){
+  axios.post('http://localhost:5000/users/getSession').then(data => {
+    console.log(data);
+    if(data.data === "loggedIn")
+    this.setState({loggedIn:true})
+  })
+}
 
 render() {
+
+  if(this.state.loggedIn)
+  {
+    return <Redirect to="/admin/roommap"/>
+  }
+
     return (
       <div className="bg">
         <div className = "bg-img">

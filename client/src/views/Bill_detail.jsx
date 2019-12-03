@@ -1,5 +1,6 @@
 import React from "react";
-import "./Stylee.css";
+import "./Style.css";
+
 import{
     Card,
     CardBody,

@@ -287,3 +287,19 @@ tbody + thead{
     right: 3%;
     font-size: 2rem;
   }
+
+  .search
+  {
+      border-radius:5px; 
+      border-color: silver;
+      border-width: 1px;
+      height: 38px;
+      top:-8px ;
+      position: relative;
+      
+  }
+
+  .list-select
+  {
+    border-radius: 5px;
+  }

@@ -1,19 +1,19 @@
 const express = require('express')
 var session = require('express-session');
-var FileStore = require('session-file-store')(session);
+
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const users = express.Router()
-const options = {};
+
 const User = require('../models/Users')
-users.use(session({
-    store: new FileStore(options),
-    secret: "dsfhkdhsk",
+users.use((session({
+    secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-}));
+    cookie: { maxAge: 3600*12 }
+  })))
 
 users.use(cors())
 
@@ -60,6 +60,14 @@ users.post('/register', (req,res) => {
     })
 })
 
+users.post('/getSession',(req,res) => {
+    if(req.session.logIn)
+    res.json({status: 'loggedIn'})
+
+    if(!req.session.logIn)
+    res.json({status: 'NotloggedIn'})
+})
+
 
 users.post('/login',(req,res) => {
     User.findOne({ where: { email : req.body.email} })
@@ -74,14 +82,10 @@ users.post('/login',(req,res) => {
             if(bcrypt.compareSync(req.body.password,employee.password))
             {
                 var sessions = req.session
-                sessions.cart =[{
-                    "quantity" : req.body.quantity,
-                    "price" : req.body.price
+                sessions.logIn =[{
+                    "email" : req.body.email,
+                    "password" : req.body.password
                 }]
-                sessions.cart.push({
-                    "quantity" : req.body.quantity,
-                    "price" : req.body.price
-                });
                 res.json({status: 'success', session: req.session})
                 
                //var token = jwt.sign(employee.dataValues , process.env.SECRET_KEY,{ expiresIn: '1h'})

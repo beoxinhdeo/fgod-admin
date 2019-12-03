@@ -365,8 +365,8 @@ render() {
                                         <FormGroup>
                                             <Label for="role">Chức vụ</Label>
                                             <Input type="select" 
-                                            name = "role_choose"
-                                            
+                                            name = "role"
+                                            value = {this.state.role}
                                             onChange = {e => this.change(e)}>
                                                 {this.renderRoles()}
                                             </Input>

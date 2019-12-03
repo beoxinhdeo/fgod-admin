@@ -30,49 +30,49 @@ import moment from 'moment';
 var cart = JSON.parse(localStorage.getItem("cart"))
 var total = JSON.parse(localStorage.getItem("total"))
 
-const datasearch = {
-  columns: [
-    {
-      label: 'Phòng',
-      field: 'code_room',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Loại phòng',
-      field: 'type_name',
-      sort: 'asc',
-      width: 270
-    },
-    {
-      label: 'Giá',
-      field: 'price',
-      sort: 'asc',
-      width: 200
-    },
-    {
-      label: 'Thao tác',
-      field: 'button',
-      width: 100
-    }
-  ],
-  rows: [
-    {
-      code_room: '001',
-      type_name: 'Phòng đơn',
-      price: '1200000',
-      // button:
-      //     <MDBBtn className="booking-btn" size="sm">Đặt phòng</MDBBtn>
-    },
-    {
-      code_room: '001',
-      type_name: 'Phòng đơn',
-      price: '1200000',
-      // button:
-      //     <MDBBtn className="booking-btn" size="sm">Đặt phòng</MDBBtn>
-    },
-  ]
-};
+// const datasearch = {
+//   columns: [
+//     {
+//       label: 'Phòng',
+//       field: 'code_room',
+//       sort: 'asc',
+//       width: 150
+//     },
+//     {
+//       label: 'Loại phòng',
+//       field: 'type_name',
+//       sort: 'asc',
+//       width: 270
+//     },
+//     {
+//       label: 'Giá',
+//       field: 'price',
+//       sort: 'asc',
+//       width: 200
+//     },
+//     {
+//       label: 'Thao tác',
+//       field: 'button',
+//       width: 100
+//     }
+//   ],
+//   rows: [
+//     {
+//       code_room: '001',
+//       type_name: 'Phòng đơn',
+//       price: '1200000',
+//       // button:
+//       //     <MDBBtn className="booking-btn" size="sm">Đặt phòng</MDBBtn>
+//     },
+//     {
+//       code_room: '001',
+//       type_name: 'Phòng đơn',
+//       price: '1200000',
+//       // button:
+//       //     <MDBBtn className="booking-btn" size="sm">Đặt phòng</MDBBtn>
+//     },
+//   ]
+// };
 
 class Booking extends React.Component {
 state = {
@@ -251,7 +251,17 @@ addtocart(e)
 
 deletefromcart(e)
 {
-  var new_cart = cart.slice(e,e)
+  cart.rows.splice(e,1)
+  const myJSON = JSON.stringify(cart);
+  //const myTotal = JSON.stringify(total);
+  if (localStorage) {
+	      
+        localStorage.setItem('cart', myJSON);
+        //localStorage.setItem('total', myTotal);
+	 
+  }
+  this.renderDataCart();
+
 
 }
 
@@ -267,18 +277,17 @@ renderDataSearch()
   axios.post('http://localhost:5000/bills/find', date)
   .then((res) => 
   {   
-  
-      let ress = res.data.map 
-      (data =>
-        {
+      var i = 1 ;
+      res.data.map(data => {
       data.button = <div>
-         <MDBBtn className="booking-btn" id onClick={ this.addtocart.bind(this,data) } size="sm">Đặt phòng</MDBBtn>
+         <MDBBtn className="booking-btn" id={i} onClick={ this.addtocart.bind(this,data) } size="sm">Đặt phòng</MDBBtn>
       </div>;
       //data.room_coderoom = data.room.code_room
-      data.room_typename = data.room_type.type_name
+      data.room_typename = data.room_type.type_name;
       //data.room_description = data.room.description
       //data.room_price = data.room.price
       //data.room_status = data.room.status
+      i=i+1;
         }
         )  
 
@@ -323,9 +332,8 @@ renderDataSearch()
 
 renderDataCart()
 {
-  const i = 0;
-  let CART = cart.rows.map 
-  (data => {
+  var i = 0;
+ cart.rows.map(data => {
     
     // var obj={
     //   id : i,
@@ -336,7 +344,7 @@ renderDataCart()
     data.button = <div>
     <MDBIcon id={i} icon="trash-alt" size="lg" onClick={ this.deletefromcart.bind(this,i) } name="trash" type="button"/>
  </div>
-
+i=i+1;
   } )
 
   this.setState({

@@ -26,6 +26,9 @@ import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";
+import axios from "axios";
+import {Redirect} from 'react-router-dom'
+
 
 var ps;
 
@@ -34,7 +37,8 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       backgroundColor: "black",
-      activeColor: "info"
+      activeColor: "info",
+      loggedIn:false
     };
     this.mainPanel = React.createRef();
   }
@@ -43,6 +47,7 @@ class Dashboard extends React.Component {
       ps = new PerfectScrollbar(this.mainPanel.current);
       document.body.classList.toggle("perfect-scrollbar-on");
     }
+    //this.checkSession()
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -62,7 +67,24 @@ class Dashboard extends React.Component {
   handleBgClick = color => {
     this.setState({ backgroundColor: color });
   };
+
+
+  // checkSession(){
+  //   axios.post('http://localhost:5000/users/login').then(data => {
+  //     if(data.data === "loggedIn")
+  //     this.setState({loggedIn:true})
+  //     if(data.data === "NotloggedIn")
+  //     this.setState({loggedIn:false})
+  //   })
+  // }
+
   render() {
+
+    // if(!this.state.loggedIn)
+    // {
+    //   return <Redirect to="/login"/>
+    // }
+
     return (
       <div className="wrapper">
         <Sidebar

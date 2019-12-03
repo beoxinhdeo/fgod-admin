@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
-
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 
 const customers = express.Router()
@@ -101,10 +102,27 @@ customers.post('/show', (req,res) =>{
 customers.post('/findvalid', (req,res) =>{
    
 
-    Customer.findAll({where :{phone:req.body.phone}}).then(customer =>{
+    Customer.findAll({where : { phone: { [Op.like] : `%${req.body.phone}%` }} }).then(customer =>{
         if(customer){
                     res.send(customer).catch(err =>{res.send("err : " + err)});
            
+        } 
+        // else{
+        //     res.send({status:false,message:"Nhập lại mã khách hàng"});
+        // }
+    }).catch(err =>{
+        res.send("err : "+ err);
+    })
+})
+
+customers.post('/find', (req,res) =>{
+   
+
+    Customer.findAll({where : { phone: req.body.phone } }).then(customer =>{
+        if(customer){
+            console.log(customer);
+            
+                    res.send(customer).catch(err =>{res.send("err : " + err)});
         } 
         // else{
         //     res.send({status:false,message:"Nhập lại mã khách hàng"});

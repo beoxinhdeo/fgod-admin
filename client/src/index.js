@@ -53,7 +53,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/admin" render={props => <Admin {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
-      <Redirect to="/admin/roommap" />
+      <Redirect to="/login" />
     </Switch>
     {/* </Provider> */}
   </Router>,

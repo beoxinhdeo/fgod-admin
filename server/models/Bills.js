@@ -25,7 +25,7 @@ module.exports = db.sequelize.define(
         },
         bill_date:
         {
-            type: Sequelize.DATE,
+            type: Sequelize.DATEONLY,
         },
         total:
         {

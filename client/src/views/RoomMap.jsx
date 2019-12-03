@@ -3,6 +3,9 @@ import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardHeader, MDBBtn } from "mdbre
 import { Row, Button} from "reactstrap";
 import "./Style.css";
 import RoomInfo from "views/RoomInfo.jsx";
+import axios from "axios";
+import {Redirect} from 'react-router-dom'
+
 class RoomMap extends React.Component {
     constructor(props) {
         super(props);
@@ -103,6 +106,9 @@ onChange = updatevalue => {
     });
 };
 
+// componentDidMount(){
+//     this.checkSession()
+// }
 toggleForm() {
     this.setState({
       showForm: !this.state.showForm
@@ -340,6 +346,15 @@ setStateStatus_Ordered() {
        }); 
 }
 
+checkSession(){
+    axios.post('http://localhost:5000/users/login').then(data => {
+      if(data.data === "loggedIn")
+      this.setState({loggedIn:true})
+      if(data.data === "NotloggedIn")
+      this.setState({loggedIn:false})
+    })
+  }
+
 render_rooms(e) {
     if(e==3) {
     return this.showAll()
@@ -359,6 +374,12 @@ render_rooms(e) {
 }
 
     render() {
+
+        // if(!this.state.loggedIn)
+        // {    
+        //   return <Redirect to="/login"/>
+        // }
+        
         return (
             <div className="content">
                 <MDBCard className="card-roommap">  

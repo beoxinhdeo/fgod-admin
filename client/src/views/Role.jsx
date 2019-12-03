@@ -40,38 +40,38 @@ import {
 import axios from 'axios';   
 
 
-const data = {
-  columns: [
-    {
-      label: 'ID',
-      field: 'code_role',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Bộ phận',
-      field: 'rolename',
-      sort: 'asc',
-      width: 500
-    },
-    {
-      label: 'Thao tác',
-      field: 'button',
-      width: 100
-    }
-  ],
-  rows: [
-    {
-      code_role: '001',
-      rolename: 'Quản lý',
-      button:
-      <div>
-        <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
-      </div>
-    },
-  ]
-};
+// const data = {
+//   columns: [
+//     {
+//       label: 'ID',
+//       field: 'code_role',
+//       sort: 'asc',
+//       width: 150
+//     },
+//     {
+//       label: 'Bộ phận',
+//       field: 'rolename',
+//       sort: 'asc',
+//       width: 500
+//     },
+//     {
+//       label: 'Thao tác',
+//       field: 'button',
+//       width: 100
+//     }
+//   ],
+//   rows: [
+//     {
+//       code_role: '001',
+//       rolename: 'Quản lý',
+//       button:
+//       <div>
+//         <MDBBtn className="edit-btn" size="sm"> Sửa</MDBBtn>
+//         <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+//       </div>
+//     },
+//   ]
+// };
 
 class Role extends React.Component {
   state = {
@@ -102,7 +102,7 @@ componentDidMount(){
   axios.post('http://localhost:5000/roles/show')
     .then((res) => 
     {   
-        let ress = res.data.map (data =>
+        res.data.map(data =>
           {
           if(data.bill_role === "true")
           {
@@ -116,7 +116,6 @@ componentDidMount(){
           <MDBBadge className="btn-floating btn-lg btn-default remove-btn "><i className=" fas fa-ban fa-lg icon"></i></MDBBadge>
           </div>;
           }
-
 
           if(data.cus_role === "true")
           {

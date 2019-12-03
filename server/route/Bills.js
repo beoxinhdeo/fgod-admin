@@ -30,6 +30,7 @@ Bill.belongsTo(Customer, {foreignKey: 'code_cus'})
 bills.use(cors())
 var a=5
 var b=[]
+var c
 //thêm 
 //cd server
 //npm run dev
@@ -100,7 +101,17 @@ bills.post('/findbill', (req,res) =>{
     //a++;
    // console.log(a);
    // res.send(a).catch(err =>{res.send("err : " + err)});
-   
+   Customer.findAll(
+    {
+        attributes: ['code_cus'],
+        where : { phone : req.body.phone}
+    }
+).then(customer => { 
+    //customer.map( cus => c = cus.dataValues.code_cus)
+    c = customer[0].dataValues.code_cus;
+  console.log(c);
+    
+    //res.send(customer).catch(err => res.send(err))
 
    Bill.findAll({
        include: [{
@@ -113,9 +124,9 @@ bills.post('/findbill', (req,res) =>{
           }],
         where: {
             bill_date : {[Op.between]: [req.body.checkin,req.body.checkout]},
-            code_cus : req.body.code_cus
+            code_cus :  c }
             
-        }
+        
 
         
      }).then(bill =>{
@@ -124,7 +135,7 @@ bills.post('/findbill', (req,res) =>{
                    //console.log(a);
                    res.send(bill).catch(err =>{res.send("err : " + err)});
           
-       } 
+       }    
        else{
            res.send({status:false,message:"Nhập lại mã khách hàng"});
        }
@@ -133,7 +144,16 @@ bills.post('/findbill', (req,res) =>{
    })
 })
 
+.catch(err =>{
+    res.send("err : "+ err);
+         })
+//})
 
+
+
+
+   
+})
 
 
 

@@ -57,7 +57,7 @@ checkChange = e => {
 validate = () => {
     let isError = false;
     const errors = {};
-    const pattname  = /^[^\'\"\!.,@#$%^&*\(\)\{\}\[\]<>?]{1,}$/g;;
+    const pattname  = /^[^.,@#$%^&*<>?]{1,}$/g;;
     if(!this.state.rolename){
         isError = true;
         errors.rolenameError = "Tên bộ phận không được để trống";
