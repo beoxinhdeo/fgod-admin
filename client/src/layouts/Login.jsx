@@ -66,9 +66,23 @@ onSubmit = e => {
       password:this.state.password
     }
     axios.post('http://localhost:5000/users/login',obj).then(data => {
-      if(data.data.status==="success")   
+      console.log(data);
+      if(data.data[0].idrole)   
       this.setState({loggedIn:true})
-    })
+
+      var obj = data.data[0]
+      console.log(obj);
+      
+      const myJSON = JSON.stringify(obj);
+      //const myTotal = JSON.stringify(total_cart);
+
+      if (localStorage) {
+        localStorage.setItem('login', myJSON);
+        //localStorage.setItem('total', myTotal);
+	 
+    }
+  }
+  )
 
     if(this.state.email==="A" && this.state.password==="B")
   //clear form

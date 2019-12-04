@@ -375,10 +375,12 @@ render_rooms(e) {
 
     render() {
 
-        // if(!this.state.loggedIn)
-        // {    
-        //   return <Redirect to="/login"/>
-        // }
+        if(localStorage.getItem("login"))
+        {    
+          var obj = localStorage.getItem("login").room_role;
+          if(obj == "true")
+          return <Redirect to="/login"/>
+        }
         
         return (
             <div className="content">

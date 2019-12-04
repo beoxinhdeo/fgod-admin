@@ -72,7 +72,7 @@ renderDataTable()
   
       let ress = res.data.map (data => data.button =  <div>
         <MDBBtn onClick={this.toggleEdit.bind(this,data.code_emp)} className="edit-btn" size="sm"> Sửa</MDBBtn>
-        <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn>
+        {/* <MDBBtn className="delete-btn" size="sm"> Xóa</MDBBtn> */}
       </div>) 
       //if (this._isMounted) {
   

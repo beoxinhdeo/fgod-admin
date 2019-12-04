@@ -50,6 +50,14 @@
     background-color: rosybrown !important;
     border-radius: 5px;
 }
+.last-booking-btn {
+    background-color:#FFBF00!important;
+    border-radius: 5px;
+    height:50px ;
+    width: 100px;
+    color: black;
+    /* color: black; */
+}
 .find-btn {
     color: black;
     background-color: skyblue !important;
@@ -302,4 +310,10 @@ tbody + thead{
   .list-select
   {
     border-radius: 5px;
+  }
+
+  .hello
+  {
+      position: relative;
+      margin-left:100px ;
   }

@@ -82,7 +82,6 @@ rooms.post('/show', (req,res) =>{
     Room.findAll().then(room =>{
         if(room){
             let rooom = room.map( each_room => {
-                findAll
                 if(each_room.role == "1")
                 each_room.status ="5";
             

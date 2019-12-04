@@ -78,11 +78,13 @@ class Booking extends React.Component {
 state = {
   showForm : false,
   amount:"",
+  phone:"",
   discount:"",
   charged:"",
   total:"",
   checkin:"",
   checkout:"",
+  cus_choose:[],
   tamtinh :0,
   tongtien: 0,
   phuphi:0
@@ -102,6 +104,14 @@ componentDidMount()
   this.createSession()
   this.renderDataSearch()
   this.renderDataCart()
+
+  const obj = {
+    phone : this.state.phone,
+  }
+  axios.post('http://localhost:5000/customers/findvalid',obj)
+      .then((res) => {  this.setState({ cus_choose :  res.data })  });
+      
+    //this.renderDataTable()
   
 }
 
@@ -252,6 +262,7 @@ addtocart(e)
 deletefromcart(e)
 {
   cart.rows.splice(e,1)
+ // total=total-cart[e].rows.amount;
   const myJSON = JSON.stringify(cart);
   //const myTotal = JSON.stringify(total);
   if (localStorage) {
@@ -329,6 +340,12 @@ renderDataSearch()
 );
 }
 
+render_cus()
+{   
+  return this.state.cus_choose.map( data => 
+    (    <option value = {data.phone} > {data.fullname} </option>        )
+)
+}
 
 renderDataCart()
 {
@@ -412,12 +429,22 @@ toggleForm() {
                 <CardBody>
                   <Row className = "flex-end">
                     <Col md={4}>
-                      <TextField id="standard-basic"
-                        label="Tìm kiếm khách hàng"
-                        name = "searchCus"
-                      />
+
+                    <input 
+                    label="SĐT khách hàng"
+                    className="search"
+                    name="phone"
+                    placeholder="SĐT khách hàng"
+                    value={this.state.phone}
+                    onChange= {e => this.change(e)}
+                    id="txt_ide" list="ide"  type="text"  />
+                        <datalist id="ide" className="list-select">
+                        {this.render_cus()}
+                        </datalist>
                     </Col>
-                    <Fab color="primary" aria-label="add" size="small"  onClick={this.toggleForm.bind(this)}>
+
+                    <Col md={2}>
+                    <Fab className="hello" color="primary" aria-label="add" size="small"  onClick={this.toggleForm.bind(this)}>
                       <i className = "fas fa-user-plus"/>
                     </Fab>
                     {this.state.showForm ? 
@@ -427,6 +454,7 @@ toggleForm() {
                       />
                       : null
                     }
+                    </Col>
                   </Row>
                   <hr />
                   <Row>
@@ -459,18 +487,7 @@ toggleForm() {
                       />
                     </Col>
                   </Row> */}
-                  {/* <Row className="flex-end">
-                    <Col md={6} >
-                      <MDBInputGroup
-                      material
-                      name="phuphi"
-                      prepend="Phụ phí"
-                      value={this.state.phuphi}
-                      onChange= {e => this.change(e)}
-                      size="sm"
-                      />
-                    </Col>
-                  </Row> */}
+                 
                   <Row className="flex-end">
                     <Col md={6} >
                       <MDBInputGroup
@@ -482,6 +499,9 @@ toggleForm() {
                       disable = "disable"
                       />
                     </Col>
+                  </Row> 
+                  <Row className="flex-end">
+                  <Button type="button" size="sm" className="last-booking-btn" onClick={this.renderDataSearch.bind(this)}>Tra cứu</Button>
                   </Row>
                 </CardBody>
               </Card>                

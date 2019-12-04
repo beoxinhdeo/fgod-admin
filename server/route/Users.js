@@ -8,6 +8,8 @@ const bcrypt = require('bcrypt')
 const users = express.Router()
 
 const User = require('../models/Users')
+const Role = require('../models/Roles')
+
 users.use((session({
     secret: 'keyboard cat',
     resave: false,
@@ -23,6 +25,7 @@ process.env.SECRET_KEY = 'secret'
 
 
 users.post('/register', (req,res) => {
+
     const userData = {
         fullname :      req.body.fullname,
         identity_card : req.body.identity_card,
@@ -81,12 +84,14 @@ users.post('/login',(req,res) => {
         //if(req.body.PASS=nhanvien.PASS)
             if(bcrypt.compareSync(req.body.password,employee.password))
             {
-                var sessions = req.session
-                sessions.logIn =[{
-                    "email" : req.body.email,
-                    "password" : req.body.password
-                }]
-                res.json({status: 'success', session: req.session})
+                // var sessions = req.session
+                // sessions.logIn =[{
+                //     "email" : req.body.email,
+                //     "password" : req.body.password
+                // }]
+                Role.findAll({where:{ idrole : employee.role}}).then( role => {res.send(role)})
+                //res.json({status: 'success', session: req.session})
+                //res.send(employee).catch(err => res.send(err))
                 
                //var token = jwt.sign(employee.dataValues , process.env.SECRET_KEY,{ expiresIn: '1h'})
                //res.send(token)

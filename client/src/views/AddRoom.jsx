@@ -1,6 +1,8 @@
 import React from "react";
 import "./Stylee.css";
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import axios from 'axios';   
+
 
 import{
     Label,
@@ -49,7 +51,7 @@ validate = () => {
         errors.room_nameError = "Số phòng không được để trống";
     }
     else if(this.state.room_name){
-        if(!this.state.room_name.match(pattname)){
+        if(!this.state.room_name.match(pattname)){  
         isError = true;
         errors.room_nameError = "Số phòng không hợp lệ";
         }
@@ -92,6 +94,7 @@ onSubmit = e => {
             status:"",
             showForm: !this.state.showForm
           });
+
         this.props.onChange({
             room_name:"",
             room_nameError:"",
@@ -101,14 +104,60 @@ onSubmit = e => {
             descriptionError:"",
             status:""
         });
+
+        const obj = {
+           // code_room :      this.state.code_room,
+            room_name :       this.state.room_name,
+            code_type :      this.state.code_type,
+            price :          this.state.price,
+            description :    this.state.description,
+            status :         this.state.status,
+           
+        };
+      
+        axios.post('http://localhost:3000/rooms/create', obj)
+        .then(res =>
+            {
+                axios.post('http://localhost:5000/users/show')
+                .then(response => {
+                        this.setState({ data: response.data });
+                        this.props.newlist(this.state.data)
+                }
+                )
+                console.log(res)
+                this.setState({
+                    code_room :"",
+                    fullnameError: "",
+                    code_type :"",
+                    price:"",
+                    description :"",
+                    status:"",
+       
+        showForm: !this.state.showForm
+      });
+
+    this.props.onChange({
+                    code_room :"",
+                    fullnameError: "",
+                    code_type :"",
+                    price:"",
+                    description :"",
+                    status:"",
+       
+    });
+  
+
+
         alert("Bạn đã thêm "+ this.state.room_name+"thành công!"); 
         this.props.closeForm({
             showForm: !this.state.showForm
         })
 
         
-    }
+    })
 }
+}
+
 render() {
     return (
         <div className = 'popup'>
